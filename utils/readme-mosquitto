@@ -1,0 +1,7 @@
+# Readme mosquitto
+
+## Autostart mosquitto
+
+```bash
+sudo systemctl enable mosquitto.service
+```

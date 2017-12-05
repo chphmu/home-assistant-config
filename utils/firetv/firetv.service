@@ -1,0 +1,10 @@
+ [Unit]
+ Description=My Sample Service
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/local/bin/firetv-server -d 192.168.85.70:5555
+
+ [Install]
+ WantedBy=multi-user.target

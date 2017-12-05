@@ -1,0 +1,17 @@
+- name: GuestMove
+  entities:
+    light.schreibtischlampe: on
+- name: GuestOff
+  entities:
+    light.schreibtischlampe: off
+- name: WohnzimmerIndirekt
+  entities:
+    light.vitrinen: on
+    light.sideboard: on
+- name: Bettvorbereitung
+  entities:
+    light.vitrinen: off
+    light.sideboard: on
+    light.wohnzimmerfarblicht:
+      rgb_color: [170,79,0]
+    light.bett: on

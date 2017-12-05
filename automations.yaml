@@ -1,0 +1,194 @@
+- id: nachtlichWz
+  alias: Nachtlicht Wohnzimmer
+  action:
+  - data:
+      brightness: 190
+      rgb_color:
+      - 190
+      - 105
+      - 0
+    service: light.turn_on
+    entity_id: light.wohnzimmerfarblicht
+  - service: homeassistant.turn_on
+    entity_id: input_boolean.automatic_light
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.wzsensor_luminance
+      below: 10
+    - condition: state
+      entity_id: light.wohnzimmerfarblicht
+      state: 'off'
+    - condition: time
+      before: '18:00:00'
+      after: '21:50:00'
+  trigger:
+  - entity_id: sensor.wzsensor_burglar
+    platform: state
+    to: '8'
+    for: 00:00:02
+- id: nachtlichAusWz
+  alias: Nachtlicht aus nach 2 Minuten
+  trigger:
+    platform: state
+    entity_id: sensor.wzsensor_burglar
+    to: '0'
+    for: 00:00:10
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.automatic_light
+      state: 'on'
+    - condition: time
+      before: '18:00:00'
+      after: '21:50:00'
+  action:
+  - service: light.turn_off
+    entity_id: light.wohnzimmerfarblicht
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.automatic_light
+- id: abendBeleuchtung
+  alias: Abend Beleuchtung
+  trigger:
+  - entity_id: sensor.wzsensor_burglar
+    platform: state
+    to: '8'
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.wzsensor_luminance
+      below: 10
+    - condition: time
+      after: '18:00:00'
+      before: '21:50:00'
+  action:
+  - service: light.turn_on
+    entity_id: light.vitrinen
+  - service: light.turn_on
+    entity_id: light.sideboard
+  - data:
+      brightness: 190
+      rgb_color:
+      - 190
+      - 105
+      - 10
+    service: light.turn_on
+    entity_id: light.wohnzimmerfarblicht
+- id: staubiDaily
+  alias: Staubsauger Taeglich
+  trigger:
+  - platform: time
+    at: '13:00:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.androidc4cce019c0752a41
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.christiniphone6
+      state: not_home
+  action:
+  - service: vacuum.turn_on
+    entity_id: vacuum.staubi
+  - service: notify.ios_christian_iphone_6
+    data:
+      message: Staubi startet um 13 Uhr
+      title: Staubiaction
+- id: staubiWaitingTrigger
+  alias: Staubsauger auf Warten setzen
+  trigger:
+  - platform: time
+    at: '13:00:00'
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: device_tracker.androidc4cce019c0752a41
+      state: home
+    - condition: state
+      entity_id: device_tracker.christiniphone6
+      state: home
+  action:
+  - service: homeassistant.turn_on
+    entity_id: input_boolean.staubi_waiting
+  - service: notify.ios_christian_iphone_6
+    data:
+      message: Staubi wartet
+      title: Staubiaction
+- id: staubiAlone
+  alias: Staubsauger startet allein
+  trigger:
+  - entity_id: device_tracker.androidc4cce019c0752a41, device_tracker.christiniphone6
+    platform: state
+    to: not_home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.androidc4cce019c0752a41
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.christiniphone6
+      state: not_home
+    - condition: state
+      entity_id: input_boolean.staubi_waiting
+      state: 'on'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: input_boolean.staubi_waiting
+  - service: vacuum.turn_on
+    entity_id: vacuum.staubi
+  - service: notify.ios_christian_iphone_6
+    data:
+      message: "Staubi allein zuhause und f\xE4hrt"
+      title: Staubiaction
+- id: staubiBusted
+  alias: Staubsauger stopped wenn nicht allein
+  trigger:
+  - entity_id: device_tracker.androidc4cce019c0752a41, device_tracker.christiniphone6
+    platform: state
+    to: home
+  action:
+  - service: vacuum.turn_off
+    entity_id: vacuum.staubi
+- id: guestRoomLightOn
+  alias: Guest room light on
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_guest
+    to: 'on'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.GuestMove
+- id: guestRoomLightOff
+  alias: Guest room light off
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_guest
+    to: 'off'
+    for:
+      minutes: 4
+  action:
+  - service: scene.turn_on
+    entity_id: scene.GuestOff
+- action:
+  - timeout: '180'
+    wait_template: '{{ states.binary_sensor.door_window_sensor_158d0001ab23d6.state
+      == ''on'' }}'
+  - alias: Hallo Teddy
+    data:
+      ringtone_id: '10001'
+      ringtone_vol: '8'
+    service: xiaomi_aqara.play_ringtone
+  alias: Adri kommt heim
+  condition: []
+  id: '1510305695489'
+  trigger:
+  - entity_id: device_tracker.androidc4cce019c0752a41
+    from: not_home
+    platform: state
+    to: home

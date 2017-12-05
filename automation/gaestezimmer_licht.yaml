@@ -1,0 +1,20 @@
+- id: guestRoomLightOn
+  alias: Guest room light on
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_guest
+    to: 'on'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.GuestMove
+- id: guestRoomLightOff
+  alias: Guest room light off
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_guest
+    to: 'off'
+    for: 
+      minutes: 3 
+  action:
+  - service: scene.turn_on
+    entity_id: scene.GuestOff

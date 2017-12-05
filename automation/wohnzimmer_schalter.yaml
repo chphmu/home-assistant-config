@@ -1,0 +1,49 @@
+- id: abendBeleuchtungAn
+  alias: Abend Beleuchtung an
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d00016396b8
+      click_type: single
+  action:
+  - data:
+      brightness: 190
+      rgb_color:
+      - 190
+      - 105
+      - 10
+      transition: 10
+    service: light.turn_on
+    entity_id: light.wohnzimmerfarblicht
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.stern
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.vitrinen
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.sideboard
+- id: abendBeleuchtungAus
+  alias: Abend Beleuchtung aus
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d00016396b8
+      click_type: single
+  action:
+  - service: light.turn_off
+    entity_id: light.wohnzimmerfarblicht
+    data:
+      transition: 10
+  - delay: 00:00:01
+  - service: light.turn_off
+    entity_id: light.stern
+  - delay: 00:00:01
+  - service: light.turn_off
+    entity_id: light.vitrinen
+  - delay: 00:00:01
+  - service: light.turn_off
+    entity_id: light.sideboard

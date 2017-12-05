@@ -1,0 +1,94 @@
+- id: alarmclock_week_adri
+  alias: "Wake me up with bedroom light transition for weekdays"
+  trigger:
+    - platform: time
+      minutes: '/1'
+      seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_adri_on
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: template
+      value_template: '{{ now().strftime("%H:%M") == states.sensor.alarmclock_time_adri.state }}'
+  action:
+  - service: light.turn_on
+    entity_id: light.bett
+    data:
+      transition: 30
+      brightness: 190
+      rgb_color:
+      - 190
+      - 105
+      - 0
+  - delay: 00:00:30
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      ringtone_vol: 8
+      ringtone_id: 10005
+  - service: remote.turn_on
+    entity_id: remote.harmony
+    data:
+      #Radio: 18715284
+      # FireTV
+      activity: 17652505
+      #Chromecast
+      #24447593
+  - service: light.turn_on
+    entity_id: light.vitrinen
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.sideboard
+  - service: automation.turn_off
+    entity_id: automation.bettlicht_an
+  - service: automation.turn_off
+    entity_id: automation.bettlicht_aus
+  - delay: 00:01:30
+  - service: media_player.select_source
+    entity_id: media_player.spotify
+    data:
+      source: 'Amazon FireTV Stick'
+  - service: media_player.play_media
+    entity_id: media_player.spotify
+    data:
+      media_content_type: playlist
+      media_content_id: 'spotify:user:spotify:playlist:37i9dQZF1DWSWyJydK4fTU'
+  - service: media_player.shuffle_set
+    entity_id: media_player.spotify
+    data:
+      shuffle: true
+  - service: media_player.media_next_track
+    entity_id: media_player.spotify
+  - delay: 00:30:00
+  - service: automation.turn_on
+    entity_id: automation.bettlicht_an
+  - service: automation.turn_on
+    entity_id: automation.bettlicht_aus
+- id: alarmclock_weekend_adri
+  alias: "Wake me up with bedroom light weekend days"
+  trigger:
+    - platform: time
+      minutes: '/1'
+      seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_adri_on
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.alarm_adri_weekend
+      state: 'on'
+    - condition: time
+      weekday:
+        - sat
+        - sun
+    - condition: template
+      value_template: '{{ now().strftime("%H:%M") == states.sensor.alarmclock_time_adri.state }}'
+  action:
+    - service: light.turn_on
+      entity_id: light.bett

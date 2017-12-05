@@ -1,0 +1,29 @@
+- id: bettlichtOn
+  alias: Bettlicht an
+  action:
+  - service: light.turn_on
+    entity_id: light.bett
+    data:
+      brightness: 190
+      rgb_color:
+      - 190
+      - 105
+      - 0
+      transition: 5
+  trigger:
+  - platform: state
+    entity_id: sensor.bewegungsmelder_schlafzimmer
+    to: 'on'
+- id: bettlichtOff
+  alias: Bettlicht aus
+  action:
+  - service: light.turn_off
+    entity_id: light.bett
+    data:
+      transition: 5
+  trigger:
+  - platform: state
+    entity_id: sensor.bewegungsmelder_schlafzimmer
+    to: 'off'
+    for:
+      minutes: 3
