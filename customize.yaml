@@ -40,3 +40,7 @@ input_boolean.alarm_adri_on:
   icon: mdi:alarm-check
 input_boolean.alarm_adri_weekend:
   icon: mdi:sofa
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false

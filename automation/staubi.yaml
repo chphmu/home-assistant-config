@@ -15,7 +15,7 @@
   action:
   - service: vacuum.turn_on
     entity_id: vacuum.staubi
-  - service: notify.ios_christian_iphone_6
+  - service: notify.ios_evcmip6
     data:
       message: Staubi startet um 13 Uhr
       title: Staubiaction
@@ -36,7 +36,7 @@
   action:
   - service: homeassistant.turn_on
     entity_id: input_boolean.staubi_waiting
-  - service: notify.ios_christian_iphone_6
+  - service: notify.ios_evcmip6
     data:
       message: Staubi wartet
       title: Staubiaction
@@ -63,7 +63,7 @@
     entity_id: input_boolean.staubi_waiting
   - service: vacuum.turn_on
     entity_id: vacuum.staubi
-  - service: notify.ios_christian_iphone_6
+  - service: notify.ios_evcmip6
     data:
       message: Staubi allein zuhause und fährt
       title: Staubiaction
