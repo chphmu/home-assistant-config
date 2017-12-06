@@ -49,10 +49,11 @@
     entity_id: automation.bettlicht_an
   - service: automation.turn_off
     entity_id: automation.bettlicht_aus
-  - condition:
-      condition: state
-      entity_id: remote.harmony
-      state: on
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: remote.harmony
+        state: 'on'
   - service: remote.turn_on
     entity_id: remote.harmony
     data:
@@ -95,6 +96,10 @@
   - delay: 00:00:01
   - service: light.turn_off
     entity_id: light.adri_nachtlicht
+  - service: light.turn_off
+    entity_id: light.wohnzimmerlampe
+  - service: light.turn_off
+    entity_id: ight.esstischlampe
   - delay: 00:01:00
   - service: light.turn_off
     entity_id: light.bett
