@@ -2,12 +2,12 @@
   alias: Zitrone trocken
   trigger:
   - platform: numeric_state
-    entity: sensor.zitrone_moisture
+    entity_id: sensor.zitrone_moisture
     below: 25
     for:  
       minutes: 5
   action:
-  - - service: notify.ios_evcmip6
+  - service: notify.ios_evcmip6
     data:
       message: Zitrone trocken
       title: Bitte die Zitrone gießen
@@ -15,12 +15,12 @@
   alias: Palme trocken
   trigger:
   - platform: numeric_state
-    entity: sensor.palme_moisture
+    entity_id: sensor.palme_moisture
     below: 25
     for:  
       minutes: 5
   action:
-  - - service: notify.ios_evcmip6
+  - service: notify.ios_evcmip6
     data:
       message: Palme trocken
       title: Bitte die Palme gießen
