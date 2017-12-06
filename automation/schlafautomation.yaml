@@ -1,14 +1,6 @@
 - id: Gute Nacht Start
   alias: Schlaf Start
   action:
-  #- service: remote.turn_on
-  #  entity_id: remote.harmony
-  #  data:
-  #    #Radio: 18715284
-  #    # FireTV
-  #    activity: 17652505
-  #    #Chromecast
-  #    #24447593
   - service: xiaomi_aqara.play_ringtone
     data:
       ringtone_vol: 10
@@ -57,7 +49,18 @@
     entity_id: automation.bettlicht_an
   - service: automation.turn_off
     entity_id: automation.bettlicht_aus
-  - delay: 00:01:30
+  - condition:
+      condition: state
+      entity_id: remote.harmony
+      state: on
+  - service: remote.turn_on
+    entity_id: remote.harmony
+    data:
+      #Radio: 18715284
+      # FireTV
+      activity: 17652505
+      #Chromecast
+      #24447593
   - service: media_player.select_source
     entity_id: media_player.spotify
     data:
@@ -73,6 +76,8 @@
   action:
   - service: remote.turn_off
     entity_id: remote.harmony
+  - service: media_player.media_stop
+    entity_id: media_player.spotify
   - service: xiaomi_aqara.play_ringtone
     data:
       ringtone_vol: 8
