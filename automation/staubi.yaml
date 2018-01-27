@@ -19,6 +19,14 @@
     data:
       message: Staubi startet um 13 Uhr
       title: Staubiaction
+- id: staubiStopWaitingAtNight
+  alias: Staubsauger warten nachts stopen
+  trigger:
+  - platform: time
+    at: '23:45:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: input_boolean.staubi_waiting
 - id: staubiWaitingTrigger
   alias: Staubsauger auf Warten setzen
   trigger:

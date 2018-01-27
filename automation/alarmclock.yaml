@@ -32,12 +32,12 @@
     data:
       ringtone_vol: 8
       ringtone_id: 10005
-  - service: remote.turn_on
-    entity_id: remote.harmony
-    data:
+  #- service: remote.turn_on
+   # entity_id: remote.harmony
+#    data:
       #Radio: 18715284
       # FireTV
-      activity: 17652505
+ #     activity: 17652505
       #Chromecast
       #24447593
   - service: light.turn_on
@@ -49,11 +49,10 @@
     entity_id: automation.bettlicht_an
   - service: automation.turn_off
     entity_id: automation.bettlicht_aus
-  - delay: 00:01:30
   - service: media_player.select_source
     entity_id: media_player.spotify
     data:
-      source: 'Amazon FireTV Stick'
+      source: 'Bad'
   - service: media_player.play_media
     entity_id: media_player.spotify
     data:
@@ -70,6 +69,8 @@
     entity_id: automation.bettlicht_an
   - service: automation.turn_on
     entity_id: automation.bettlicht_aus
+  - service: light.turn_off
+    entity_id: light.bett
 - id: alarmclock_weekend_adri
   alias: "Wake me up with bedroom light weekend days"
   trigger:

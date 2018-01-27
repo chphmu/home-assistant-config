@@ -3,9 +3,9 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.zitrone_moisture
-    below: 25
+    below: 26
     for:  
-      minutes: 5
+      minutes: 60
   action:
   - service: notify.ios_evcmip6
     data:
@@ -16,9 +16,9 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.palme_moisture
-    below: 25
+    below: 26
     for:  
-      minutes: 5
+      minutes: 60
   action:
   - service: notify.ios_evcmip6
     data:

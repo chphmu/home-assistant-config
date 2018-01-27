@@ -127,6 +127,7 @@ fenster:
     - binary_sensor.fenster_gaestezimmer
     - binary_sensor.wohnzimmer_fenster
     - binary_sensor.fenster_links_schlafzimmer
+    - binary_sensor.fenster_kueche
     - binary_sensor.door_window_sensor_158d0001ab23d6
     - binary_sensor.door_window_sensor_158d0001d3a275
     - binary_sensor.door_window_sensor_158d0001dbd29b
@@ -144,11 +145,13 @@ schlafzimmer_bettlicht:
   entities:
     - sensor.bewegungsmelder_schlafzimmer
     - light.bett
+    - timer.timer_bed
 raspberry:
   name: "Raspberry"
   entities:
     - binary_sensor.button_rasp
     - binary_sensor.motion_guest
+    - binary_sensor.ir_sensor_1
     - switch.00x
     - switch.11x
     - switch.27x

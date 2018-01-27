@@ -1,0 +1,63 @@
+- id: fensterOffenVerlassen
+  alias: Fenster offen beim verlassen
+  trigger:
+  - entity_id: device_tracker.androidc4cce019c0752a41, device_tracker.evcmip6
+    platform: state
+    to: not_home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.androidc4cce019c0752a41
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.evcmip6
+      state: not_home
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.fenster_links_schlafzimmer
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.fenster_kueche
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.fenster_gaestezimmer
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.door_window_sensor_158d0001dbd29b
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.door_window_sensor_158d0001d3a275
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.door_window_sensor_158d0001ab23d6
+          state: 'on'
+  action:
+  - service: notify.ios_evcmip6
+    data:
+      message: Vielleicht mal nach den Fenstern gucken
+      title: Fenster offen!
+- id: fensterLangeOffen
+  alias: Fenster lange offen
+  trigger:
+  - entity_id: binary_sensor.fenster_kueche,binary_sensor.fenster_links_schlafzimmer
+    platform: state
+    to: 'on'
+    for:
+      minutes: 8 
+  - entity_id: binary_sensor.door_window_sensor_158d0001dbd29b,binary_sensor.door_window_sensor_158d0001d3a275,binary_sensor.door_window_sensor_158d0001ab23d6
+    platform: state
+    to: 'on'
+    for:
+      minutes: 8 
+  condition:
+  - condition: or
+    conditions:
+      - condition: template
+        value_template: '{{ states.weather.wetter.attributes.temperature < 16 }}'
+  action:
+  - service: notify.ios_evcmip6
+    data:
+      message: Genug gelüftet
+      title: Fenster lange für 8 Minuten offen!

@@ -30,6 +30,10 @@ hassio:
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
+weather:
+  - platform: yweather
+    name: 'Wetter'
+
 # Enables support for tracking state changes over time.
 history:
   exclude:
@@ -145,7 +149,12 @@ binary_sensor:
   - platform: rpi_gpio
     ports:
       12: Button Rasp
+      19: IR Sensor 1
     invert_logic: true
+    
+timer:
+  timer_bed:
+    name: Timer Bett
     
 sensor:
   - platform: template
@@ -220,6 +229,7 @@ light:
     devices:
       192.168.85.30:
         name: WohnzimmerFarblicht
+        mode: "rgbw"
   - platform: limitlessled
     bridges:
       - host: 192.168.85.31

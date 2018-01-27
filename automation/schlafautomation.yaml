@@ -35,14 +35,19 @@
   - service: media_player.select_source
     entity_id: media_player.spotify
     data:
-      source: 'Christians Echo Dot'
+      source: 'Bad'
   - service: light.turn_on
     entity_id: light.vitrinen
   - delay: 00:00:01
   - service: light.turn_on
     entity_id: light.sideboard
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.stern
+  - delay: 00:00:01
   - service: light.turn_on
     entity_id: light.christian_nachtlicht
+  - delay: 00:00:01
   - service: light.turn_on
     entity_id: light.adri_nachtlicht
   - service: automation.turn_off
@@ -77,6 +82,8 @@
   action:
   - service: remote.turn_off
     entity_id: remote.harmony
+  - service: media_player.media_pause
+    entity_id: media_player.spotify
   - service: media_player.media_stop
     entity_id: media_player.spotify
   - service: xiaomi_aqara.play_ringtone
@@ -90,6 +97,9 @@
   - delay: 00:00:01
   - service: light.turn_off
     entity_id: light.sideboard
+  - delay: 00:00:01
+  - service: light.turn_off
+    entity_id: light.stern
   - delay: 00:00:01
   - service: light.turn_off
     entity_id: light.christian_nachtlicht
