@@ -1,0 +1,51 @@
+sensor.yr_symbol:
+  friendly_name: Vorhersage
+sensor.alarmclock_time_adri:
+  icon: mdi:alarm
+input_boolean.alarm_adri_on:
+  icon: mdi:alarm-check
+input_boolean.alarm_adri_weekend:
+  icon: mdi:sofa
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false
+  
+sensor.humidity_bedroom_mean:
+  friendly_name: Schnitt Schlafzimmer Luftfeuchtigkeit
+sensor.temperature_bath_mean:
+  friendly_name: Schnitt Bad Temperatur
+sensor.humidity_bath_mean:
+  friendly_name: Schnitt Bad Luftfeuchtigkeit
+sensor.temperature_bedroom_mean:
+  friendly_name: Schnitt Schlafzimmer Temperatur
+
+sensor.flower_care_1_temperature:
+  friendly_name: Temperatur
+sensor.flower_care_1_moisture:
+  friendly_name: Feuchtigkeit
+sensor.flower_care_1_fertility:
+  friendly_name: Düngung
+sensor.flower_care_1_battery:
+  friendly_name: Batterie
+sensor.flower_care_1_batteryLevel:
+  friendly_name: Batterie Level
+sensor.flower_care_1_state:
+  friendly_name: Status
+sensor.flower_care_1_lux:
+  friendly_name: LUX
+
+sensor.flower_care_2_temperature:
+  friendly_name: Temperatur
+sensor.flower_care_2_moisture:
+  friendly_name: Feuchtigkeit
+sensor.flower_care_2_fertility:
+  friendly_name: Düngung
+sensor.flower_care_2_battery:
+  friendly_name: Batterie
+sensor.flower_care_2_batteryLevel:
+  friendly_name: Batterie Level
+sensor.flower_care_2_state:
+  friendly_name: Status
+sensor.flower_care_2_lux:
+  friendly_name: LUX

@@ -1,355 +1,47 @@
-homeassistant:
-  # Name of the location where Home Assistant is running
-  name: Home
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 141
-  # metric for Metric, imperial for Imperial
-  unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: Europe/Berlin
-  customize: !include customize.yaml
+## Synology Reverse Proxy mod:
+#### https://github.com/orobardet/dsm-reverse-proxy-websocket
 
-# Enables the frontend
+homeassistant: !include config/homeassistant.yaml
+alexa: 
+intent_script: !include config/intent_script.yaml
 frontend:
-
-# Enables configuration UI
 config:
-
-http:
-  api_password: !secret http_password
-
+http: !include config/http.yaml
 updater:
-
-# Discover some devices automatically
-#discovery:
-hassio:
-
-# Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
-
-weather:
-  - platform: yweather
-    name: 'Wetter'
-
-# Enables support for tracking state changes over time.
-history:
-  exclude:
-    entities:
-      - sensor.date__time
-      - sun.sun
-      
-history_graph:
-  gr1:
-    name: Temperatur
-    entities:
-      - sensor.flur_temperatur
-      - sensor.mi_flora_temperature
-      - sensor.temperature_158d0001ab70f5
-      - sensor.temperature_158d0001ab250a
-  gr2:
-    name: Feuchtigkeit
-    entities:
-      - sensor.humidity_158d0001ab250a
-      - sensor.humidity_158d0001ab70f5
-      - sensor.flur_luftfeuchtigkeit
-
-recorder:
-  purge_interval: 2
-  purge_keep_days: 14
-  exclude:
-    entities:
-      - sensor.date__time
-      - sun.sun
-
-# View all events in a logbook
-logbook:
-  exclude:
-    entities:
-      - sensor.date__time
-      - sun.sun
-
-# Track the sun
+weather: !include config/weather.yaml
+history: !include config/history.yaml
+recorder: !include config/recorder.yaml
+influxdb: !include config/influxdb.yaml
+logbook: !include config/logbook.yaml
 sun:
+history_graph: !include config/histroy_graph.yaml
+python_script:
+sensor default: !include config/sensor_default.yaml
+sensor mqtt: !include config/sensor_mqtt.yaml
+sensor statistics: !include config/sensor_statistics.yaml
+sensor alarmclock: !include config/sensor_alarmclock.yaml
+alert: !include config/alert.yaml
 
-# Weather Prediction
-sensor standard:
-  - platform: time_date
-    display_options:
-      - 'date_time'
-  - platform: yr
-  - platform: miflora
-    mac: !secret miflora_zitrone
-    name: Zitrone
-    monitored_conditions:
-      - temperature
-      - moisture
-      - light
-      - conductivity
-      - battery
-    timeout: 300
-    cache: 600
-  - platform: miflora
-    name: Palme
-    mac: !secret miflora_palme
-    monitored_conditions:
-      - temperature
-      - moisture
-      - light
-      - conductivity
-      - battery
-    timeout: 300
-    cache: 600
-  - platform: mqtt
-    name: "Bewegungsmelder Schlafzimmer"
-    state_topic: "sz/bewegungsmelder"
-  - platform: mqtt
-    name: "Flur Temperatur"
-    state_topic: "/Flur.Thermostat/measured-temp"
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "Flur Luftfeuchtigkeit"
-    state_topic: "/Flur.Thermostat/humidity"
-    unit_of_measurement: "%"
+binary_sensor mqtt: !include config/binary_sensor_mqtt.yaml
+binary_sensor default: !include config/binary_sensor_default.yaml
 
-binary_sensor:
-  - platform: mqtt
-    state_topic: "wz/fensterkueche/status"
-    name: "Fenster Kueche"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-  - platform: mqtt
-    state_topic: "gz/fenster/status"
-    name: "Fenster Gaestezimmer"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-  - platform: mqtt
-    state_topic: "sz/fensterlinks/status"
-    name: "Fenster Links Schlafzimmer"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-  - platform: mqtt
-    state_topic: "sz/bewegungsmelder"
-    name: "Bett Bewegungsmelder"
-    qos: 0
-    payload_on: "on"
-    payload_off: "off"
-    device_class: motion
-  - platform: rpi_gpio
-    ports:
-      23: Motion Guest
-  - platform: rpi_gpio
-    ports:
-      12: Button Rasp
-      19: IR Sensor 1
-    invert_logic: true
-    
-timer:
-  timer_bed:
-    name: Timer Bett
-    
-sensor:
-  - platform: template
-    sensors:
-      alarmclock_time_adri:
-        friendly_name: 'Weckzeit'
-        value_template: '{{ "%0.02d:%0.02d" | format(states("input_select.alarmclock_hour_adri") | int, states("input_select.alarmclock_minutes_adri") | int) }}'
-    
-# Text to speech
-tts:
-  platform: google
-  language: "de"
-
-#zwave:
-#  usb_path: /dev/ttyACM0
-#  network_key: !secret network_key
-
-remote:
-  - platform: harmony
-    name: Harmony
-    host: 192.168.85.26
-    activity: 32376203
-
-emulated_hue:
-  listen_port: 80
-  expose_by_default: true
-
-light:
-  - platform: mqtt
-    name: "Schreibtischlampe"
-    command_topic: "switch/it1/set"
-    state_topic: "switch/it1/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: mqtt
-    name: "Adri Nachtlicht"
-    command_topic: "switch/it2/set"
-    state_topic: "switch/it2/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: mqtt
-    name: "Stern"
-    command_topic: "switch/it3/set"
-    state_topic: "switch/it3/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: mqtt
-    name: "Vitrinen"
-    command_topic: "switch/it4/set"
-    state_topic: "switch/it4/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: mqtt
-    name: "Christian Nachtlicht"
-    command_topic: "switch/it5/set"
-    state_topic: "switch/it5/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: mqtt
-    name: "Sideboard"
-    command_topic: "switch/it6/set"
-    state_topic: "switch/it6/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: hue
-    host: 192.168.85.57
-    allow_unreachable: "true"
-    allow_in_emulated_hue: "false"
-    allow_hue_groups: "false"
-  - platform: flux_led
-    automatic_add: True
-    devices:
-      192.168.85.30:
-        name: WohnzimmerFarblicht
-        mode: "rgbw"
-  - platform: limitlessled
-    bridges:
-      - host: 192.168.85.31
-        version: 4
-        port: 8899
-        groups:
-        - number: 2
-          name: Bett
-
-ios:
-  push:
-    categories:
-      - name: Alarm
-        identifier: 'alarm'
-        actions:
-          - identifier: 'SOUND_ALARM'
-            title: 'Sound Alarm'
-            activationMode: 'background'
-            authenticationRequired: yes
-            destructive: yes
-            behavior: 'default'
-          - identifier: 'SILENCE_ALARM'
-            title: 'Silence Alarm'
-            activationMode: 'background'
-            authenticationRequired: yes
-            destructive: no
-            behavior: 'textInput'
-            textInputButtonTitle: 'Silencio!'
-            textInputPlaceholder: 'Placeholder'
-
-vacuum:
-  - platform: xiaomi_miio
-    name: 'Staubi'
-    host: '192.168.85.66'
-    token: !secret staubi_token
-
-mqtt:
-  broker: 192.168.85.3
-  username: !secret mqtt_user
-  password: !secret mqtt_password
-
-notify:
-- platform: nfandroidtv
-  name: tv
-  host: 192.168.85.29
-
-input_boolean:
-  staubi_waiting:
-    name: Staubi wartet
-    initial: off
-    icon: mdi:car
-  automatic_light:
-    name: Auto Licht
-    initial: off
-  alarm_adri_weekend:
-    name: Wochenende aktiv 
-    initial: off
-    icon: mdi:calendar
-  alarm_adri_on:
-    name: Aktiv     
-    initial: on
-  
-device_tracker:
-  - platform: bluetooth_tracker
-    track_new_devices: no
-  - platform: fritz
-
-media_player:
-  - platform: cast
-    host: 192.168.85.60
-  - platform: spotify
-    client_id: !secret spotify_client_id
-    client_secret: !secret spotify_client_secret
-  - platform: mpd
-    host: 192.168.85.3
-
-switch:
-  - platform: rpi_gpio
-    ports:
-      11: 11x
-      27: 27x
-      00: 00x
-      
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_aqara
-    
-input_select:
-  alarmclock_hour_adri:
-    name: Stunden
-    initial: "07"
-    options:
-      - "04"
-      - "05"
-      - "06"
-      - "07"
-      - "08"
-      - "09"
-      - "10"
-      - "11"
-      - "21"
-    icon: mdi:timer
-  alarmclock_minutes_adri:
-    name: Minuten
-    initial: "00"
-    options:
-      - "00"
-      - "05"
-      - "10"
-      - "15"
-      - "20"
-      - "25"
-      - "30"
-      - "35"
-      - "40"
-      - "45"
-      - "50"
-      - "55"
-    icon: mdi:timer
+timer: !include config/timer.yaml
+tts: !include config/tts.yaml
+remote: !include config/remote.yaml
+emulated_hue: !include config/emulated_hue.yaml
+light mqtt: !include config/light_mqtt.yaml
+light other: !include config/light_default.yaml
+hue: !include config/hue.yaml
+ios: !include config/ios.yaml
+vacuum: !include config/vaccum.yaml
+mqtt: !include config/mqtt.yaml
+notify: !include config/notify.yaml
+input_boolean: !include config/input_boolean.yaml
+device_tracker: !include config/device_tracker.yaml
+media_player: !include config/media_player.yaml
+xiaomi_aqara: !include config/xiaomi_aqara.yaml
+input_select: !include config/input_select_alarmclock.yaml
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation

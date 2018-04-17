@@ -4,7 +4,7 @@
   - platform: event
     event_type: click
     event_data:
-      entity_id: binary_sensor.wall_switch_left_158d00016396b8
+      entity_id: binary_sensor.wall_switch_left_1
       click_type: single
   action:
   - data:
@@ -31,7 +31,7 @@
   - platform: event
     event_type: click
     event_data:
-      entity_id: binary_sensor.wall_switch_right_158d00016396b8
+      entity_id: binary_sensor.wall_switch_right_1
       click_type: single
   action:
   - service: light.turn_off

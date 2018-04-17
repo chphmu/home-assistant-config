@@ -1,0 +1,71 @@
+- platform: mqtt
+  name: "Bewegungsmelder Schlafzimmer"
+  state_topic: "sz/bewegungsmelder"
+- platform: mqtt
+  name: "Flur Temperatur"
+  state_topic: "/Flur.Thermostat/measured-temp"
+  unit_of_measurement: "°C"
+- platform: mqtt
+  name: "Flur Luftfeuchtigkeit"
+  state_topic: "/Flur.Thermostat/humidity"
+  unit_of_measurement: "%"
+
+## Flower Sensor 1
+- platform: mqtt
+  name: "flower_care_1_temperature"
+  state_topic: "flower_care_1/temperature"
+  unit_of_measurement: "°C"
+- platform: mqtt
+  name: "flower_care_1_moisture"
+  state_topic: "flower_care_1/moisture"
+  unit_of_measurement: "%"
+- platform: mqtt
+  name: "flower_care_1_fertility"
+  state_topic: "flower_care_1/fertility"
+  unit_of_measurement: ""
+- platform: mqtt
+  name: "flower_care_1_battery"
+  state_topic: "flower_care_1/battery"
+  unit_of_measurement: ""
+- platform: mqtt
+  name: "flower_care_1_batteryLevel"
+  state_topic: "flower_care_1/batteryLevel"
+  unit_of_measurement: "%"
+- platform: mqtt
+  name: "flower_care_1_state"
+  state_topic: "flower_care_1/state"
+  unit_of_measurement: ""
+- platform: mqtt
+  name: "flower_care_1_lux"
+  state_topic: "flower_care_1/lux"
+  unit_of_measurement: "lux"
+
+## Flower Sensor 2
+- platform: mqtt
+  name: "flower_care_2_temperature"
+  state_topic: "flower_care_2/temperature"
+  unit_of_measurement: "°C"
+- platform: mqtt
+  name: "flower_care_2_moisture"
+  state_topic: "flower_care_2/moisture"
+  unit_of_measurement: "%"
+- platform: mqtt
+  name: "flower_care_2_fertility"
+  state_topic: "flower_care_2/fertility"
+  unit_of_measurement: ""
+- platform: mqtt
+  name: "flower_care_2_battery"
+  state_topic: "flower_care_2/battery"
+  unit_of_measurement: ""
+- platform: mqtt
+  name: "flower_care_2_batteryLevel"
+  state_topic: "flower_care_2/batteryLevel"
+  unit_of_measurement: "%"
+- platform: mqtt
+  name: "flower_care_2_state"
+  state_topic: "flower_care_2/state"
+  unit_of_measurement: ""
+- platform: mqtt
+  name: "flower_care_2_lux"
+  state_topic: "flower_care_2/lux"
+  unit_of_measurement: "lux"

@@ -1,0 +1,26 @@
+- platform: history_stats
+  name: Christian unterwegs
+  entity_id: device_tracker.mobile_christian
+  state: 'not_home'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Adriana unterwegs
+  entity_id: device_tracker.mobile_adriana
+  state: 'not_home'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: statistics
+  entity_id: sensor.humidity_bath
+  name: humidity_bath
+- platform: statistics
+  entity_id: sensor.humidity_bedroom
+  name: humidity_bedroom
+- platform: statistics
+  entity_id: sensor.temperature_bath
+  name: temperature_bath
+- platform: statistics
+  entity_id: sensor.temperature_bedroom
+  name: temperature_bedroom

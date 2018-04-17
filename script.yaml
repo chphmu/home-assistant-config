@@ -1,11 +1,3 @@
-example_script:
-  sequence:
-    # This is written using the Script Syntax
-    - service: light.turn_on
-      entity_id: light.vitrinen
-    - delay: 00:00:05
-    - service: light.turn_on
-      entity_id: light.sideboard
 good_night_script:
   sequence:
     # This is written using the Script Syntax
@@ -34,3 +26,101 @@ good_night_script:
       entity_id: media_player.spotify
       data:
         source: ChromecastChristian
+weekend:
+  sequence:
+    - service: remote.turn_on
+      entity_id: remote.harmony
+      data:
+        activity: 18672404
+    - service: media_player.play_media
+      entity_id: media_player.spotify
+      data:
+        media_content_type: playlist
+        media_content_id": 'spotify:user:spotify:playlist:37i9dQZF1DX5wcoyvtNnP4'
+    - service: media_player.shuffle_set
+      entity_id: media_player.spotify
+      data:
+        shuffle: true
+    - service: media_player.media_next_track
+      entity_id: media_player.spotify
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data:
+        source: Wohnung
+    - service: light.turn_on
+      entity_id: light.vitrinen
+    - delay: 00:00:01
+    - service: light.turn_on
+      entity_id: light.sideboard
+aquarium_switch:
+  sequence:
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Power
+aquarium_bright:
+  sequence:
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Heller
+tv_light:
+  sequence:
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Dunkler
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Dunkler
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Dunkler
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Dunkler
+    - service: remote.send_command
+      entity_id: remote.harmony
+      data:
+        device: 38228873
+        command: Dunkler
+

@@ -1,0 +1,14 @@
+- platform: flux_led
+  #automatic_add: True
+  devices:
+    192.168.85.30:
+      name: WohnzimmerFarblicht
+      mode: "rgbw"
+- platform: limitlessled
+  bridges:
+    - host: 192.168.85.31
+      version: 4
+      port: 8899
+      groups:
+      - number: 2
+        name: Bett

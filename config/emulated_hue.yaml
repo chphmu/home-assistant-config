@@ -1,0 +1,19 @@
+expose_by_default: true
+exposed_domains:
+  - script
+  - light
+entities:
+  script.good_night_script:
+    name: "Schlafen gehen"
+  script.weekend:
+    name: "Wochenende"
+  script.aquarium_switch:
+    name: "Aquarium schalten"
+  script.aquarium_bright:
+    name: "Aquarium hell"
+  script.tv_light:
+    name: "Fernsehlicht"
+  light.lamp_livingroom:
+    hidden: true
+  light.lamp_dining_room:
+    hidden: true

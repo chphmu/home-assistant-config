@@ -1,0 +1,44 @@
+- id: nightlight_living_room_on
+  alias: Nachtlicht Wohnzimmer an neu
+  action:
+  - service: light.turn_on
+    entity_id: light.wohnzimmerfarblicht
+    data:
+      rgb_color: [200,20,20]
+      brightness: 100
+  - service: timer.start
+    entity_id: timer.livingroom_nightlight
+    data:
+      duration: 00:02:30
+  trigger:
+  - platform: event
+    event_type: motion
+    event_data:
+      entity_id: binary_sensor.motion_sensor_livingroom
+  condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.wohnzimmerfarblicht
+          state: 'off' 
+        - condition: template
+          value_template: '{{ states.light.wohnzimmerfarblicht.attributes.rgb_color == (255, 22, 22) }}'
+    - condition: template
+      value_template: '{{ states.sensor.illumination_xiaomi_gateway.state < "700" }}'
+- id: nightlight_living_room_off
+  alias: Nachtlicht Wohnzimmer aus neu
+  action:
+  - service: light.turn_off
+    entity_id: light.wohnzimmerfarblicht
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data: 
+      entity_id: timer.livingroom_nightlight
+  condition:
+    - condition: template
+      value_template: '{{ states.light.wohnzimmerfarblicht.attributes.rgb_color == (255, 22, 22) }}'
+        
+    

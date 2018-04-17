@@ -1,0 +1,4 @@
+host: 192.168.85.5
+database: homeassistant
+username: admin
+password: testtest

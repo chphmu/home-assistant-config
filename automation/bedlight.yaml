@@ -9,11 +9,6 @@
   - platform: state
     entity_id: sensor.bewegungsmelder_schlafzimmer
     to: 'on'
-  - platform: event
-    event_type: click
-    event_data:
-      entity_id: binary_sensor.switch_158d0001837b69
-      click_type: single
 - id: bettlichtOn
   alias: Bettlicht an
   action:

@@ -1,0 +1,2 @@
+db_url: postgresql://ha:testtest@192.168.85.5:2345/postgres
+purge_keep_days: 60

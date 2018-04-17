@@ -1,0 +1,36 @@
+- id: AdriComesHome
+  alias: Adriana zuhause begruessen
+  trigger:
+  - entity_id: device_tracker.mobile_adriana
+  #, device_tracker.mobile_christian
+    platform: state
+    to: home
+  action:
+  - service: mqtt.publish
+    data:
+      topic: "tts/fhem"
+      payload: "hallo kleiner teddy"
+      qos: "2"
+  condition:
+    - condition: time
+      before: '22:15:00'
+      after: '07:00:00' 
+- id: ChristianComesHome
+  alias: Christian zuhause begruessen
+  trigger:
+  - entity_id: device_tracker.mobile_christian
+  #, device_tracker.mobile_christian
+    platform: state
+    to: home
+  action:
+  - service: mqtt.publish
+    data:
+      topic: "tts/fhem"
+      #payload: "hallo großer teddy"
+      payload_template: "Hallo Christian, du warst {{states.sensor.christian_unterwegs.attributes.value}} unterwegs."
+      qos: "2"
+  condition:
+    - condition: time
+      before: '22:15:00'
+      after: '07:00:00'
+    

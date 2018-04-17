@@ -1,0 +1,10 @@
+staubi_waiting:
+  name: Staubi wartet
+  icon: mdi:car
+automatic_light:
+  name: Auto Licht
+alarm_adri_weekend:
+  name: Wochenende aktiv
+  icon: mdi:calendar
+alarm_adri_on:
+  name: Aktiv

@@ -1,5 +1,5 @@
-- id: nachtlicht_adri
-  alias: Nachtlicht Adri
+- id: nightstand_lamp_adriana
+  alias: Nachtlicht Adriana
   action:
   - service: light.toggle
     entity_id: light.adri_nachtlicht
@@ -7,9 +7,9 @@
   - platform: event
     event_type: click
     event_data:
-      entity_id: binary_sensor.switch_158d00016d732a
+      entity_id: binary_sensor.switch_nightstand_adriana
       click_type: single
-- id: nachtlicht_christian
+- id: nightstand_lamp_christian
   alias: Nachtlicht Christian
   action:
   - service: light.toggle
@@ -18,5 +18,5 @@
   - platform: event
     event_type: click
     event_data:
-      entity_id: binary_sensor.switch_158d0001837b69
+      entity_id: binary_sensor.switch_nightstand_christian
       click_type: single

@@ -1,0 +1,28 @@
+- platform: mqtt
+  state_topic: "wz/fensterkueche/status"
+  name: "Fenster Kueche"
+  qos: 0
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: opening
+- platform: mqtt
+  state_topic: "gz/fenster/status"
+  name: "Fenster Gaestezimmer"
+  qos: 0
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: opening
+- platform: mqtt
+  state_topic: "sz/fensterlinks/status"
+  name: "Fenster Links Schlafzimmer"
+  qos: 0
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: opening
+- platform: mqtt
+  state_topic: "sz/bewegungsmelder"
+  name: "Bett Bewegungsmelder"
+  qos: 0
+  payload_on: "on"
+  payload_off: "off"
+  device_class: motion

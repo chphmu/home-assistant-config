@@ -5,6 +5,7 @@
     data:
       ringtone_vol: 10
       ringtone_id: 10003
+      gw_mac: !secret xiaomi_aqara_mac
   - service: light.turn_on
     entity_id: light.bett
     data:
@@ -75,21 +76,16 @@
   - platform: event
     event_type: click
     event_data:
-      entity_id: binary_sensor.wall_switch_both_158d00016396b8
+      entity_id: binary_sensor.wall_switch_both_1
       click_type: both
 - id: nachtboer
   alias: Gute Nacht Teddy
   action:
-  - service: remote.turn_off
-    entity_id: remote.harmony
-  - service: media_player.media_pause
-    entity_id: media_player.spotify
-  - service: media_player.media_stop
-    entity_id: media_player.spotify
   - service: xiaomi_aqara.play_ringtone
     data:
       ringtone_vol: 8
       ringtone_id: 10002
+      gw_mac: !secret xiaomi_aqara_mac
   - service: light.turn_off
     entity_id: light.wohnzimmerfarblicht
   - service: light.turn_off
@@ -110,6 +106,12 @@
     entity_id: light.wohnzimmerlampe
   - service: light.turn_off
     entity_id: ight.esstischlampe
+  - service: remote.turn_off
+    entity_id: remote.harmony
+  - service: media_player.media_pause
+    entity_id: media_player.spotify
+  - service: media_player.media_stop
+    entity_id: media_player.spotify
   - delay: 00:01:00
   - service: light.turn_off
     entity_id: light.bett
@@ -123,5 +125,5 @@
   - platform: event
     event_type: click
     event_data:
-      entity_id: binary_sensor.switch_158d00016d732a
+      entity_id: binary_sensor.switch_nightstand_adriana
       click_type: long_click_press

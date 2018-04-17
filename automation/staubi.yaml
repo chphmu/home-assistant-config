@@ -7,15 +7,15 @@
     condition: and
     conditions:
     - condition: state
-      entity_id: device_tracker.androidc4cce019c0752a41
+      entity_id: device_tracker.mobile_adriana
       state: not_home
     - condition: state
-      entity_id: device_tracker.evcmip6
+      entity_id: device_tracker.mobile_christian
       state: not_home
   action:
   - service: vacuum.turn_on
     entity_id: vacuum.staubi
-  - service: notify.ios_evcmip6
+  - service: notify.ios_evip6cm
     data:
       message: Staubi startet um 13 Uhr
       title: Staubiaction
@@ -36,32 +36,32 @@
     condition: or
     conditions:
     - condition: state
-      entity_id: device_tracker.androidc4cce019c0752a41
+      entity_id: device_tracker.mobile_adriana
       state: home
     - condition: state
-      entity_id: device_tracker.evcmip6
+      entity_id: device_tracker.mobile_christian
       state: home
   action:
   - service: homeassistant.turn_on
     entity_id: input_boolean.staubi_waiting
-  - service: notify.ios_evcmip6
+  - service: notify.ios_evip6cm
     data:
       message: Staubi wartet
       title: Staubiaction
 - id: staubiAlone
   alias: Staubsauger startet allein
   trigger:
-  - entity_id: device_tracker.androidc4cce019c0752a41, device_tracker.evcmip6
+  - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
     platform: state
     to: not_home
   condition:
   - condition: and
     conditions:
     - condition: state
-      entity_id: device_tracker.androidc4cce019c0752a41
+      entity_id: device_tracker.mobile_adriana
       state: not_home
     - condition: state
-      entity_id: device_tracker.evcmip6
+      entity_id: device_tracker.mobile_christian
       state: not_home
     - condition: state
       entity_id: input_boolean.staubi_waiting
@@ -71,14 +71,14 @@
     entity_id: input_boolean.staubi_waiting
   - service: vacuum.turn_on
     entity_id: vacuum.staubi
-  - service: notify.ios_evcmip6
+  - service: notify.ios_evip6cm
     data:
       message: Staubi allein zuhause und fährt
       title: Staubiaction
 - id: staubiBusted
   alias: Staubsauger stopped wenn nicht allein
   trigger:
-  - entity_id: device_tracker.androidc4cce019c0752a41, device_tracker.evcmip6
+  - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
     platform: state
     to: home
   action:

@@ -32,14 +32,7 @@
     data:
       ringtone_vol: 8
       ringtone_id: 10005
-  #- service: remote.turn_on
-   # entity_id: remote.harmony
-#    data:
-      #Radio: 18715284
-      # FireTV
- #     activity: 17652505
-      #Chromecast
-      #24447593
+      gw_mac: !secret xiaomi_aqara_mac
   - service: light.turn_on
     entity_id: light.vitrinen
   - delay: 00:00:01

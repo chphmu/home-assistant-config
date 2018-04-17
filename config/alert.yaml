@@ -1,0 +1,13 @@
+#window_open:
+#    name: Ein Fenster is über 8 Minuten offen!
+#    done_message: Fenster wurde geschlossen
+#    entity_id: group.fenster
+#    state: 'on'
+#    repeat:
+#      - 8
+#      - 30
+#      - 180
+#    can_acknowledge: true
+#    skip_first: true
+#    notifiers:
+#      - notify

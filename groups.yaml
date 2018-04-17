@@ -1,11 +1,11 @@
-default_view:
+default_view1:
   view: yes
   name: Home
   icon: mdi:home-variant
   entities:
     - group.time
-    - device_tracker.androidc4cce019c0752a41
-    - device_tracker.evcmip6
+    - device_tracker.mobile_adriana
+    - device_tracker.mobile_christian
     - group.fenster
     - group.schlafzimmer_bettlicht
     - group.wohnzimmer_licht
@@ -15,6 +15,7 @@ default_view:
     - group.temperaturen
     - group.feuchtigkeit
     - media_player.spotify
+    - weather.wetter
 wohnzimmer_view:
   view: yes
   name: Wohnzimmer
@@ -25,6 +26,7 @@ wohnzimmer_view:
     - group.wohnzimmer_fenster
     - group.staubsauger
     - remote.harmony
+    - binary_sensor.motion_sensor_livingroom
 schlafzimmer_view:
   view: yes
   name: Schlafzimmer
@@ -32,28 +34,25 @@ schlafzimmer_view:
   entities:
     - group.schlafzimmer_bettlicht
     - group.schlafzimmer_fenster
-    - binary_sensor.motion_sensor_158d0001d97237
+    - binary_sensor.motion_sensor_bedroom
     - group.adri_alarm
-    #Nachtknopf Adri
-    - binary_sensor.switch_158d00016d732a
-    #Nachknopf Christian
-    - binary_sensor.switch_158d0001837b69
+    - binary_sensor.switch_nightstand_adriana
+    - binary_sensor.switch_nightstand_christian
     - group.schlafzimmer_licht
 gaestezimmer_view:
   view: yes
   name: Gaestezimmer
   icon: mdi:printer
   entities:
-    - binary_sensor.motion_sensor_158d0001d54247
     - light.schreibtischlampe
     - group.raspberry
-balkon_view:
+plant_view:
   view: yes
-  name: Balkon
+  name: Pflanzen
   icon: mdi:leaf
   entities:
-    - group.balkon_sensor1
-    - group.balkon_sensor2
+    - group.flower_care_1
+    - group.flower_care_2
 nerd_view:
   view: yes
   name: Info
@@ -64,10 +63,11 @@ nerd_view:
     - group.all_switches
     - history_graph.feuchtigkeit
     - history_graph.temperatur
-    - sensor.illumination_34ce008adeb3
-    - light.gateway_light_34ce008adeb3
+    - sensor.illumination_xiaomi_gateway
+    - light.gateway_light_1
     - group.time
     - group.all_devices
+    - light.test_mqtt_light
 time:
   name: Zeit
   entities:
@@ -105,22 +105,26 @@ iphone_cm:
   entities:
     - sensor.evcmip6_battery_state
     - sensor.evcmip6_battery_level
-balkon_sensor1:
+flower_care_1:
   name: Zitrone
   entities:
-    - sensor.zitrone_battery
-    - sensor.zitrone_conductivity
-    - sensor.zitrone_light_intensity
-    - sensor.zitrone_moisture
-    - sensor.zitrone_temperature
-balkon_sensor2:
+    - sensor.flower_care_1_moisture
+    - sensor.flower_care_1_fertility
+    - sensor.flower_care_1_temperature
+    - sensor.flower_care_1_batteryLevel
+    - sensor.flower_care_1_lux
+    - sensor.flower_care_1_battery
+    - sensor.flower_care_1_state
+flower_care_2:
   name: Palme
   entities:
-    - sensor.palme_battery
-    - sensor.palme_conductivity
-    - sensor.palme_light_intensity
-    - sensor.palme_moisture
-    - sensor.palme_temperature
+    - sensor.flower_care_2_moisture
+    - sensor.flower_care_2_fertility
+    - sensor.flower_care_2_temperature
+    - sensor.flower_care_2_batteryLevel
+    - sensor.flower_care_2_lux
+    - sensor.flower_care_2_battery
+    - sensor.flower_care_2_state
 fenster:
   name: Fenster
   entities:
@@ -128,14 +132,14 @@ fenster:
     - binary_sensor.wohnzimmer_fenster
     - binary_sensor.fenster_links_schlafzimmer
     - binary_sensor.fenster_kueche
-    - binary_sensor.door_window_sensor_158d0001ab23d6
-    - binary_sensor.door_window_sensor_158d0001d3a275
-    - binary_sensor.door_window_sensor_158d0001dbd29b
+    - binary_sensor.window_bath
+    - binary_sensor.door_frontdoor
+    - binary_sensor.door_balcony
 wohnzimmer_fenster:
   name: "Fenster Wohnzimmer"
   entities:
     - binary_sensor.fenster_kueche
-    - binary_sensor.door_window_sensor_158d0001dbd29b
+    - binary_sensor.door_balcony
 schlafzimmer_fenster:
   name: "Fenster Schlafzimmer"
   entities:
@@ -146,28 +150,18 @@ schlafzimmer_bettlicht:
     - sensor.bewegungsmelder_schlafzimmer
     - light.bett
     - timer.timer_bed
-raspberry:
-  name: "Raspberry"
-  entities:
-    - binary_sensor.button_rasp
-    - binary_sensor.motion_guest
-    - binary_sensor.ir_sensor_1
-    - switch.00x
-    - switch.11x
-    - switch.27x
 temperaturen:
   name: "Temperaturen"
   entities:
     - sensor.flur_temperatur
-    - sensor.mi_flora_temperature
-    - sensor.temperature_158d0001ab70f5
-    - sensor.temperature_158d0001ab250a
+    - sensor.temperature_bath
+    - sensor.temperature_bedroom
 feuchtigkeit:
   name: "Feuchtigkeit"
   entities:
-    - sensor.humidity_158d0001ab250a
-    - sensor.humidity_158d0001ab70f5
     - sensor.flur_luftfeuchtigkeit
+    - sensor.humidity_bedroom
+    - sensor.humidity_bath
 adri_alarm:
   name: "Wecker Adri"
   entities:

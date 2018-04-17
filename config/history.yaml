@@ -1,0 +1,6 @@
+exclude:
+  domains:
+    - sun
+    - automation
+  entities:
+    - sensor.date__time

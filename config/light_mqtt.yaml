@@ -1,0 +1,51 @@
+- platform: mqtt
+  name: "Schreibtischlampe"
+  command_topic: "switch/it1/set"
+  state_topic: "switch/it1/get"
+  payload_on: "on"
+  payload_off: "off"
+- platform: mqtt
+  name: "Adri Nachtlicht"
+  command_topic: "switch/it2/set"
+  state_topic: "switch/it2/get"
+  payload_on: "on"
+  payload_off: "off"
+- platform: mqtt
+  name: "Stern"
+  command_topic: "switch/it3/set"
+  state_topic: "switch/it3/get"
+  payload_on: "on"
+  payload_off: "off"
+- platform: mqtt
+  name: "Vitrinen"
+  command_topic: "switch/it4/set"
+  state_topic: "switch/it4/get"
+  payload_on: "on"
+  payload_off: "off"
+- platform: mqtt
+  name: "Christian Nachtlicht"
+  command_topic: "switch/it5/set"
+  state_topic: "switch/it5/get"
+  payload_on: "on"
+  payload_off: "off"
+- platform: mqtt
+  name: "Sideboard"
+  command_topic: "switch/it6/set"
+  state_topic: "switch/it6/get"
+  payload_on: "on"
+  payload_off: "off"
+- platform: mqtt
+  name: "Test Mqtt Light"
+  state_topic: "office/rgb1/light/status"
+  command_topic: "office/rgb1/light/switch"
+  brightness_state_topic: "office/rgb1/brightness/status"
+  brightness_command_topic: "office/rgb1/brightness/set"
+  rgb_state_topic: "office/rgb1/rgb/status"
+  rgb_command_topic: "office/rgb1/rgb/set"
+  state_value_template: "{{ value_json.state }}"
+  brightness_value_template: "{{ value_json.brightness }}"
+  rgb_value_template: "{{ value_json.rgb | join(',') }}"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  optimistic: true
