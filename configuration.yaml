@@ -1,8 +1,15 @@
 ## Synology Reverse Proxy mod:
 #### https://github.com/orobardet/dsm-reverse-proxy-websocket
 
-homeassistant: !include config/homeassistant.yaml
-alexa: 
+homeassistant: 
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 141
+  unit_system: metric
+  time_zone: Europe/Berlin
+  customize: !include config/customize.yaml
+  packages: !include_dir_named packages
 intent_script: !include config/intent_script.yaml
 frontend:
 config:
@@ -20,7 +27,6 @@ python_script:
 sensor default: !include config/sensor_default.yaml
 sensor mqtt: !include config/sensor_mqtt.yaml
 sensor statistics: !include config/sensor_statistics.yaml
-sensor alarmclock: !include config/sensor_alarmclock.yaml
 alert: !include config/alert.yaml
 
 binary_sensor mqtt: !include config/binary_sensor_mqtt.yaml
@@ -41,7 +47,6 @@ input_boolean: !include config/input_boolean.yaml
 device_tracker: !include config/device_tracker.yaml
 media_player: !include config/media_player.yaml
 xiaomi_aqara: !include config/xiaomi_aqara.yaml
-input_select: !include config/input_select_alarmclock.yaml
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation

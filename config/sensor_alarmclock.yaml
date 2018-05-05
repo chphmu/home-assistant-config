@@ -1,5 +1,0 @@
-- platform: template
-  sensors:
-    alarmclock_time_adri:
-      friendly_name: 'Weckzeit'
-      value_template: '{{ "%0.02d:%0.02d" | format(states("input_select.alarmclock_hour_adri") | int, states("input_select.alarmclock_minutes_adri") | int) }}'

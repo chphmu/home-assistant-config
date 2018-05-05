@@ -128,13 +128,14 @@ flower_care_2:
 fenster:
   name: Fenster
   entities:
-    - binary_sensor.fenster_gaestezimmer
-    - binary_sensor.wohnzimmer_fenster
-    - binary_sensor.fenster_links_schlafzimmer
-    - binary_sensor.fenster_kueche
-    - binary_sensor.window_bath
-    - binary_sensor.door_frontdoor
     - binary_sensor.door_balcony
+    - binary_sensor.window_kitchen
+    - binary_sensor.window_bath_normal
+    - binary_sensor.window_bath_roof
+    - binary_sensor.window_bed_right
+    - binary_sensor.window_bed_left
+    - binary_sensor.window_guest_roof
+    - binary_sensor.window_guest_normal
 wohnzimmer_fenster:
   name: "Fenster Wohnzimmer"
   entities:

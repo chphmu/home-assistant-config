@@ -1,0 +1,86 @@
+binary_sensor: 
+  - platform: mqtt
+    state_topic: "wz/fensterkueche/status"
+    name: "window kitchen"
+    qos: 0
+    payload_on: "open"
+    payload_off: "closed"
+    device_class: opening
+  - platform: mqtt
+    state_topic: "gz/fenster/status"
+    name: "window guest roof"
+    qos: 0
+    payload_on: "open"
+    payload_off: "closed"
+    device_class: opening
+  - platform: mqtt
+    state_topic: "sz/fensterlinks/status"
+    name: "window bed left"
+    qos: 0
+    payload_on: "open"
+    payload_off: "closed"
+    device_class: opening
+  - platform: template
+    sensors:
+      all_windows:
+        friendly_name: "Alle Fenster"
+        device_class: window
+        value_template: >-
+          {{ is_state('binary_sensor.door_balcony', 'on')
+              or is_state('binary_sensor.window_kitchen', 'on')
+              or is_state('binary_sensor.window_bath_normal', 'on')
+              or is_state('binary_sensor.window_bath_roof', 'on')
+              or is_state('binary_sensor.window_bed_right', 'on')
+              or is_state('binary_sensor.window_bed_left', 'on')
+              or is_state('binary_sensor.window_guest_roof', 'on')
+              or is_state('binary_sensor.window_guest_normal', 'on') }}
+
+homeassistant:
+  customize:
+    binary_sensor.door_frontdoor:
+      friendly_name: 'Haustuer'
+    binary_sensor.window_bath_normal:
+      friendly_name: 'Bad normal'
+    binary_sensor.window_bath_roof:
+      friendly_name: 'Bad Dach'
+    binary_sensor.door_balcony:
+      friendly_name: 'Balkontür'
+    binary_sensor.window_guest_normal:
+      friendly_name: 'Gästezimmer normal'
+    binary_sensor.window_guest_roof:
+      friendly_name: 'Gästezimmer Dach'
+    binary_sensor.window_bed_right:
+      friendly_name: 'Schlafzimmer rechts'
+    binary_sensor.window_bed_left:
+      friendly_name: 'Schlafzimmer links'
+    binary_sensor.window_kitchen:
+      friendly_name: 'Küche'
+
+automation:
+  - id: WindowsSpeachLeave
+    alias: Fenster Sprachansage verlassen
+    trigger:
+    - entity_id: binary_sensor.door_frontdoor
+    #, device_tracker.mobile_christian
+      platform: state
+      to: 'on'
+    action:
+    - service: mqtt.publish
+      data:
+        topic: "tts/fhem"
+        #payload: "hallo großer teddy"
+        payload_template: "Die Fenster {%- for item in states.group.fenster.attributes.entity_id -%}
+          {%- if states(item) == 'on' -%}
+          {{ state_attr(item, 'friendly_name') }}
+          {%- endif -%}
+          {%- endfor -%} sind noch offen."
+        qos: "2"
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          before: '23:00:00'
+          after: '06:00:00'
+        - condition: state
+          entity_id: binary_sensor.all_windows
+          state: 'on'
