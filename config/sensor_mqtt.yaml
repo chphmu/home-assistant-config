@@ -1,15 +1,3 @@
-- platform: mqtt
-  name: "Bewegungsmelder Schlafzimmer"
-  state_topic: "sz/bewegungsmelder"
-- platform: mqtt
-  name: "Flur Temperatur"
-  state_topic: "/Flur.Thermostat/measured-temp"
-  unit_of_measurement: "°C"
-- platform: mqtt
-  name: "Flur Luftfeuchtigkeit"
-  state_topic: "/Flur.Thermostat/humidity"
-  unit_of_measurement: "%"
-
 ## Flower Sensor 1
 - platform: mqtt
   name: "flower_care_1_temperature"

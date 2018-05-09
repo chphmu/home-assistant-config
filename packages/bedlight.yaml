@@ -1,0 +1,69 @@
+binary_sensor:
+  - platform: mqtt
+    state_topic: "sz/bewegungsmelder"
+    name: "motion_bed"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    device_class: motion
+light:
+  - platform: limitlessled
+    bridges:
+      - host: 192.168.85.31
+        version: 4
+        port: 8899
+        groups:
+        - number: 2
+          name: bed
+timer:
+  bed:
+    name: Timer Bett
+
+homeassistant:
+  customize:
+    light.bed:
+      friendly_name: Bettlicht
+    binary_sensor.motion_bed:
+      friendly_name: Bewegungsmelder Bett
+
+group:
+  bedlight:
+    name: Bettlicht
+    entities:
+      - light.bed
+      - binary_sensor.motion_bed
+      - timer.bed
+
+automation:
+  - id: bedlightTimerMotionTriggerOn
+    alias: Bettlicht an
+    action:
+    - service: timer.start
+      entity_id: timer.bed
+      data:
+        duration: 00:03:00
+    - service: light.turn_on
+      entity_id: light.bed
+      data:
+        brightness: 190
+        rgb_color:
+        - 190
+        - 105
+        - 0
+        transition: 5
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_bed
+      to: 'on'
+  - id: bedlightTimerMotionTriggerOff
+    alias: Bettlicht aus
+    action:
+    - service: light.turn_off
+      entity_id: light.bed
+      data:
+        transition: 5
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.bed

@@ -28,11 +28,7 @@ sensor default: !include config/sensor_default.yaml
 sensor mqtt: !include config/sensor_mqtt.yaml
 sensor statistics: !include config/sensor_statistics.yaml
 alert: !include config/alert.yaml
-
-binary_sensor mqtt: !include config/binary_sensor_mqtt.yaml
-binary_sensor default: !include config/binary_sensor_default.yaml
-
-timer: !include config/timer.yaml
+binary_sensor: !include config/binary_sensor_default.yaml
 tts: !include config/tts.yaml
 remote: !include config/remote.yaml
 emulated_hue: !include config/emulated_hue.yaml

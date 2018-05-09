@@ -1,13 +1,16 @@
 graph_temp:
   name: Temperatur
   entities:
-    - sensor.flur_temperatur
-    #- sensor.mi_flora_temperature
+    - sensor.temperature_corridor
     - sensor.temperature_bath
     - sensor.temperature_bedroom
+    - sensor.temperature_cubby
+    - sensor.temperature_guest
 graph_humidity:
   name: Feuchtigkeit
   entities:
     - sensor.humidity_bath
     - sensor.humidity_bedroom
-    - sensor.flur_luftfeuchtigkeit
+    - sensor.humidity_corridor
+    - sensor.humidity_cubby
+    - sensor.humidity_guest

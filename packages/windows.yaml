@@ -35,8 +35,16 @@ binary_sensor:
               or is_state('binary_sensor.window_guest_roof', 'on')
               or is_state('binary_sensor.window_guest_normal', 'on') }}
 
+counter:
+  open_windows:
+    initial: 0
+    step: 1
+
+
 homeassistant:
   customize:
+    binary_sensor.all_windows:
+      hidden: true
     binary_sensor.door_frontdoor:
       friendly_name: 'Haustuer'
     binary_sensor.window_bath_normal:
@@ -57,23 +65,56 @@ homeassistant:
       friendly_name: 'Küche'
 
 automation:
+  - id: countWindowPlus
+    alias: Fenster zählen öffnen
+    trigger:
+    - entity_id: binary_sensor.window_bath_normal,binary_sensor.window_bath_roof,binary_sensor.door_balcony,binary_sensor.window_guest_normal
+      platform: state
+      to: 'on'
+    - entity_id: binary_sensor.window_guest_roof,binary_sensor.window_bed_right,binary_sensor.window_bed_left,binary_sensor.window_kitchen
+      platform: state
+      to: 'on'
+    action:
+    - service: counter.increment
+      entity_id: counter.open_windows
+  - id: countWindowMinus
+    alias: Fenster zählen öffnen
+    trigger:
+    - entity_id: binary_sensor.window_bath_normal,binary_sensor.window_bath_roof,binary_sensor.door_balcony,binary_sensor.window_guest_normal
+      platform: state
+      to: 'off'
+    - entity_id: binary_sensor.window_guest_roof,binary_sensor.window_bed_right,binary_sensor.window_bed_left,binary_sensor.window_kitchen
+      platform: state
+      to: 'off'
+    action:
+    - service: counter.decrement
+      entity_id: counter.open_windows
   - id: WindowsSpeachLeave
     alias: Fenster Sprachansage verlassen
     trigger:
     - entity_id: binary_sensor.door_frontdoor
-    #, device_tracker.mobile_christian
       platform: state
       to: 'on'
     action:
     - service: mqtt.publish
       data:
         topic: "tts/fhem"
-        #payload: "hallo großer teddy"
-        payload_template: "Die Fenster {%- for item in states.group.fenster.attributes.entity_id -%}
+        payload_template: "
+          {%- if states('counter.open_windows') | float < 2  -%}
+          Das Fenster 
+          {%- else -%}
+          Die Fenster
+          {%- endif %}
+          {% for item in states.group.windows.attributes.entity_id -%}
           {%- if states(item) == 'on' -%}
-          {{ state_attr(item, 'friendly_name') }}
+          {{ state_attr(item, 'friendly_name') }},
           {%- endif -%}
-          {%- endfor -%} sind noch offen."
+          {%- endfor %}
+          {%- if states('counter.open_windows') | float < 2 %}
+          ist
+          {% else %}
+          sind 
+          {% endif -%} noch offen. "
         qos: "2"
     condition:
       condition: and
@@ -84,3 +125,48 @@ automation:
         - condition: state
           entity_id: binary_sensor.all_windows
           state: 'on'
+  - id: windowOpenLeave
+    alias: Fenster offen beim verlassen
+    trigger:
+    - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
+      platform: state
+      to: not_home
+    condition:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: device_tracker.mobile_adriana
+        state: not_home
+      - condition: state
+        entity_id: device_tracker.mobile_christian
+        state: not_home
+      - condition: state
+        entity_id: binary_sensor.all_windows
+        state: 'on'
+    action:
+    - service: notify.ios_evip6cm
+      data:
+        message: Vielleicht mal nach den Fenstern gucken
+        title: Fenster offen!
+  - id: fensterLangeOffen
+    alias: Fenster lange offen
+    trigger:
+    - entity_id: binary_sensor.all_windows
+      platform: state
+      to: 'on'
+      for:
+        minutes: 8 
+    condition:
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: '{{ states.weather.wetter.attributes.temperature < 16 }}'
+    action:
+    - service: notify.ios_evip6cm
+      data:
+        title: Genug gelüftet
+        message: Fenster lange für 8 Minuten offen!
+    - service: notify.tv
+      data:
+        title: Genug gelüftet
+        message: Fenster bereits für 8 Minuten offen!

@@ -60,6 +60,11 @@
     "62": "script.aquarium_bright",
     "63": "script.tv_light",
     "64": "light.gateway_light_1",
+    "65": "light.nightstand_adriana",
+    "66": "light.nightstand_christian",
+    "67": "light.bed",
+    "68": "light.dining_room",
+    "69": "light.living_room",
     "7": "light.sideboard_licht",
     "8": "light.indirekt_aquarium",
     "9": "switch.vitrinen"

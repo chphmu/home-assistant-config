@@ -1,0 +1,40 @@
+sensor:
+  - platform: mqtt
+    name: "temperature_corridor"
+    state_topic: "/Flur.Thermostat/measured-temp"
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "humidity_corridor"
+    state_topic: "/Flur.Thermostat/humidity"
+    unit_of_measurement: "%"
+
+homeassistant:
+  customize:
+    sensor.temperature_corridor:
+      friendly_name: Flur Temperatur
+    sensor.humidity_corridor:
+      friendly_name: Flur Luftfeuchtigkeit
+group:
+  temperatures:
+    name: "Temperatur"
+    entities:
+      - sensor.temperature_corridor
+      - sensor.temperature_bedroom
+      - sensor.temperature_bath
+      - sensor.temperature_cubby
+      - sensor.temperature_guest
+  humidity:
+    name: "Feuchtigkeit"
+    entities:
+      - sensor.humidity_corridor
+      - sensor.humidity_bedroom
+      - sensor.humidity_bath
+      - sensor.humidity_cubby
+      - sensor.humidity_guest
+  pressure:
+    name: "Luftdruck"
+    entities:
+      - sensor.pressure_bedroom
+      - sensor.pressure_bath
+      - sensor.pressure_cubby
+      - sensor.pressure_guest

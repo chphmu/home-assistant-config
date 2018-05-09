@@ -1,0 +1,10 @@
+group:
+  living_lights:
+    name: Licht Wohnzimmer
+    entities:
+      - light.sideboard
+      - light.vitrinen
+      - light.wohnzimmerfarblicht
+      - light.dining_room
+      - light.living_room
+      - light.stern

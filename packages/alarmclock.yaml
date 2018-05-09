@@ -43,6 +43,16 @@ sensor:
         friendly_name: 'Weckzeit'
         value_template: '{{ "%0.02d:%0.02d" | format(states("input_select.alarmclock_hour_adri") | int, states("input_select.alarmclock_minutes_adri") | int) }}'
 
+group:
+  adri_alarm:
+    name: "Wecker Adri"
+    entities:
+      - sensor.alarmclock_time_adri
+      - input_select.alarmclock_hour_adri
+      - input_select.alarmclock_minutes_adri
+      - input_boolean.alarm_adri_on
+      - input_boolean.alarm_adri_weekend
+
 automation:
   - id: alarmclock_week_adri
     alias: "Wake me up with bedroom light transition for weekdays"

@@ -1,0 +1,44 @@
+light:
+  - platform: mqtt
+    name: "nightstand_christian"
+    command_topic: "switch/it5/set"
+    state_topic: "switch/it5/get"
+    payload_on: "on"
+    payload_off: "off"
+  - platform: mqtt
+    name: "nightstand_adriana"
+    command_topic: "switch/it2/set"
+    state_topic: "switch/it2/get"
+    payload_on: "on"
+    payload_off: "off"
+
+homeassistant:
+  customize:
+    light.nightstand_christian:
+      friendly_name: Nachttisch Christian
+    light.nightstand_adriana:
+      friendly_name: Nachttisch Adriana
+
+automation:
+  - id: nightstand_lamp_adriana
+    alias: Nachttisch Lampe Adriana
+    action:
+    - service: light.toggle
+      entity_id: light.nightstand_adriana
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_nightstand_adriana
+        click_type: single
+  - id: nightstand_lamp_christian
+    alias: Nachttisch Lampe Christian
+    action:
+    - service: light.toggle
+      entity_id: light.nightstand_christian
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_nightstand_christian
+        click_type: single

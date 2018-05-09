@@ -6,42 +6,40 @@ default_view1:
     - group.time
     - device_tracker.mobile_adriana
     - device_tracker.mobile_christian
-    - group.fenster
+    - group.windows
     - group.schlafzimmer_bettlicht
-    - group.wohnzimmer_licht
-    - group.staubsauger
+    - group.living_licht
+    - group.vacuum
     - history_graph.feuchtigkeit
     - history_graph.temperatur
-    - group.temperaturen
-    - group.feuchtigkeit
+    - group.temperatures
+    - group.humidity
     - media_player.spotify
     - weather.wetter
-wohnzimmer_view:
+livingroom_view:
   view: yes
   name: Wohnzimmer
   icon: mdi:sofa
   entities:
-    - group.wohnzimmer_licht
-    - group.wohnzimmer_sensor
-    - group.wohnzimmer_fenster
-    - group.staubsauger
+    - group.living_lights
+    - group.living_sensor
+    - group.living_fenster
+    - group.vacuum
     - remote.harmony
     - binary_sensor.motion_sensor_livingroom
-schlafzimmer_view:
+bedroom_view:
   view: yes
   name: Schlafzimmer
   icon: mdi:seat-individual-suite
   entities:
-    - group.schlafzimmer_bettlicht
-    - group.schlafzimmer_fenster
+    - group.bedlight
+    - group.bedroom_windows
     - binary_sensor.motion_sensor_bedroom
-    - group.adri_alarm
-    - binary_sensor.switch_nightstand_adriana
-    - binary_sensor.switch_nightstand_christian
-    - group.schlafzimmer_licht
-gaestezimmer_view:
+    - group.alarm_adriana
+    - group.bedroom_light
+guest_view:
   view: yes
-  name: Gaestezimmer
+  name: Gästezimmer
   icon: mdi:printer
   entities:
     - light.schreibtischlampe
@@ -72,30 +70,16 @@ time:
   name: Zeit
   entities:
     - sensor.date__time
-wohnzimmer_licht:
-  name: Licht Wohnzimmer
+living_room_sensor:
+  name: Wohnzimmer Sensoren
   entities:
-    - light.sideboard
-    - light.vitrinen
-    - light.wohnzimmerfarblicht
-    - light.esstischlampe
-    - light.wohnzimmerlampe
-    - light.stern
-wohnzimmer_sensor:
-  name: Wohnzimmer Sensor
-  entities:
-    - sensor.wzsensor_alarm_level
-    - sensor.wzsensor_alarm_type
-    - sensor.wzsensor_burglar
-    - sensor.wzsensor_sourcenodeid
-    - sensor.wzsensor_ultraviolet
-    - binary_sensor.wzsensor_sensor
-schlafzimmer_licht:
+    - timer.livingroom_nightlight
+bedroom_light:
   name: Schlafzimmer Licht
   entities:
-    - light.adri_nachtlicht
-    - light.christian_nachtlicht
-staubsauger:
+    - light.nightstand_adriana
+    - light.nightstand_christian
+vacuum:
   name: Staubsauger
   entities:
     - input_boolean.staubi_waiting
@@ -103,8 +87,8 @@ staubsauger:
 iphone_cm:
   name: iPhone Christian
   entities:
-    - sensor.evcmip6_battery_state
-    - sensor.evcmip6_battery_level
+    - sensor.phone_von_christian_battery_level
+    - sensor.phone_von_christian_battery_state
 flower_care_1:
   name: Zitrone
   entities:
@@ -125,7 +109,7 @@ flower_care_2:
     - sensor.flower_care_2_lux
     - sensor.flower_care_2_battery
     - sensor.flower_care_2_state
-fenster:
+windows:
   name: Fenster
   entities:
     - binary_sensor.door_balcony
@@ -136,38 +120,13 @@ fenster:
     - binary_sensor.window_bed_left
     - binary_sensor.window_guest_roof
     - binary_sensor.window_guest_normal
-wohnzimmer_fenster:
+living_room_windows:
   name: "Fenster Wohnzimmer"
   entities:
-    - binary_sensor.fenster_kueche
+    - binary_sensor.window_kitchen
     - binary_sensor.door_balcony
-schlafzimmer_fenster:
+bedroom_windows:
   name: "Fenster Schlafzimmer"
   entities:
-    - binary_sensor.fenster_links_schlafzimmer
-schlafzimmer_bettlicht:
-  name: "Bettbeleuchtung"
-  entities:
-    - sensor.bewegungsmelder_schlafzimmer
-    - light.bett
-    - timer.timer_bed
-temperaturen:
-  name: "Temperaturen"
-  entities:
-    - sensor.flur_temperatur
-    - sensor.temperature_bath
-    - sensor.temperature_bedroom
-feuchtigkeit:
-  name: "Feuchtigkeit"
-  entities:
-    - sensor.flur_luftfeuchtigkeit
-    - sensor.humidity_bedroom
-    - sensor.humidity_bath
-adri_alarm:
-  name: "Wecker Adri"
-  entities:
-    - sensor.alarmclock_time_adri
-    - input_select.alarmclock_hour_adri
-    - input_select.alarmclock_minutes_adri
-    - input_boolean.alarm_adri_on
-    - input_boolean.alarm_adri_weekend
+    - binary_sensor.window_bed_right
+    - binary_sensor.window_bed_left

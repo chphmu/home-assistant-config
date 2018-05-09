@@ -1,7 +1,0 @@
-  - platform: mqtt
-    state_topic: "sz/bewegungsmelder"
-    name: "Bett Bewegungsmelder"
-    qos: 0
-    payload_on: "on"
-    payload_off: "off"
-    device_class: motion
