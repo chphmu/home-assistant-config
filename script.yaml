@@ -28,6 +28,10 @@ good_night_script:
         source: ChromecastChristian
 weekend:
   sequence:
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data:
+        source: Wohnung
     - service: remote.turn_on
       entity_id: remote.harmony
       data:
@@ -43,10 +47,6 @@ weekend:
         shuffle: true
     - service: media_player.media_next_track
       entity_id: media_player.spotify
-    - service: media_player.select_source
-      entity_id: media_player.spotify
-      data:
-        source: Wohnung
     - service: light.turn_on
       entity_id: light.vitrinen
     - delay: 00:00:01

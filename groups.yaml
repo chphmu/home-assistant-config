@@ -7,11 +7,9 @@ default_view1:
     - device_tracker.mobile_adriana
     - device_tracker.mobile_christian
     - group.windows
-    - group.schlafzimmer_bettlicht
-    - group.living_licht
+    - group.bedlight
+    - group.living_lights
     - group.vacuum
-    - history_graph.feuchtigkeit
-    - history_graph.temperatur
     - group.temperatures
     - group.humidity
     - media_player.spotify
@@ -44,6 +42,16 @@ guest_view:
   entities:
     - light.schreibtischlampe
     - group.raspberry
+temperature_view:
+  view: yes
+  name: Temperaturen
+  icon: mdi:thermometer
+  entities:
+    - group.temperatures
+    - group.humidity
+    - group.pressure
+    - history_graph.temperature
+    - history_graph.humidity
 plant_view:
   view: yes
   name: Pflanzen
@@ -59,8 +67,6 @@ nerd_view:
     - group.all_automations
     - group.all_scripts
     - group.all_switches
-    - history_graph.feuchtigkeit
-    - history_graph.temperatur
     - sensor.illumination_xiaomi_gateway
     - light.gateway_light_1
     - group.time

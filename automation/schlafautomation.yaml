@@ -87,6 +87,10 @@
       ringtone_id: 10002
       gw_mac: !secret xiaomi_aqara_mac
   - service: light.turn_off
+    entity_id: light.dining_room
+  - service: light.turn_off
+    entity_id: light.living_room
+  - service: light.turn_off
     entity_id: light.wohnzimmerfarblicht
   - service: light.turn_off
     entity_id: light.vitrinen

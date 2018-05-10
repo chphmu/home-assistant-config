@@ -1,5 +1,5 @@
 graph_temp:
-  name: Temperatur
+  name: temperature
   entities:
     - sensor.temperature_corridor
     - sensor.temperature_bath
@@ -7,7 +7,7 @@ graph_temp:
     - sensor.temperature_cubby
     - sensor.temperature_guest
 graph_humidity:
-  name: Feuchtigkeit
+  name: humidity
   entities:
     - sensor.humidity_bath
     - sensor.humidity_bedroom
