@@ -9,7 +9,7 @@ binary_sensor:
 light:
   - platform: limitlessled
     bridges:
-      - host: 192.168.85.31
+      - host: 192.168.85.21
         version: 4
         port: 8899
         groups:

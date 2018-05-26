@@ -10,6 +10,12 @@ group.all_automations:
   hidden: false
 group.all_scripts:
   hidden: false
+group.all_lights:
+  hidden: false
+
+#mqtt - discover -- keybox nodemcu
+light.keybox_rgb:
+  friendly_name: Schlüsselkasten RGB
   
 sensor.humidity_bedroom_mean:
   friendly_name: Schnitt Schlafzimmer Luftfeuchtigkeit

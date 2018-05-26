@@ -67,6 +67,7 @@ nerd_view:
     - group.all_automations
     - group.all_scripts
     - group.all_switches
+    - group.all_lights
     - sensor.illumination_xiaomi_gateway
     - light.gateway_light_1
     - group.time

@@ -1,0 +1,55 @@
+timer:
+  keybox:
+    name: Timer Schlüsselkasten
+
+homeassistant:
+  customize:
+    binary_sensor.keybox_key_1:
+      friendly_name: Schlüssel Christian
+    binary_sensor.keybox_motion_left:
+      friendly_name: Flur links
+    light.keybox_rgb:
+      friendly_name: Schlüsselkasten RGB
+group:
+  keybox:
+    name: Schlüsselkasten
+    entities:
+      - light.keybox_rgb
+      - binary_sensor.keybox_motion_left
+      - binary_sensor.keybox_key_1
+      - timer.keybox
+
+automation:
+  - id: keyboxTestOn
+    alias: Schlüsselkasten Test An
+    action:
+    - service: timer.start
+      entity_id: timer.keybox
+      data:
+        duration: 00:00:15
+    - service: light.turn_on
+      entity_id: light.keybox_rgb
+      data:
+        brightness: 90
+        rgb_color:
+        - 190
+        - 105
+        - 0
+        transition: 5
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.keybox_key_1
+      to: 'on'
+  - id: keyboxTestOff
+    alias: Schlüsselkasten Test Aus
+    action:
+    - service: light.turn_off
+      entity_id: light.keybox_rgb
+      data:
+        transition: 5
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.keybox
+      

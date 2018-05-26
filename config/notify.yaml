@@ -1,7 +1,3 @@
 - platform: nfandroidtv
   name: tv
   host: 192.168.85.70
-- name: chrome
-  platform: html5
-  gcm_api_key: 'AAAA1hk73XM:APA91bF4q4Vqoteteudwd5ZorVWHoQOpNg4bG4ABbN3ZgDO-wWeohn5xky33TO_N2e69hVjijnawrLJsyZJFxuVHRpoHp7ZrzXbw2BbkcG7TwhihPA4eBgRJdTLBJudWq7lF5N-WaZLw'
-  gcm_sender_id: '919546355059'

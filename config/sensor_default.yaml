@@ -2,3 +2,13 @@
   display_options:
     - 'date_time'
 - platform: yr
+- platform: waze_travel_time
+  origin: !secret address_home
+  destination: !secret address_work_christian
+  name: 'home - evoila'
+  region: 'EU'
+- platform: waze_travel_time
+  origin: !secret address_work_christian
+  destination: !secret address_home
+  name: 'evoila - home'
+  region: 'EU'

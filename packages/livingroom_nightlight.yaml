@@ -9,7 +9,7 @@ automation:
       entity_id: light.wohnzimmerfarblicht
       data:
         rgb_color: [200,20,20]
-        brightness: 100
+        #brightness: 100
     - service: timer.start
       entity_id: timer.livingroom_nightlight
       data:

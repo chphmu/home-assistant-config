@@ -66,6 +66,10 @@
     "68": "light.dining_room",
     "69": "light.living_room",
     "7": "light.sideboard_licht",
+    "70": "light.hgrp0000000006",
+    "71": "light.wohnzimmer",
+    "72": "light.fastled_ws2811_light",
+    "73": "light.keybox_rgb",
     "8": "light.indirekt_aquarium",
     "9": "switch.vitrinen"
 }
