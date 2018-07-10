@@ -1,0 +1,9 @@
+- id: detect_tv_time
+  alias: TV Time Light
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.tv_time
+    to: 'on'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.living_cosy

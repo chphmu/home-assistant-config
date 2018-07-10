@@ -2,3 +2,20 @@
   host: 8.8.8.8
   count: 2
   name: Internet
+- platform: 'bayesian'
+  name: 'tv_time'
+  prior: 0.6
+  probability_threshold: 0.95
+  observations:
+    - entity_id: 'remote.harmony'
+      prob_given_true: 0.9
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'binary_sensor.motion_sensor_livingroom'
+      prob_given_true: 0.6
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'sensor.illumination_livingroom'
+      prob_given_true: 0.6  
+      platform: 'numeric_state'
+      below: 350

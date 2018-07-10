@@ -1,0 +1,17 @@
+switch:
+  - platform: mqtt
+    name: "plant_watering"
+    command_topic: "switch/it3/set"
+    state_topic: "switch/it3/get"
+    payload_on: "on"
+    payload_off: "off"
+
+homeassistant:
+  customize:
+    switch.plant_watering:
+      friendly_name: Bewässerung
+group:
+  plant_watering:
+    name: "Bewässerung"
+    entities:
+      - switch.plant_watering

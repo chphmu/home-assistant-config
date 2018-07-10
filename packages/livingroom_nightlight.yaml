@@ -9,7 +9,7 @@ automation:
       entity_id: light.wohnzimmerfarblicht
       data:
         rgb_color: [200,20,20]
-        #brightness: 100
+        brightness: 100
     - service: timer.start
       entity_id: timer.livingroom_nightlight
       data:
@@ -30,7 +30,7 @@ automation:
           - condition: template
             value_template: '{{ states.light.wohnzimmerfarblicht.attributes.rgb_color == (255, 22, 22) }}'
       - condition: template
-        value_template: '{{ states.sensor.illumination_xiaomi_gateway.state < "700" }}'
+        value_template: '{{ states.sensor.illumination_xiaomi_gateway.state < "600" }}'
   - id: nightlight_living_room_off
     alias: Nachtlicht Wohnzimmer aus neu
     action:

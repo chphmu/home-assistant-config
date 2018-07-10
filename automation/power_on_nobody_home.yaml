@@ -1,0 +1,97 @@
+- id: NobodyHomeManualOff
+  alias: 'Nobody home manual off'
+  trigger:
+    - platform: event
+      event_type: telegram_callback
+      event_data:
+        command: '/lightsAndMusicOff'
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/lightsAndMusicOff'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: remote.turn_off
+      entity_id: remote.harmony
+    - service: telegram_bot.send_message
+      data:
+        message: Du sagst, ich schalte. Alle Geräte und Lichter sind jetzt aus.
+        title: Ausgeschaltet!
+        target:
+          - !secret telegram_chat_id_christian
+          - !secret telegram_chat_id_adriana
+- id: NobodyHomeMessage
+  alias: 'Nobody home message'
+  trigger:
+  - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
+    platform: state
+    to: not_home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.mobile_adriana
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.mobile_christian
+      state: not_home
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.all_lights
+        state: 'on'
+      - condition: state
+        entity_id: remote.harmony
+        state: 'on'
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Es sind noch Lichter an oder die Musik an
+      title: Geräte angelassen!
+      target:
+        - !secret telegram_chat_id_christian
+        - !secret telegram_chat_id_adriana
+      inline_keyboard:
+        - 'Ausschalten:/lightsAndMusicOff'
+- id: nodbodyHomeAutoOff
+  alias: 'Nobody home auto off'
+  trigger:
+  - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
+    platform: state
+    to: not_home
+    for:
+      minutes: 35
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.mobile_adriana
+      state: 'not_home'
+      for:
+        minutes: 30
+    - condition: state
+      entity_id: device_tracker.mobile_christian
+      state: 'not_home'
+      for:
+        minutes: 30
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: group.all_lights
+        state: 'on'
+      - condition: state
+        entity_id: remote.harmony
+        state: 'on'
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Es war niemand zuhause, da habe ich Lichter und Anlage ausgeschaltet 
+      title: Ausgeschaltet!
+      target:
+        - !secret telegram_chat_id_christian
+        - !secret telegram_chat_id_adriana
+  - service: light.turn_off
+    entity_id: group.all_lights
+  - service: remote.turn_off
+    entity_id: remote.harmony

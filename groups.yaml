@@ -59,6 +59,7 @@ plant_view:
   entities:
     - group.flower_care_1
     - group.flower_care_2
+    - group.plant_watering
 nerd_view:
   view: yes
   name: Info
@@ -96,16 +97,16 @@ iphone_cm:
   entities:
     - sensor.phone_von_christian_battery_level
     - sensor.phone_von_christian_battery_state
-flower_care_1:
-  name: Zitrone
-  entities:
-    - sensor.flower_care_1_moisture
-    - sensor.flower_care_1_fertility
-    - sensor.flower_care_1_temperature
-    - sensor.flower_care_1_batteryLevel
-    - sensor.flower_care_1_lux
-    - sensor.flower_care_1_battery
-    - sensor.flower_care_1_state
+#flower_care_1:
+#  name: Zitrone
+#  entities:
+#    - sensor.flower_care_1_moisture
+#    - sensor.flower_care_1_fertility
+#    - sensor.flower_care_1_temperature
+#    - sensor.flower_care_1_batteryLevel
+#    - sensor.flower_care_1_lux
+#    - sensor.flower_care_1_battery
+#    - sensor.flower_care_1_state
 flower_care_2:
   name: Palme
   entities:

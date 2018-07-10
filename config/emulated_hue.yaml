@@ -17,3 +17,5 @@ entities:
     hidden: true
   light.lamp_dining_room:
     hidden: true
+  script.weeding:
+    name: "Hochzeitstanz"

@@ -1,4 +1,4 @@
-- id: abendBeleuchtungAn
+- id: nightLightOn
   alias: Abend Beleuchtung an
   trigger:
   - platform: event
@@ -25,7 +25,7 @@
   - delay: 00:00:01
   - service: light.turn_on
     entity_id: light.sideboard
-- id: abendBeleuchtungAus
+- id: nightLightOff
   alias: Abend Beleuchtung aus
   trigger:
   - platform: event

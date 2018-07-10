@@ -4,14 +4,83 @@
 - name: GuestOff
   entities:
     light.schreibtischlampe: off
-- name: WohnzimmerIndirekt
+- name: living_cosy
   entities:
     light.vitrinen: on
     light.sideboard: on
-- name: Bettvorbereitung
+    light.wohnzimmerfarblicht:
+      state: on
+      rgb_color: [255,139,12]
+      brightness: 190
+- name: bed_preparation
   entities:
     light.vitrinen: off
     light.sideboard: on
     light.wohnzimmerfarblicht:
       rgb_color: [170,79,0]
     light.bett: on
+- name: tv
+  entities:
+    light.vitrinen: on
+    light.sideboard: on
+    light.dining_room: off
+    light.living_room: off
+    light.wohnzimmerfarblicht:
+      state: on
+      rgb_color: [255,139,12]
+      brightness: 190
+    remote.harmony:
+      state: on
+      activity: 17652505
+- name: eat
+  entities:
+    light.vitrinen: on
+    light.sideboard: on
+    light.dining_room: off
+    light.living_room: off
+    light.wohnzimmerfarblicht:
+      state: on
+      rgb_color: [255,139,12]
+      brightness: 190
+- name: leave
+  entities:
+    light.vitrinen: off
+    light.sideboard: off
+    light.dining_room: off
+    light.living_room: off
+    remote.harmony: off
+    light.wohnzimmerfarblicht: off
+    light.bed: off
+    light.schreibtischlampe: off
+    light.nightstand_adriana: off
+    light.nightstand_christian: off
+- name: clean
+  entities:
+    light.vitrinen: on
+    light.sideboard: on
+    light.dining_room: on
+    light.living_room: on
+    remote.harmony:
+      state: on
+      activity: 18715284
+    light.wohnzimmerfarblicht: on
+    light.bed: on
+    light.schreibtischlampe: on
+    light.nightstand_adriana: on
+    light.nightstand_christian: on
+- name: cooking
+  entities:
+    light.vitrinen: on
+    light.sideboard: on
+    light.dining_room: on
+    light.living_room: on
+    remote.harmony:
+      state: on
+      activity: 18715284
+    light.wohnzimmerfarblicht: on
+    light.bed: off
+    light.schreibtischlampe: off
+    light.nightstand_adriana: off
+    light.nightstand_christian: off
+  
+

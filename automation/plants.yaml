@@ -1,0 +1,71 @@
+- id: citron_dry
+  alias: Zitrone trocken
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.flower_care_1_moisture
+    below: 20
+    for:  
+      minutes: 60
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Die Palme ist unter 20%
+      title: Zitrone trocken
+      target:
+        - !secret telegram_chat_id_christian
+        - !secret telegram_chat_id_adriana
+- id: palm_dry
+  alias: Palme trocken
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.flower_care_2_moisture
+    below: 20
+    for:  
+      minutes: 60
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Die Palme ist unter 20%
+      title: Palme trocken
+      target:
+        - !secret telegram_chat_id_christian
+        - !secret telegram_chat_id_adriana
+
+- id: palm_poured
+  alias: Palme gegossen
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.flower_care_2_moisture
+    above: 25
+    for:  
+      minutes: 10
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Danke für's Gießen der Palme :-)
+      title: Palme gegossen
+      target:
+        - !secret telegram_chat_id_christian
+        - !secret telegram_chat_id_adriana
+
+- id: palm_dry_tv
+  alias: Palme trocken TV
+  trigger:
+  - platform: state
+    entity_id: remote.harmony
+    to: 'on'
+    for:  
+      minutes: 5
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.flower_care_2_moisture
+    below: '20'
+  action:
+  - service: notify.tv
+    data:
+      message: Du guckst TV und die arme Palme ist sooo durstig
+      title: Palme trocken
+      data:
+        position: center
+        duration: 15
+        color: 'green'

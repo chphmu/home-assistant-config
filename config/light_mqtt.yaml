@@ -5,12 +5,6 @@
   payload_on: "on"
   payload_off: "off"
 - platform: mqtt
-  name: "Stern"
-  command_topic: "switch/it3/set"
-  state_topic: "switch/it3/get"
-  payload_on: "on"
-  payload_off: "off"
-- platform: mqtt
   name: "Vitrinen"
   command_topic: "switch/it4/set"
   state_topic: "switch/it4/get"

@@ -70,6 +70,7 @@
     "71": "light.wohnzimmer",
     "72": "light.fastled_ws2811_light",
     "73": "light.keybox_rgb",
+    "74": "script.weeding",
     "8": "light.indirekt_aquarium",
     "9": "switch.vitrinen"
 }

@@ -1,0 +1,25 @@
+  # IF: { sun.sun goes under horizon } THEN: { set theme to night mode }
+  - id: day_to_night_theme
+    alias: day_to_night_theme
+    trigger:
+      - platform: state
+        entity_id: sun.sun
+        from: 'above_horizon'
+        to: 'below_horizon'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: PmxMononight
+
+  # IF: { sun.sun is up } THEN: { set theme to day mode }
+  - id: night_to_day_theme
+    alias: night_to_day_theme
+    trigger:
+      - platform: state
+        entity_id: sun.sun
+        from: 'below_horizon'
+        to: 'above_horizon'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: default

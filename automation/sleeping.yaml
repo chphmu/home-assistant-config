@@ -1,4 +1,4 @@
-- id: Gute Nacht Start
+- id: goodNightStart
   alias: Schlaf Start
   action:
   - service: xiaomi_aqara.play_ringtone
@@ -78,7 +78,7 @@
     event_data:
       entity_id: binary_sensor.wall_switch_both_1
       click_type: both
-- id: nachtboer
+- id: nightbear
   alias: Gute Nacht Teddy
   action:
   - service: xiaomi_aqara.play_ringtone
