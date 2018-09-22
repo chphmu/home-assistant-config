@@ -76,6 +76,7 @@ automation:
       event_type: timer.finished
       event_data: 
         entity_id: timer.bed
+
   - id: bedlight_to_sleep_christian
     alias: bed_light-to_sleep_Christian
     action:
@@ -86,7 +87,12 @@ automation:
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_nightstand_christian
-        click_type: long_click_press
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_nightstand_adriana
+        click_type: double
 
 
 scene:

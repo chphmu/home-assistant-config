@@ -129,3 +129,8 @@
     event_data:
       entity_id: binary_sensor.switch_nightstand_adriana
       click_type: long_click_press
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_nightstand_christian
+      click_type: long_click_press
