@@ -1,5 +1,3 @@
 staubi_waiting:
   name: Staubi wartet
   icon: mdi:car
-automatic_light:
-  name: Auto Licht

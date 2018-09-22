@@ -15,3 +15,55 @@ group:
     name: "Bewässerung"
     entities:
       - switch.plant_watering
+
+automation:
+  - id: waterPlantsMorning
+    alias: Bewässerung morgens
+    trigger:
+    - platform: time
+      at: '8:00:00'
+    action:
+    - service: switch.turn_on
+      entity_id: switch.plant_watering
+    - service: notify.ios_evip6cm
+      data:
+        message: Morgens giessen startet
+        title: Blumengiessen
+    - delay: 00:00:10
+    - service: switch.turn_on
+      entity_id: switch.plant_watering
+    - delay: 00:03:00
+    - service: switch.turn_off
+      entity_id: switch.plant_watering
+    - service: notify.ios_evip6cm
+      data:
+        message: Morgens gegossen
+        title: Blumengiessen
+    - delay: 00:03:00
+    - service: switch.turn_off
+      entity_id: switch.plant_watering
+  - id: waterPlantsEvening
+    alias: Bewässerung abends
+    trigger:
+    - platform: time
+      at: '20:00:00'
+    action:
+    - service: switch.turn_on
+      entity_id: switch.plant_watering
+    - delay: 00:00:10
+    - service: switch.turn_on
+      entity_id: switch.plant_watering
+    - service: notify.ios_evip6cm
+      data:
+        message: Abends giessen startet
+        title: Blumengiessen
+    - delay: 00:03:00
+    - service: switch.turn_off
+      entity_id: switch.plant_watering
+    - service: notify.ios_evip6cm
+      data:
+        message: Abends gegossen
+        title: Blumengiessen
+    - delay: 00:03:00
+    - service: switch.turn_off
+      entity_id: switch.plant_watering

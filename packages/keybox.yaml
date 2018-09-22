@@ -1,55 +1,79 @@
-timer:
-  keybox:
-    name: Timer Schlüsselkasten
-
 homeassistant:
   customize:
     binary_sensor.keybox_key_1:
       friendly_name: Schlüssel Christian
-    binary_sensor.keybox_motion_left:
-      friendly_name: Flur links
     light.keybox_rgb:
       friendly_name: Schlüsselkasten RGB
-group:
-  keybox:
-    name: Schlüsselkasten
-    entities:
-      - light.keybox_rgb
-      - binary_sensor.keybox_motion_left
-      - binary_sensor.keybox_key_1
-      - timer.keybox
 
 automation:
-  - id: keyboxTestOn
-    alias: Schlüsselkasten Test An
+  - id: keyboxFlashButtons
+    alias: Flash Keybox Buttons
     action:
-    - service: timer.start
-      entity_id: timer.keybox
-      data:
-        duration: 00:00:15
-    - service: light.turn_on
-      entity_id: light.keybox_rgb
-      data:
-        brightness: 90
-        rgb_color:
-        - 190
-        - 105
-        - 0
-        transition: 5
+      - service: python_script.keybox_button_flash
     trigger:
-    - platform: state
-      entity_id: binary_sensor.keybox_key_1
-      to: 'on'
-  - id: keyboxTestOff
-    alias: Schlüsselkasten Test Aus
+      - platform: state
+        entity_id: binary_sensor.keybox_button2
+  - id: keyboxAllOff
+    alias: Keybox All Off
     action:
-    - service: light.turn_off
-      entity_id: light.keybox_rgb
-      data:
-        transition: 5
+      - service: mqtt.publish
+        data:
+          topic: "tts/fhem"
+          payload_template: "Es werden alle Geräte ausgeschaltet."
+          qos: "2"
+      - service: light.turn_off
+        entity_id: group.all_lights
+      - service: remote.turn_off
+        entity_id: remote.harmony
     trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data: 
-        entity_id: timer.keybox
-      
+      - platform: state
+        entity_id: binary_sensor.keybox_button1
+  - id: keyboxChristianHome
+    alias: Keybox Christian Home
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "tts/fhem"
+          payload_template: "Der Schlüssel bitte der Herr"
+          qos: "2"
+      - service: light.turn_on
+        entity_id: light.keybox_rgb
+        data:
+          rgb_color:
+            - 220
+            - 190
+            - 90
+          brightness_pct: 70
+      - delay: 10
+      - service: light.turn_off
+        entity_id: light.keybox_rgb
+    trigger:
+      - entity_id: device_tracker.mobile_christian
+        platform: state
+        to: home
+        for: 
+          minutes: 2
+    condition:  
+      - condition: state
+        entity_id: binary_sensor.keybox_key_left
+        state: "off"
+  - id: keyboxChristianKeyPresent
+    alias: Keybox Christian key present
+    action:
+      - service: light.turn_on
+        entity_id: light.keybox_rgb
+        data:
+          rgb_color:
+            - 50
+            - 190
+            - 90
+          brightness_pct: 70
+      - delay: 2
+      - service: light.turn_off
+        entity_id: light.keybox_rgb
+    trigger:
+      - entity_id: binary_sensor.keybox_key_left
+        platform: state
+        to: "on"
+        for:
+          seconds: 3

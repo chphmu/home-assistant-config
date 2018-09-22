@@ -1,0 +1,98 @@
+input_boolean:
+  staubi_waiting:
+    name: Staubi wartet
+    icon: mdi:car
+    
+vacuum:
+  - platform: xiaomi_miio
+    name: 'Staubi'
+    host: '192.168.85.24'
+    token: !secret staubi_token
+    
+automation:
+    - id: staubiDaily
+      alias: Staubsauger Taeglich
+      trigger:
+      - platform: time
+        at: '13:00:00'
+      condition:
+        condition: and
+        conditions:
+        - condition: state
+          entity_id: device_tracker.mobile_adriana
+          state: not_home
+        - condition: state
+          entity_id: device_tracker.mobile_christian
+          state: not_home
+      action:
+      - service: vacuum.start
+        entity_id: vacuum.staubi
+      - service: notify.ios_evip6cm
+        data:
+          message: Staubi startet um 13 Uhr
+          title: Staubiaction
+    - id: staubiStopWaitingAtNight
+      alias: Staubsauger warten nachts stopen
+      trigger:
+      - platform: time
+        at: '23:45:00'
+      action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.staubi_waiting
+    - id: staubiWaitingTrigger
+      alias: Staubsauger auf Warten setzen
+      trigger:
+      - platform: time
+        at: '13:00:00'
+      condition:
+        condition: or
+        conditions:
+        - condition: state
+          entity_id: device_tracker.mobile_adriana
+          state: home
+        - condition: state
+          entity_id: device_tracker.mobile_christian
+          state: home
+      action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.staubi_waiting
+      - service: notify.ios_evip6cm
+        data:
+          message: Staubi wartet
+          title: Staubiaction
+    - id: staubiAlone
+      alias: Staubsauger startet allein
+      trigger:
+      - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
+        platform: state
+        to: not_home
+      condition:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: device_tracker.mobile_adriana
+          state: not_home
+        - condition: state
+          entity_id: device_tracker.mobile_christian
+          state: not_home
+        - condition: state
+          entity_id: input_boolean.staubi_waiting
+          state: 'on'
+      action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.staubi_waiting
+      - service: vacuum.start
+        entity_id: vacuum.staubi
+      - service: notify.ios_evip6cm
+        data:
+          message: Staubi allein zuhause und fährt
+          title: Staubiaction
+    - id: staubiBusted
+      alias: Staubsauger stopped wenn nicht allein
+      trigger:
+      - entity_id: device_tracker.mobile_adriana, device_tracker.mobile_christian
+        platform: state
+        to: home
+      action:
+      - service: vacuum.return_to_base
+        entity_id: vacuum.staubi

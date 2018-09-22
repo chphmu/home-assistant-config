@@ -13,6 +13,7 @@
   name: 'evoila - home'
   region: 'EU'
 - platform: darksky
+  name: darksky_griesheim
   api_key: !secret darksky_key
   update_interval: '00:15:00'
   language: de

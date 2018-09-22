@@ -1,12 +1,12 @@
 - platform: history_stats
-  name: Christian unterwegs
+  name: daily_away_christian
   entity_id: device_tracker.mobile_christian
   state: 'not_home'
   type: time
   start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
   end: '{{ now() }}'
 - platform: history_stats
-  name: Adriana unterwegs
+  name: daily_away_adriana
   entity_id: device_tracker.mobile_adriana
   state: 'not_home'
   type: time

@@ -10,6 +10,9 @@ homeassistant:
   time_zone: Europe/Berlin
   customize: !include config/customize.yaml
   packages: !include_dir_named packages
+
+# Enable the auth component
+auth:
 intent_script: !include config/intent_script.yaml
 frontend:
   themes: !include config/themes.yaml
@@ -37,10 +40,8 @@ light mqtt: !include config/light_mqtt.yaml
 light other: !include config/light_default.yaml
 hue: !include config/hue.yaml
 ios: !include config/ios.yaml
-vacuum: !include config/vaccum.yaml
 mqtt: !include config/mqtt.yaml
 notify: !include config/notify.yaml
-input_boolean: !include config/input_boolean.yaml
 device_tracker: !include config/device_tracker.yaml
 media_player: !include config/media_player.yaml
 xiaomi_aqara: !include config/xiaomi_aqara.yaml

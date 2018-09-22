@@ -53,11 +53,18 @@ automation:
         transition: 5
     trigger:
     - platform: state
-      entity_id: binary_sensor.motion_bed
+      entity_id: binary_sensor.motion_sensor_bedroom
       to: 'on'
   - id: bedlightTimerMotionTriggerOff
     alias: Bettlicht aus
     action:
+    - service: timer.start
+      entity_id: timer.bed
+      data:
+        duration: 00:03:00
+    - condition: state
+      entity_id: binary_sensor.motion_sensor_bedroom
+      state: 'off'
     - service: light.turn_off
       entity_id: light.bed
       data:

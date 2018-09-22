@@ -27,7 +27,7 @@
     data:
       topic: "tts/fhem"
       #payload: "hallo großer teddy"
-      payload_template: "Hallo Christian, du warst {{states.sensor.christian_unterwegs.attributes.value}} unterwegs."
+      payload_template: "Hallo Christian, du warst {{states.sensor.daily_away_christian.attributes.value}} unterwegs."
       qos: "2"
   condition:
     - condition: time

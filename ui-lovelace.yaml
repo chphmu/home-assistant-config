@@ -1,268 +1,639 @@
-title: Lovelace Demo
+resources:
+  - url: /local/monster-card.js?v=1
+    type: js
+  - url: /local/gauge-card.js?v=1
+    type: js
+
+title: !secret title
 views:
   - title: Home
-    icon: mdi:heart
+    icon: mdi:home-variant
     cards:
-      - type: picture
-        image: https://images.pexels.com/photos/220147/pexels-photo-220147.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500
-        navigation_path: /lovelace/stacks
-      - type: markdown
-        content: >
-          ## Lovelace
-          Starting with Home Assistant 0.72, we're experimenting with a new way of defining your interface. We're calling it the **Lovelace UI**.
-      - type: picture-glance
-        image: https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=240&w=495
-        title: Picture glance
-        entities:
-          - switch.decorative_lights
-          - light.ceiling_lights
-          - lock.front_door
-          - binary_sensor.movement_backyard
-          - binary_sensor.basement_floor_wet
-
-      - type: weather-forecast
-        entity: weather.demo_weather_north
-      - type: media-control
-        entity: media_player.spotify
-      - type: plant-status
-        entity: plant.palm
-        title: Palme
-      - type: history-graph
-        title: history-graph
-        entities:
-          - sensor.temperature_bedroom
-          - sensor.temperature_corridor
-
-  - title: Stacks
-    id: stacks
-    cards:
-      - type: vertical-stack
-        cards:
-          - type: media-control
-            entity: media_player.lounge_room
-          - type: picture-entity
-            entity: camera.demo_camera
-          - type: media-control
-            entity: media_player.lounge_room
-          - type: picture-entity
-            entity: camera.demo_camera
       - type: horizontal-stack
         cards:
-          - type: media-control
-            entity: media_player.lounge_room
           - type: picture-entity
-            entity: camera.demo_camera
+            title: Adriana
+            image: /local/images/adriana.jpg
+            state_image:
+              "home": /local/images/adriana.jpg
+              "not_home": /local/images/adriana_away.jpg
+            entity: device_tracker.mobile_adriana
+          - type: picture-entity
+            state_image:
+              "home": /local/images/christian.jpg
+              "not_home": /local/images/christian_away.jpg
+            title: Christian
+            entity: device_tracker.mobile_christian
+      - type: picture-elements
+        image: /local/images/griesheim.jpg
+        elements:
+          - type: state-badge
+            entity: sensor.darksky_griesheim_apparent_temperature
+            style:
+              top: 30%
+              left: 15%
+              color: white
+              --ha-label-badge-font-size: 1em
+          - type: state-badge
+            entity:  sensor.darksky_griesheim_humidity
+            style:
+              top: 30%
+              left: 35%
+              color: white
+              --ha-label-badge-font-size: 1em
+          - type: state-label
+            entity: sensor.darksky_griesheim_summary
+            style:
+              top: 70%
+              width: 100%
+              left: 50%
+              background: rgba(20,20,20,0.8)
+          - type: state-label
+            entity: sensor.darksky_griesheim_daily_summary
+            style:
+              top: 90%
+              width: 80%
+              left: 40%
+              overflow: hidden
+              background: rgba(20,20,20,0.9)
+          - type: icon
+            icon: mdi:microphone
+            style:
+              top: 90%
+              left: 92%
+              background: rgb(20,20,220)
+              padding-left: 8%
+              padding-right: 10%
+              padding-top: 6px
+              padding-bottom: 6px
+            service: homeassistant.turn_on
+          
+      - type: vertical-stack
+        cards:
+          - type: entity-filter
+            entities:
+              - binary_sensor.window_kitchen
+              - binary_sensor.door_balcony
+              - binary_sensor.window_bed_left
+              - binary_sensor.window_bed_right
+              - binary_sensor.window_guest_roof
+              - binary_sensor.window_guest_normal
+              - binary_sensor.window_bath_normal
+              - binary_sensor.window_bath_roof
+            state_filter:
+              - "on"
+            card: 
+              type: picture-glance
+              image: /local/images/sky.jpg
+            
+            show_empty: false
+            style: 
+              --paper-card-background-color: blue
+              --secondary-background-color: blue
 
-  - title: Entities
-    cards:
-      - type: entities
-        entities:
-          - device_tracker.demo_paulus
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-      - type: entities
-        entities:
-          - device_tracker.demo_paulus
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-        show_header_toggle: false
-      - type: entities
-        entities:
-          - device_tracker.demo_paulus
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-        title: toggle-able
-      - type: entities
-        entities:
-          - device_tracker.demo_paulus
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-        title: toggle-able, toggle = false
-        show_header_toggle: false
-      - type: entities
-        entities:
-          - device_tracker.demo_paulus
-        title: not toggle-able
-      # - type: entities
-      #   title: no entities
+          - type: picture-elements
+            image: /local/images/floorplan.png
+            elements:
+              - type: state-icon
+                entity: binary_sensor.window_bed_left
+                style:
+                  top: 8%
+                  left: 48%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.window_bed_right
+                style:
+                  top: 8%
+                  left: 58%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.window_guest_normal
+                style:
+                  top: 25%
+                  left: 95%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.window_guest_roof
+                style:
+                  top: 8%
+                  left: 83%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.window_bath_normal
+                style:
+                  top: 70%
+                  left: 95%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.window_bath_roof
+                style:
+                  top: 90%
+                  left: 85%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.window_kitchen
+                style:
+                  top: 90%
+                  left: 30%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.door_frontdoor
+                style:
+                  top: 65%
+                  left: 65%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+              - type: state-icon
+                entity: binary_sensor.door_balcony
+                style:
+                  top: 50%
+                  left: 5%
+                  --paper-item-icon-color: green
+                  --paper-item-icon-active-color: red
+                  --iron-icon-height: 40px
+                  --iron-icon-width: 40px
+          
+      - type: horizontal-stack
+        cards:
+          - type: picture
+            image: /local/images/mute.png
+            service: remote.send_command
+            service_data:
+              device: 32376201 
+              command: Mute
+      
+          - type: picture
+            image: /local/images/off.png
+            service: script.all_off
+          - type: picture
+            image: /local/images/weekend.jpg
+            service: script.weekend
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: input_boolean.guest_mode
+            image: /local/images/guests.jpg
+            tap_action: toggle
+          - type: picture
+            image: /local/images/guests.jpg
+            service: script.weekend
+          - type: picture
+            image: /local/images/guests.jpg
+            service: script.weekend
 
-  - title: Filter
-    cards:
-      - type: entity-filter
-        entities:
-          - device_tracker.mobile_adriana
-          - device_tracker.mobile_christian
-        state_filter:
-          - "home"
-        card:
-          type: glance
-          title:  Zuhause
-      - type: entity-filter
-        entities:
-          - light.bed_light
-          - light.ceiling_lights
-          - light.kitchen_lights
-        state_filter:
-            - "on"
-        card:
-          title: domain light, state on
-      - type: entity-filter
-        entities:
-          - light.bed_light
-          - light.ceiling_lights
-          - light.kitchen_lights
-        state_filter:
-          - 'on'
-          - 'off'
-        card:
-          type: glance
-          title: Filter + glance
-
-  - title: Glance
-    cards:
-      - type: glance
-        entities:
-          - device_tracker.demo_paulus
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-      - type: glance
-        entities:
-          - device_tracker.demo_paulus
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-        title: Title
-      - type: glance
-        entities:
-          - entity: device_tracker.demo_paulus
-            name: ¯\_(ツ)_/¯
-          - cover.kitchen_window
-          - group.kitchen
-          - lock.kitchen_door
-          - light.bed_light
-        title: Custom name for Paulus
-
-  - title: Iframe
-    cards:
-      - type: iframe
-        url: https://embed.windy.com/embed2.html?lat=48.234&lon=8.598&zoom=5&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=48.234&detailLon=8.598&metricWind=default&metricTemp=default&radarRange=-12
-        aspect_ratio: 50%
-      - type: iframe
-        url: https://embed.windy.com/embed2.html?lat=48.234&lon=8.598&zoom=5&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=48.234&detailLon=8.598&metricWind=default&metricTemp=default&radarRange=-12
-        aspect_ratio: 100%
-        title: with title
-
-  - title: Picture entity
-    cards:
-      - type: picture-entity
-        entity: light.bed_light
-        image: https://images.pexels.com/photos/775219/pexels-photo-775219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=295&w=490
-      - type: picture-entity
-        entity: light.bed_light_xxx
-        image: https://images.pexels.com/photos/775219/pexels-photo-775219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=295&w=490
-      - type: picture-entity
-        entity: light.bed_light
-        image: https://images.pexels.com/photos/172872/pexels-photo-172872.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260
-        tap_action: toggle
-        name: tap_action toggle
-      - type: picture-entity
-        entity: light.bed_light
-        image: https://images.pexels.com/photos/775219/pexels-photo-775219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=295&w=490
-        state_image:
-          "off": https://images.pexels.com/photos/172872/pexels-photo-172872.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260
-        name: state_image.off only, fallback to image
-      - type: picture-entity
-        entity: light.bed_light
-        image: https://images.pexels.com/photos/775219/pexels-photo-775219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=295&w=490
-        state_image:
-          "on": https://images.pexels.com/photos/172872/pexels-photo-172872.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260
-        name: state_image.on only, fallback to image
-      - type: picture-entity
-        entity: camera.demo_camera
-      - type: picture-entity
-        entity: light.bed_light
-        camera_image: camera.demo_camera
-        show_info: false
-
-  - title: Picture elements
+  - title: Wohnzimmer
+    icon: mdi:sofa
+    cards: 
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: picture-entity
+                entity: light.living_room
+                tap_action: toggle
+                image: /local/images/living_room.jpg
+              - type: picture-entity
+                entity: light.vitrinen
+                tap_action: toggle
+                image: /local/images/showcase.jpg
+          - type: vertical-stack
+            cards:
+              - type: picture-entity
+                entity: light.sideboard
+                tap_action: toggle
+                image: /local/images/sideboard.jpg
+              - type: picture-entity
+                tap_action: toggle
+                entity: light.dining_room
+                image: /local/images/dining_table.jpg
+      - type: picture-elements
+        image: /local/images/tv.jpg
+        elements:
+          - type: image
+            image: /local/images/spotify_logo.png
+            tap_action: call-service
+            service: remote.turn_on
+            service_data:
+              entity_id: remote.harmony
+              activity: 18672404
+            style:
+              top: 33%
+              left: 30%
+              width: 25%
+          - type: image
+            image: /local/images/amazon_logo.png
+            tap_action: call-service
+            service: remote.turn_on
+            service_data:
+              entity_id: remote.harmony
+              activity: 17652505
+            style:
+              top: 33%
+              left: 65%
+              width: 30%
+          - type: state-label
+            entity: remote.harmony
+            style:
+              top: 90%
+              height: 20%
+              width: 100%
+              left: 50%
+              background: rgba(20,20,20,0.8)
+              padding-left: 10%
+              padding-top: 5%
+              padding-bottom: 2%
+          - type: icon
+            icon: mdi:power
+            tap_action: call-service
+            service: remote.turn_off
+            service_data:
+              entity_id: remote.harmony
+            style:
+              left: 48%
+              top: 88%
+      - type: media-control
+        entity: media_player.spotify
+  - title: Schlafzimmer
+    icon: mdi:seat-individual-suite
     cards:
       - type: picture-elements
-        image: https://images.pexels.com/photos/316465/pexels-photo-316465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
+        image: /local/images/bedroom.jpg
         elements:
-          - type: service-button
-            title: turn light off
+          ## Nightstands Bedroom
+          - type: state-icon
+            entity: light.nightstand_adriana
+            tap_action: toggle
             style:
-              top: 15%
-              left: 45%
+              top: 9%
+              left: 12.5%
+              --iron-icon-height: 50px
+              --iron-icon-width: 50px
+              --paper-item-icon-active-color: yellow
+          - type: state-icon
+            entity: light.nightstand_christian
+            tap_action: toggle
+            style:
+              top: 9%
+              left: 80%
+              --iron-icon-height: 50px
+              --iron-icon-width: 50px
+              --paper-item-icon-active-color: yellow
+          - type: state-icon
+            entity: light.bed
+            style:
+              top: 45%
+              left: 20%
+              color: rgba(1,1,1,0)
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+          ## Bedlight Bedroom
+          - type: icon
+            icon: mdi:lightbulb-outline
+            tap_action: call-service
             service: light.turn_off
             service_data:
-              entity_id: light.ceiling_lights
-          - type: state-badge
-            entity: sensor.outside_temperature
+              entity_id: light.bed
             style:
-              top: 40%
-              left: 80%
+              top: 45%
+              left: 40%
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+          - type: icon
+            icon: mdi:lightbulb
+            tap_action: call-service
+            service: light.turn_on
+            service_data:
+              entity_id: light.bed
+              color_name: red
+            style:
+              top: 45%
+              left: 60%
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+              color: red
+          - type: icon
+            icon: mdi:lightbulb
+            tap_action: call-service
+            service: light.turn_on
+            service_data:
+              entity_id: light.bed
+              color_name: green
+            style:
+              top: 45%
+              left: 72%
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+              color: green
+          ## Windows Bedroom
           - type: state-icon
-            entity: light.ceiling_lights
+            entity: binary_sensor.window_bed_left
+            style:
+              top: 28%
+              left: 90%
+              color: rgba(1,1,1,0)
+              --paper-item-icon-color: green
+              --paper-item-icon-active-color: red
+              --iron-icon-height: 50px
+              --iron-icon-width: 50px
+          - type: state-icon
+            entity: binary_sensor.window_bed_right
+            style:
+              top: 48%
+              left: 90%
+              color: rgba(1,1,1,0)
+              --paper-item-icon-color: green
+              --paper-item-icon-active-color: red
+              --iron-icon-height: 50px
+              --iron-icon-width: 50px
+          
+          # Footer Bedroom
+          - type: state-label
+            entity: sensor.temperature_bedroom
+            style:
+              top: 90%
+              height: 20%
+              width: 100%
+              left: 50%
+              background: rgba(20,20,20,0.5)
+              padding-left: 10%
+              padding-top: 5%
+              padding-bottom: 2%
+          - type: state-label
+            entity: sensor.humidity_bedroom
+            style:
+              top: 90%
+              height: 20%
+              left: 47%
+              padding-left: 10%
+              padding-top: 5%
+              padding-bottom: 2%
+          - type: state-icon
+            entity: binary_sensor.motion_sensor_bedroom
+            style:
+              top: 88%
+              left: 90%
+      - type: picture-elements
+        image: /local/images/fans.jpg
+        elements:
+          - type: service-button
+            title: "ON"
+            service: switch.turn_on
+            service_data:
+              entity_id: switch.fan
+            style:
+              top: 70%
+              left: 33%
+              font-size: x-large
+              background-color: rgba(20,240,20,0.7)
+          - type: service-button
+            title: "OFF"
+            service: switch.turn_off
+            service_data:
+              entity_id: switch.fan
+            style:
+              top: 70%
+              left: 66%
+              font-size: x-large
+              background-color: rgba(240,20,20,0.7)
+          - type: state-label
+            entity: timer.fan
+            style:
+              left: 90%
+              top: 90%
+          - type: icon
+            icon: mdi:numeric-1-box
+            tap_action: call-service
+            service: automation.trigger
+            service_data:
+              entity_id: automation.fan_10
+            style:
+              top: 30%
+              left: 15%
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+              color: yellow
+          - type: icon
+            icon: mdi:numeric-3-box
+            tap_action: call-service
+            service: automation.trigger
+            service_data:
+              entity_id: automation.fan_30
+            style:
+              top: 30%
+              left: 50%
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+              color: yellow
+          - type: icon
+            icon: mdi:numeric-6-box
+            tap_action: call-service
+            service: automation.trigger
+            service_data:
+              entity_id: automation.fan_60
+            style:
+              top: 30%
+              left: 85%
+              --iron-icon-height: 40px
+              --iron-icon-width: 40px
+              color: yellow
+  - title: Temperaturen
+    icon: mdi:thermometer
+    cards:
+      - type: history-graph
+        title: Temperaturchart
+        hours_to_show: 72
+        entities:
+          - sensor.temperature_corridor
+          - sensor.temperature_bedroom
+          - sensor.temperature_bath
+          - sensor.temperature_cubby
+          - sensor.temperature_guest
+      - type: history-graph
+        title: Feuchtigkeitschart
+        hours_to_show: 72
+        entities:
+          - sensor.humidity_corridor
+          - sensor.humidity_bedroom
+          - sensor.humidity_bath
+          - sensor.humidity_cubby
+          - sensor.humidity_guest
+      - type: entities
+        title: Temperaturen
+        entities:
+          - sensor.temperature_corridor
+          - sensor.temperature_bedroom
+          - sensor.temperature_bath
+          - sensor.temperature_cubby
+          - sensor.temperature_guest
+      - type: entities
+        title: Feuchtigkeit
+        entities:
+          - sensor.humidity_corridor
+          - sensor.humidity_bedroom
+          - sensor.humidity_bath
+          - sensor.humidity_cubby
+          - sensor.humidity_guest
+      - type: custom:gauge-card
+        title: Flur
+        entity: sensor.temperature_corridor
+        min: 15
+        max: 40
+        severity:
+          red: 15
+          green: 16
+          amber: 13
+  - title: Pflanzen
+    icon: mdi:leaf
+    cards:
+      - type: picture-elements
+        image: /local/images/leaf_dark.jpg
+        elements:
+          - type: state-badge
+            entity: sensor.flower_care_2_temperature
+            style:
+              top: 30%
+              left: 15%
+              color: white
+              --ha-label-badge-font-size: 1em
+          - type: state-badge
+            entity: sensor.flower_care_2_moisture
+            style:
+              top: 30%
+              left: 35%
+              color: white
+              --ha-label-badge-font-size: 1em
+          - type: state-badge
+            entity: sensor.flower_care_2_lux
             style:
               top: 30%
               left: 55%
-              '--paper-item-icon-color': green
-          - type: state-icon
-            tap_action: toggle
-            entity: light.ceiling_lights
+              color: white
+              --ha-label-badge-font-size: 1em
+          - type: icon
+            icon: mdi:leaf
+            title: Palme 
             style:
-              top: 30%
-              left: 20%
-          - type: state-label
-            entity: sensor.outside_temperature
+              top: 85%
+              height: 20%
+              width: 100%
+              left: 50%
+              background: rgba(20,20,20,0.5)
+              padding-left: 10%
+              padding-top: 2%
+              padding-bottom: 2%
+          - type: service-button
+            title: Palme
             style:
-              top: 40%
-              left: 30%
-          - type: navigation
-            path: /lovelace/2
-            icon: mdi:numeric-2-box-multiple-outline
-            style:
-              top: 80%
-              left: 15%
-              width: 48px
-              height: 48px
-              color: cyan
-      - type: picture-elements
-        title: Test overflow
-        image: https://images.pexels.com/photos/316465/pexels-photo-316465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
-        elements:
-          - type: state-icon
-            tap_action: toggle
-            entity: light.ceiling_lights
-            style:
-              top: 0
-              left: 20%
-  - title: panel
-    id: panel
+              top: 85%
+              left: 80%
+              "--primary-color": white
+            service: homeassistant.turn_on
+  - title: Music
+    icon: mdi:music
+    panel: false
+    cards:
+      - type: media-control
+        entity: media_player.spotify
+      - type: markdown
+        content: >
+          ## Music
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+            - type: picture
+              image: /local/images/album_cover/kraftklub.jpg
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: 'spotify:artist:0MZ55DwuMQ1B2TXq9lcrE4'
+            - type: picture
+              image: /local/images/album_cover/nie.jpg
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: 'spotify:artist:2YIxQoGvBukvoC1CbJ7opS' 
+            - type: picture
+              image: /local/images/album_cover/sonderschule.jpg
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: 'spotify:user:chphmu:playlist:0RS7lOy3RKLhQc3aAEdHQY'
+        - type: horizontal-stack
+          cards:
+            - type: picture
+              image: /local/images/album_cover/deichkind.jpeg
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: 'spotify:artist:49eo9xE4yGzJLWkOndiODs' 
+            - type: picture
+              image: /local/images/album_cover/kaffeehausmusik.png
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: 'spotify:user:spotify:playlist:37i9dQZF1DX6KItbiYYmAv' 
+            - type: picture
+              image: /local/images/album_cover/wildeherzen.png
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: 'spotify:user:spotify:playlist:37i9dQZF1DWSFDWzEZlALC' 
+  - title: This and that
+    icon: mdi:candycane
+    panel: false
+    cards:
+      - type: entities
+        title: Schlüsselkasten
+        entities:
+          - automation.flash_keybox_buttons
+          - automation.keybox_all_off
+          - binary_sensor.keybox_button1
+          - binary_sensor.keybox_button2
+          - binary_sensor.keybox_key_right
+          - binary_sensor.keybox_key_left
+          - light.keybox_rgb
+          - automation.keybox_christian_home
+          - switch.keybox_button1light
+          - switch.keybox_button2light
+          - switch.keybox_button3light
+          - switch.keybox_button4light
+          - switch.keybox_button5light
+  - title: Header
+    icon: mdi:car
     panel: true
     cards:
-      - type: picture-elements
-        image: https://images.pexels.com/photos/316465/pexels-photo-316465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
-        elements:
-          - type: service-button
-            title: turn light off
-            style:
-              top: 15%
-              left: 45%
-            service: light.turn_off
-            service_data:
-              entity_id: light.ceiling_lights
-      - type: weather-forecast
-        entity: weather.demo_weather_north
+      - type: vertical-stack
+        cards:
+          - type: glance
+            entities:
+              - sun.sun
