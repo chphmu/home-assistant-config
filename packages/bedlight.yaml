@@ -69,8 +69,35 @@ automation:
       entity_id: light.bed
       data:
         transition: 5
+    - service: timer.cancel
+      entity_id: timer.bed
     trigger:
     - platform: event
       event_type: timer.finished
       event_data: 
         entity_id: timer.bed
+  - id: bedlight_to_sleep_christian
+    alias: bed_light-to_sleep_Christian
+    action:
+    - service: scene.turn_on
+      entity_id: scene.bed_to_sleep
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_nightstand_christian
+        click_type: long_click_press
+
+
+scene:
+  - name: bed_to_sleep
+    entities:
+      light.nightstand_adriana: on
+      light.nightstand_christian: on
+      light.ceiling:
+        state: on
+        rgb_color: 
+          - 255
+          - 63
+          - 0
+        brightness: 200

@@ -197,9 +197,13 @@ views:
             entity: input_boolean.guest_mode
             image: /local/images/guests.jpg
             tap_action: toggle
-          - type: picture
-            image: /local/images/guests.jpg
-            service: script.weekend
+            name: Gast
+
+          - type: picture-entity
+            name: Wartet
+            image: /local/images/vacuum_waiting.jpg
+            entity: input_boolean.staubi_waiting
+            tap_action: toggle
           - type: picture
             image: /local/images/guests.jpg
             service: script.weekend
