@@ -94,7 +94,7 @@ scene:
     entities:
       light.nightstand_adriana: on
       light.nightstand_christian: on
-      light.ceiling:
+      light.bed:
         state: on
         rgb_color: 
           - 255
