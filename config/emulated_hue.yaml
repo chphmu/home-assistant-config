@@ -15,7 +15,7 @@ entities:
     name: "Fernsehlicht"
   light.lamp_livingroom:
     hidden: true
-  light.lamp_dining_room:
+  light.lamp_lvn_diningTable:
     hidden: true
   script.weeding:
     name: "Hochzeitstanz"

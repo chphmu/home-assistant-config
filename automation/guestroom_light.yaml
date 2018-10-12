@@ -4,6 +4,10 @@
   - platform: state
     entity_id: binary_sensor.motion_sensor_guest
     to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
   - service: scene.turn_on
     entity_id: scene.GuestMove
@@ -15,6 +19,10 @@
     to: 'off'
     for: 
       minutes: 3 
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
   - service: scene.turn_on
     entity_id: scene.GuestOff

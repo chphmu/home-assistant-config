@@ -1,0 +1,65 @@
+timer:
+  lvn_nightlight:
+    name: Timer Nachtlicht Wohnzimmer
+automation:
+  - id: lvn_nightlight_on
+    alias: lvn_nightlight_on
+    action:
+    - service: input_text.set_value
+      entity_id: input_text.lvn_selectedscene
+      data:
+        value: 'Nachtlicht'
+    - service: timer.start
+      entity_id: timer.lvn_nightlight
+      data:
+        duration: 00:02:30
+    trigger:
+    - platform: event
+      event_type: motion
+      event_data:
+        entity_id: binary_sensor.motion_sensor_livingroom
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_select.lvn_mode
+        state: 'Automatik' 
+      - condition: state
+        entity_id: input_text.lvn_selectedscene
+        state: 'Aus'
+      - condition: template
+        value_template: '{{ states.sensor.illumination_xiaomi_gateway.state | float < 600 }}'
+      - condition: time
+        after: '18:00:00'
+        before: '07:00:00'
+  - id: lvn_nightlight_off
+    alias: lvn_nightlight_off
+    action:
+    - service: timer.start
+      entity_id: timer.lvn_nightlight
+      data:
+        duration: 00:02:30
+    - condition: state
+      entity_id: binary_sensor.motion_sensor_livingroom
+      state: 'off'
+    - service: input_text.set_value
+      entity_id: input_text.lvn_selectedscene
+      data:
+        value: 'Aus'
+    - service: timer.cancel
+      entity_id: timer.lvn_nightlight
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.lvn_nightlight
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_select.lvn_mode
+        state: 'Automatik' 
+      - condition: state
+        entity_id: input_text.lvn_selectedscene
+        state: 'Nachtlicht'
+    

@@ -1,6 +1,11 @@
 - platform: time_date
+  name: time
   display_options:
-    - 'date_time'
+    - 'time'
+- platform: time_date
+  name: date
+  display_options:
+    - 'date'
 - platform: yr
 - platform: waze_travel_time
   origin: !secret address_home

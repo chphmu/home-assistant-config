@@ -1,4 +1,4 @@
-entity_colorlight = "light.wohnzimmerfarblicht"
+entity_colorlight = "light.lvn_rgbCouchArea"
 old_state = hass.states.get(entity_colorlight)
 for x in range(0, 10):
     hass.services.call('light', 'turn_on', { "entity_id" : entity_colorlight, "color_name":"red"})

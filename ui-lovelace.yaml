@@ -1,73 +1,43 @@
-resources:
-  - url: /local/monster-card.js?v=1
-    type: js
-  - url: /local/gauge-card.js?v=1
-    type: js
-
 title: !secret title
 views:
   - title: Home
     icon: mdi:home-variant
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: picture-entity
-            title: Adriana
-            image: /local/images/adriana.jpg
-            state_image:
-              "home": /local/images/adriana.jpg
-              "not_home": /local/images/adriana_away.jpg
-            entity: device_tracker.mobile_adriana
-          - type: picture-entity
-            state_image:
-              "home": /local/images/christian.jpg
-              "not_home": /local/images/christian_away.jpg
-            title: Christian
-            entity: device_tracker.mobile_christian
       - type: picture-elements
-        image: /local/images/griesheim.jpg
+        image: /local/images/griesheim_small.jpg
         elements:
+          - type: state-label
+            entity: sensor.time
+            style:
+              top: 30px
+              left: 80px
+              font-size: 45px
+              font-color: blue
+              align: left
+          - type: state-label
+            entity: sensor.date
+            style:
+              top: 80px
+              left: 100px
+              font-size: 30px
+              font-color: blue
+              align: left
           - type: state-badge
             entity: sensor.darksky_griesheim_apparent_temperature
             style:
               top: 30%
-              left: 15%
+              left: 70%
               color: white
               --ha-label-badge-font-size: 1em
           - type: state-badge
-            entity:  sensor.darksky_griesheim_humidity
+            entity: sensor.darksky_griesheim_humidity
             style:
               top: 30%
-              left: 35%
+              left: 87%
               color: white
               --ha-label-badge-font-size: 1em
-          - type: state-label
-            entity: sensor.darksky_griesheim_summary
-            style:
-              top: 70%
-              width: 100%
-              left: 50%
-              background: rgba(20,20,20,0.8)
-          - type: state-label
-            entity: sensor.darksky_griesheim_daily_summary
-            style:
-              top: 90%
-              width: 80%
-              left: 40%
-              overflow: hidden
-              background: rgba(20,20,20,0.9)
-          - type: icon
-            icon: mdi:microphone
-            style:
-              top: 90%
-              left: 92%
-              background: rgb(20,20,220)
-              padding-left: 8%
-              padding-right: 10%
-              padding-top: 6px
-              padding-bottom: 6px
-            service: homeassistant.turn_on
-          
+      - type: weather-forecast
+        entity: weather.griesheim
       - type: vertical-stack
         cards:
           - type: entity-filter
@@ -174,8 +144,7 @@ views:
                   --paper-item-icon-color: green
                   --paper-item-icon-active-color: red
                   --iron-icon-height: 40px
-                  --iron-icon-width: 40px
-          
+                  --iron-icon-width: 40px          
       - type: horizontal-stack
         cards:
           - type: picture
@@ -198,43 +167,78 @@ views:
             image: /local/images/guests.jpg
             tap_action: toggle
             name: Gast
-
           - type: picture-entity
             name: Wartet
             image: /local/images/vacuum_waiting.jpg
             entity: input_boolean.staubi_waiting
             tap_action: toggle
           - type: picture
-            image: /local/images/guests.jpg
-            service: script.weekend
-
+            image: /local/images/blank.jpg
+            service: script.blank
+  - title: People
+    icon: mdi:account
+    cards:  
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            title: Adriana
+            image: /local/images/adriana.jpg
+            state_image:
+              "home": /local/images/adriana.jpg
+              "not_home": /local/images/adriana_away.jpg
+            entity: device_tracker.mobile_adriana
+          - type: picture-entity
+            state_image:
+              "home": /local/images/christian.jpg
+              "not_home": /local/images/christian_away.jpg
+            title: Christian
+            entity: device_tracker.mobile_christian
   - title: Wohnzimmer
     icon: mdi:sofa
     cards: 
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
-          - type: vertical-stack
+          - type: horizontal-stack
             cards:
               - type: picture-entity
-                entity: light.living_room
-                tap_action: toggle
-                image: /local/images/living_room.jpg
+                entity: light.lvn_coucharea
+                tap_action: more-info
+                image: /local/images/lvn_couchArea.jpg
               - type: picture-entity
-                entity: light.vitrinen
+                entity: light.lvn_displaycase
                 tap_action: toggle
-                image: /local/images/showcase.jpg
-          - type: vertical-stack
+                image: /local/images/lvn_displayCase.jpg
+                name: Vitrinen
+          - type: horizontal-stack
             cards:
               - type: picture-entity
-                entity: light.sideboard
+                entity: light.lvn_sideboard
                 tap_action: toggle
-                image: /local/images/sideboard.jpg
+                image: /local/images/lvn_sideboard.jpg
+                name: Sideboard
               - type: picture-entity
-                tap_action: toggle
-                entity: light.dining_room
-                image: /local/images/dining_table.jpg
+                tap_action: more-info
+                entity: light.lvn_diningtable
+                image: /local/images/lvn_diningTable.jpg
+          - type: horizontal-stack
+            cards:
+            - type: picture
+              image: /local/images/off.png
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedmode
+                value: 'Aus'
+            - type: picture
+              image: /local/images/off.png
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: 'Aus'
+            - type: picture-entity
+              entity: binary_sensor.motion_sensor_livingroom
+              image: /local/images/motion.png
       - type: picture-elements
-        image: /local/images/tv.jpg
+        image: /local/images/lvn_tv.jpg
         elements:
           - type: image
             image: /local/images/spotify_logo.png
@@ -278,8 +282,15 @@ views:
             style:
               left: 48%
               top: 88%
-      - type: media-control
-        entity: media_player.spotify
+      - type: entities
+        entities:
+          - input_select.lvn_mode
+          - input_boolean.lvn_light_automatic
+          - input_boolean.lvn_light_daylight
+          - input_text.lvn_selectedscene
+          - input_text.lvn_detectedscene
+          - timer.lvn_nightlight
+          - sensor.illumination_livingroom
   - title: Schlafzimmer
     icon: mdi:seat-individual-suite
     cards:
@@ -500,15 +511,26 @@ views:
           - sensor.humidity_bath
           - sensor.humidity_cubby
           - sensor.humidity_guest
-      - type: custom:gauge-card
+      - type: gauge
         title: Flur
         entity: sensor.temperature_corridor
+        unit_of_measurement: '°C'
         min: 15
         max: 40
         severity:
-          red: 15
-          green: 16
-          amber: 13
+          red: 28
+          green: 0
+          yellow: 25
+      - type: horizontal-stack
+        cards:
+        - type: sensor
+          entity: sensor.humidity_bedroom
+          name: Bedroom
+          height: 50
+        - type: sensor
+          entity: sensor.humidity_bath
+          name: Bad
+          height: 50
   - title: Pflanzen
     icon: mdi:leaf
     cards:
@@ -581,7 +603,7 @@ views:
               entity_id: media_player.spotify
               service_data:
                 media_content_type: playlist
-                media_content_id: 'spotify:artist:2YIxQoGvBukvoC1CbJ7opS' 
+                media_content_id: 'spotify:album:72Tg8IM0FR3KOIxGTRElvU'
             - type: picture
               image: /local/images/album_cover/sonderschule.jpg
               service: media_player.play_media
@@ -632,7 +654,7 @@ views:
           - switch.keybox_button3light
           - switch.keybox_button4light
           - switch.keybox_button5light
-  - title: Header
+  - title: Test
     icon: mdi:car
     panel: true
     cards:

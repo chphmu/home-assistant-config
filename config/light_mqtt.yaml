@@ -5,13 +5,13 @@
   payload_on: "on"
   payload_off: "off"
 - platform: mqtt
-  name: "Vitrinen"
+  name: "lvn_displayCase"
   command_topic: "switch/it4/set"
   state_topic: "switch/it4/get"
   payload_on: "on"
   payload_off: "off"
 - platform: mqtt
-  name: "Sideboard"
+  name: "lvn_sideboard"
   command_topic: "switch/it6/set"
   state_topic: "switch/it6/get"
   payload_on: "on"

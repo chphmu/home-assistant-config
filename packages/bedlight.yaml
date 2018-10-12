@@ -50,7 +50,7 @@ automation:
         - 190
         - 105
         - 0
-        transition: 5
+        transition: 15
     trigger:
     - platform: state
       entity_id: binary_sensor.motion_sensor_bedroom
@@ -68,7 +68,7 @@ automation:
     - service: light.turn_off
       entity_id: light.bed
       data:
-        transition: 5
+        transition: 15
     - service: timer.cancel
       entity_id: timer.bed
     trigger:
@@ -78,7 +78,7 @@ automation:
         entity_id: timer.bed
 
   - id: bedlight_to_sleep_christian
-    alias: bed_light-to_sleep_Christian
+    alias: bdr_stayinbed
     action:
     - service: scene.turn_on
       entity_id: scene.bed_to_sleep
@@ -96,7 +96,7 @@ automation:
 
 
 scene:
-  - name: bed_to_sleep
+  - name: bdr_stayinbed
     entities:
       light.nightstand_adriana: on
       light.nightstand_christian: on

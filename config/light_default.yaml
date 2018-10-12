@@ -2,5 +2,5 @@
   #automatic_add: True
   devices:
     192.168.85.30:
-      name: WohnzimmerFarblicht
+      name: lvn_rgbcoucharea
       mode: "rgbw"

@@ -4,28 +4,20 @@
 - name: GuestOff
   entities:
     light.schreibtischlampe: off
-- name: living_cosy
-  entities:
-    light.vitrinen: on
-    light.sideboard: on
-    light.wohnzimmerfarblicht:
-      state: on
-      rgb_color: [255,139,12]
-      brightness: 190
 - name: bed_preparation
   entities:
-    light.vitrinen: off
-    light.sideboard: on
-    light.wohnzimmerfarblicht:
+    light.lvn_displayCase: off
+    light.lvn_sideboard: on
+    light.lvn_rgbCouchArea:
       rgb_color: [170,79,0]
     light.bett: on
 - name: tv
   entities:
-    light.vitrinen: on
-    light.sideboard: on
-    light.dining_room: off
-    light.living_room: off
-    light.wohnzimmerfarblicht:
+    light.lvn_displayCase: on
+    light.lvn_sideboard: on
+    light.lvn_diningTable: off
+    light.lvn_couchArea: off
+    light.lvn_rgbCouchArea:
       state: on
       rgb_color: [255,139,12]
       brightness: 190
@@ -34,50 +26,50 @@
       activity: 17652505
 - name: eat
   entities:
-    light.vitrinen: on
-    light.sideboard: on
-    light.dining_room: off
-    light.living_room: off
-    light.wohnzimmerfarblicht:
+    light.lvn_displayCase: on
+    light.lvn_sideboard: on
+    light.lvn_diningTable: off
+    light.lvn_couchArea: off
+    light.lvn_rgbCouchArea:
       state: on
       rgb_color: [255,139,12]
       brightness: 190
-- name: leave
+- name: allOff
   entities:
-    light.vitrinen: off
-    light.sideboard: off
-    light.dining_room: off
-    light.living_room: off
+    light.lvn_displayCase: off
+    light.lvn_sideboard: off
+    light.lvn_diningTable: off
+    light.lvn_couchArea: off
     remote.harmony: off
-    light.wohnzimmerfarblicht: off
+    light.lvn_rgbCouchArea: off
     light.bed: off
     light.schreibtischlampe: off
     light.nightstand_adriana: off
     light.nightstand_christian: off
 - name: clean
   entities:
-    light.vitrinen: on
-    light.sideboard: on
-    light.dining_room: on
-    light.living_room: on
+    light.lvn_displayCase: on
+    light.lvn_sideboard: on
+    light.lvn_diningTable: on
+    light.lvn_couchArea: on
     remote.harmony:
       state: on
       activity: 18715284
-    light.wohnzimmerfarblicht: on
+    light.lvn_rgbCouchArea: on
     light.bed: on
     light.schreibtischlampe: on
     light.nightstand_adriana: on
     light.nightstand_christian: on
 - name: cooking
   entities:
-    light.vitrinen: on
-    light.sideboard: on
-    light.dining_room: on
-    light.living_room: on
+    light.lvn_displayCase: on
+    light.lvn_sideboard: on
+    light.lvn_diningTable: on
+    light.lvn_couchArea: on
     remote.harmony:
       state: on
       activity: 18715284
-    light.wohnzimmerfarblicht: on
+    light.lvn_rgbCouchArea: on
     light.bed: off
     light.schreibtischlampe: off
     light.nightstand_adriana: off

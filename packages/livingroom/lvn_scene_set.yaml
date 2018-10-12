@@ -1,0 +1,46 @@
+automation:
+  - id: lvn_set_scene_tv
+    alias: lvn_set_scene_tv
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Fernsehen'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_cosy
+  - id: lvn_set_scene_off
+    alias: lvn_set_scene_off
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Aus'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_off
+  - id: lvn_set_scene_nightlight
+    alias: lvn_set_scene_nightlight
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Nachtlicht'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_nightlight
+  - id: lvn_set_scene_morninglight
+    alias: lvn_set_scene_morninglight
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Morgen'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_morninglight
+  - id: lvn_set_scene_daylight
+    alias: lvn_set_scene_daylight
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Tageslicht'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_off

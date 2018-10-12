@@ -1,6 +1,3 @@
-## Synology Reverse Proxy mod:
-#### https://github.com/orobardet/dsm-reverse-proxy-websocket
-
 homeassistant: 
   name: Home
   latitude: !secret latitude
@@ -46,7 +43,7 @@ device_tracker: !include config/device_tracker.yaml
 media_player: !include config/media_player.yaml
 xiaomi_aqara: !include config/xiaomi_aqara.yaml
 #camera: !include config/camera.yaml
-group: !include groups.yaml
+group: !include config/groups.yaml
 automation: !include_dir_merge_list automation
-scene: !include scene.yaml
+scene: !include config/scene.yaml
 script: !include script.yaml

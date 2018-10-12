@@ -15,16 +15,16 @@
       - 10
       transition: 10
     service: light.turn_on
-    entity_id: light.wohnzimmerfarblicht
+    entity_id: light.lvn_rgbCouchArea
   - delay: 00:00:01
   - service: light.turn_on
     entity_id: light.stern
   - delay: 00:00:01
   - service: light.turn_on
-    entity_id: light.vitrinen
+    entity_id: light.lvn_displayCase
   - delay: 00:00:01
   - service: light.turn_on
-    entity_id: light.sideboard
+    entity_id: light.lvn_sideboard
 - id: nightLightOff
   alias: Abend Beleuchtung aus
   trigger:
@@ -35,7 +35,7 @@
       click_type: single
   action:
   - service: light.turn_off
-    entity_id: light.wohnzimmerfarblicht
+    entity_id: light.lvn_rgbCouchArea
     data:
       transition: 10
   - delay: 00:00:01
@@ -43,7 +43,7 @@
     entity_id: light.stern
   - delay: 00:00:01
   - service: light.turn_off
-    entity_id: light.vitrinen
+    entity_id: light.lvn_displayCase
   - delay: 00:00:01
   - service: light.turn_off
-    entity_id: light.sideboard
+    entity_id: light.lvn_sideboard

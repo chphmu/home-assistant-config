@@ -1,5 +1,6 @@
 - id: detect_tv_time
   alias: TV Time Light
+  initial_state: false
   trigger:
   - platform: state
     entity_id: binary_sensor.tv_time

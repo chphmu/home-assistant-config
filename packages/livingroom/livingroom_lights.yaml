@@ -1,0 +1,113 @@
+group:
+  lvn_lights:
+    name: Licht Wohnzimmer
+    entities:
+      - light.lvn_sideboard
+      - light.lvn_displayCase
+      - light.lvn_rgbCouchArea
+      - light.lvn_diningTable
+      - light.lvn_couchArea
+      - light.stern
+
+input_select:
+  lvn_mode:
+    name: Modus Wohnzimmer
+    options:
+      - Aus
+      - Entspannen
+      - Essen
+      - Fernsehen
+      - Film
+      - Kochen
+      - Nachtlicht
+      - Morgen
+      - Musik
+input_boolean:
+  lvn_light_automatic:
+    name: WZ Licht Automatik
+  lvn_light_daylight:
+    name: Tageslicht Modus
+
+input_text:
+  lvn_selectedscene:
+    name: Scene WZ
+  lvn_detectedscene:
+    name: Detected WZ
+
+automation:
+  - id: lvn_setSelectedMode
+    alias: lvn_SetSelectedMode
+    trigger:
+      - platform: state
+        entity_id: input_select.lvn_mode
+    condition:
+      condition: state
+      entity_id: input_boolean.lvn_light_automatic
+      state: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data_template:
+          value: '{{states("input_select.lvn_mode")}}'
+  - id: lvn_setDetectedMode
+    alias: lvn_setDetectedMode
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_detectedscene
+      - platform: state
+        entity_id: input_boolean.lvn_light_daylight
+        to: 'off'
+    condition: 
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.lvn_light_automatic
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.lvn_light_daylight
+          state: 'off'  
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data_template:
+          value: '{{states("input_text.lvn_detectedscene")}}'
+  - id: lvn_setDaylightMode
+    alias: lvn_setDaylightMode
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.illumination_livingroom
+      above: 200
+      for:
+        minutes: 10
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_light_daylight
+  - id: lvn_switchOfAtDaylight
+    alias: lvn_switchOfAtDaylight
+    trigger:
+      platform: state
+      entity_id: input_boolean.lvn_light_daylight
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.lvn_light_automatic
+        state: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data_template:
+          value: 'Aus'
+  - id: lvn_setLampLightMode
+    alias: lvn_setLamplightMode
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.illumination_livingroom
+      below: 200
+      for:
+        minutes: 10
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_light_daylight
+
+
+    

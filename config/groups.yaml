@@ -8,7 +8,7 @@ default_view1:
     - device_tracker.mobile_christian
     - group.windows
     - group.bedlight
-    - group.living_lights
+    - group.lvn_lights
     - group.vacuum
     - group.temperatures
     - group.humidity
@@ -19,7 +19,7 @@ livingroom_view:
   name: Wohnzimmer
   icon: mdi:sofa
   entities:
-    - group.living_lights
+    - group.lvn_lights
     - group.living_sensor
     - group.living_fenster
     - group.vacuum
@@ -78,7 +78,7 @@ time:
   name: Zeit
   entities:
     - sensor.date__time
-living_room_sensor:
+lvn_couchArea_sensor:
   name: Wohnzimmer Sensoren
   entities:
     - timer.livingroom_nightlight
@@ -128,7 +128,7 @@ windows:
     - binary_sensor.window_bed_left
     - binary_sensor.window_guest_roof
     - binary_sensor.window_guest_normal
-living_room_windows:
+lvn_couchArea_windows:
   name: "Fenster Wohnzimmer"
   entities:
     - binary_sensor.window_kitchen

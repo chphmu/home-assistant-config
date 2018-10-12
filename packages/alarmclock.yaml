@@ -90,10 +90,10 @@ automation:
         ringtone_id: 10005
         gw_mac: !secret xiaomi_aqara_mac
     - service: light.turn_on
-      entity_id: light.vitrinen
+      entity_id: light.lvn_displayCase
     - delay: 00:00:01
     - service: light.turn_on
-      entity_id: light.sideboard
+      entity_id: light.lvn_sideboard
     - service: automation.turn_off
       entity_id: automation.bettlicht_an
     - service: automation.turn_off

@@ -1,0 +1,105 @@
+sensor:
+  - platform: history_stats
+    name: lvn_stat_motion_hourtime
+    entity_id: binary_sensor.motion_sensor_livingroom
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 1
+  - platform: history_stats
+    name: lvn_stat_motion_hourcount
+    entity_id: binary_sensor.motion_sensor_livingroom
+    state: 'on'
+    type: count
+    end: '{{ now() }}'
+    duration:
+      hours: 1
+
+automation:
+  - id: lvn_detect_scene_tv
+    alias: lvn_detect_scene_tv
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_livingroom
+        to: 'on'
+      - platform: state
+        entity_id: remote.harmony
+    condition: 
+      condition: template
+      value_template: '{{states.remote.harmony.attributes.current_activity in ["Fernsehen","Fire TV sehen","Fernsehen Bodyshake","Chromecast"]}}'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_detectedscene
+        data:
+          value: 'Fernsehen'
+  - id: lvn_detect_scene_music
+    alias: lvn_detect_scene_music
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_livingroom
+        to: 'on'
+      - platform: state
+        entity_id: remote.harmony
+    condition: 
+      condition: template
+      value_template: '{{states.remote.harmony.attributes.current_activity in ["Musik Alexa","Radio","Musik Chromecast"]}}'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_detectedscene
+        data:
+          value: 'Musik'
+  - id: lvn_detect_scene_chill
+    alias: lvn_detect_scene_chill
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_livingroom
+        to: 'on'
+      - platform: state
+        entity_id: remote.harmony
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: remote.harmony
+        state: 'off'
+      - condition: template
+        value_template: '{{ states.sensor.illumination_xiaomi_gateway.state | float < 600 }}'
+      - condition: time
+        after: '11:00:00'
+        before: '07:00:00'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_detectedscene
+        data:
+          value: 'Entspannen'
+  - id: lvn_detect_scene_off
+    alias: lvn_detect_scene_off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_livingroom
+        to: 'off'
+        for:
+          minutes: 45
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_detectedscene
+        data:
+          value: 'Aus'
+  - id: lvn_detect_scene_morning
+    alias: lvn_detect_scene_morning
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_livingroom
+        to: 'on'
+    condition: 
+      condition: and
+      conditions:
+      - condition: time
+        after: '07:00:00'
+        before: '11:00:00'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_detectedscene
+        data:
+          value: 'Morgen'

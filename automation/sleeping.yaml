@@ -15,7 +15,7 @@
       - 105
       - 0
   - service: light.turn_on
-    entity_id: light.wohnzimmerfarblicht
+    entity_id: light.lvn_rgbCouchArea
     data:
       brightness: 190
       rgb_color:
@@ -38,10 +38,10 @@
     data:
       source: 'Bad'
   - service: light.turn_on
-    entity_id: light.vitrinen
+    entity_id: light.lvn_displayCase
   - delay: 00:00:01
   - service: light.turn_on
-    entity_id: light.sideboard
+    entity_id: light.lvn_sideboard
   - delay: 00:00:01
   - service: light.turn_on
     entity_id: light.stern
@@ -87,16 +87,16 @@
       ringtone_id: 10002
       gw_mac: !secret xiaomi_aqara_mac
   - service: light.turn_off
-    entity_id: light.dining_room
+    entity_id: light.lvn_diningTable
   - service: light.turn_off
-    entity_id: light.living_room
+    entity_id: light.lvn_couchArea
   - service: light.turn_off
-    entity_id: light.wohnzimmerfarblicht
+    entity_id: light.lvn_rgbCouchArea
   - service: light.turn_off
-    entity_id: light.vitrinen
+    entity_id: light.lvn_displayCase
   - delay: 00:00:01
   - service: light.turn_off
-    entity_id: light.sideboard
+    entity_id: light.lvn_sideboard
   - delay: 00:00:01
   - service: light.turn_off
     entity_id: light.stern

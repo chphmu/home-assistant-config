@@ -1,4 +1,4 @@
-entity_night_light = "light.wohnzimmerfarblicht"
+entity_night_light = "light.lvn_rgbCouchArea"
 old_states = hass.states.get(entity_colorlight)
 old_state = old_states.state
 for x in range(0, 10):

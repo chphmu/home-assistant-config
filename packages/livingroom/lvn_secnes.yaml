@@ -1,0 +1,58 @@
+scene:
+  - name: lvn_cosy
+    entities:
+      light.lvn_displaycase: on
+      light.lvn_sideboard: on
+      light.lvn_rgbcoucharea:
+        state: on
+        rgb_color:
+          - 255
+          - 139
+          - 12
+        brightness: 190
+      light.lvn_diningtable:
+        state: on
+        brightness: 90
+      light.lvn_coucharea:
+        state: on
+        brightness: 90
+  - name: lvn_morninglight
+    entities:
+      light.lvn_displaycase: on
+      light.lvn_sideboard: on
+      light.lvn_rgbcoucharea:
+        rgb_color:
+          - 255
+          - 126
+          - 0
+        brightness: 220
+        white_value: 50
+      light.lvn_diningTable:
+        state: on
+        brightness: 190
+      light.lvn_couchArea:
+        state: on
+        brightness: 90
+  - name: lvn_nightlight
+    entities:
+      light.lvn_displaycase: off
+      light.lvn_sideboard: off
+      light.lvn_rgbcoucharea:
+        state: on
+        rgb_color:
+          - 220
+          - 20
+          - 20
+        brightness: 220
+        white_value: 10
+      light.lvn_diningTable:
+        state: on
+        brightness_pct: 5
+      light.lvn_couchArea: off
+  - name: lvn_off
+    entities: 
+      light.lvn_displaycase: off
+      light.lvn_sideboard: off
+      light.lvn_rgbcoucharea: off
+      light.lvn_diningTable: off
+      light.lvn_couchArea: off
