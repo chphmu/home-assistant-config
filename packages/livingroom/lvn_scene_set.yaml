@@ -7,7 +7,7 @@ automation:
         to: 'Fernsehen'
     action:
       - service: scene.turn_on
-        entity_id: scene.lvn_cosy
+        entity_id: scene.lvn_tv
   - id: lvn_set_scene_off
     alias: lvn_set_scene_off
     trigger:
@@ -44,3 +44,21 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.lvn_off
+  - id: lvn_set_scene_relax
+    alias: lvn_set_scene_relax
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Entspannen'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_cosy
+  - id: lvn_set_scene_relax
+    alias: lvn_set_scene_relax
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Musik'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_music
