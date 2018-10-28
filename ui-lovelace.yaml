@@ -208,17 +208,80 @@ views:
       - id: 7981195497fe4351b33be18c507067a3  # Automatically created id
         type: vertical-stack
         cards:
+          - type: markdown
+            content: >
+              ## Szenen 
+          - type: horizontal-stack
+            cards:
+              - type: picture
+                image: /local/images/off.png
+                service: script.all_off
+              - type: picture-entity
+                image: /local/images/scenes/cosy.jpg
+                entity: input_boolean.lvn_scene_cosy
+                show_name: false
+                show_state: false
+                tap_action: toggle
+              - type: picture-entity
+                entity: input_boolean.lvn_scene_eat
+                image: /local/images/scenes/dinner.jpg
+                show_name: false
+                show_state: false
+                tap_action: toggle
+              - type: picture-entity
+                entity: input_boolean.lvn_scene_morninglight
+                image: /local/images/scenes/morning.jpg
+                show_name: false
+                show_state: false
+                tap_action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: picture-entity
+                image: /local/images/scenes/nightlight.jpg
+                entity: input_boolean.lvn_scene_nightlight
+                show_name: false
+                show_state: false
+                tap_action: toggle
+              - type: picture-entity
+                image: /local/images/scenes/cooking.jpg
+                entity: input_boolean.lvn_scene_cooking
+                show_name: false
+                show_state: false
+                tap_action: toggle
+              - type: picture-entity
+                image: /local/images/scenes/music.jpg
+                entity: input_boolean.lvn_scene_music
+                show_name: false
+                show_state: false
+                tap_action: toggle
+              - type: picture-entity
+                image: /local/images/scenes/tv.jpg
+                entity: input_boolean.lvn_scene_tv
+                show_name: false
+                show_state: false
+                tap_action: toggle
+          - type: markdown
+            content: >
+              ## Lampen 
           - type: horizontal-stack
             cards:
               - type: picture-entity
                 entity: light.lvn_coucharea
                 tap_action: more-info
                 image: /local/images/lvn_couchArea.jpg
+                show_state: false
               - type: picture-entity
                 entity: light.lvn_displaycase
                 tap_action: toggle
                 image: /local/images/lvn_displayCase.jpg
                 name: Vitrinen
+                show_state: false
+              - type: picture-entity
+                tap_action: more-info
+                entity: light.lvn_rgbcoucharea
+                name: Sitzgruppe
+                show_state: false
+                image: /local/images/rgb.jpg
           - type: horizontal-stack
             cards:
               - type: picture-entity
@@ -226,52 +289,19 @@ views:
                 tap_action: toggle
                 image: /local/images/lvn_sideboard.jpg
                 name: Sideboard
+                show_state: false
               - type: picture-entity
                 tap_action: more-info
                 entity: light.lvn_diningtable
                 image: /local/images/lvn_diningTable.jpg
-          - type: horizontal-stack
-            cards:
-              - type: picture-entity
-                image: /local/images/scenes/cosy.jpg
-                entity: input_boolean.lvn_scene_cosy
-                show_name: false
                 show_state: false
               - type: picture-entity
-                entity: input_boolean.lvn_scene_eat
-                image: /local/images/scenes/dinner.jpg
-                show_name: false
+                tap_action: more-info
+                entity: light.lvn_rgbkitchenarea
+                name: Küche
+                image: /local/images/rgb.jpg
                 show_state: false
-              - type: picture-entity
-                entity: input_boolean.lvn_scene_morninglight
-                image: /local/images/scenes/morning.jpg
-                show_name: false
-                show_state: false
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                  entity: input_boolean.lvn_scene_nightlight
-              - type: entity-button
-                  entity: input_boolean.lvn_scene_cooking
-              - type: entity-button
-                  entity: input_boolean.lvn_scene_tv
-              - type: entity-button
-                  entity: input_boolean.lvn_scene_music
-          - type: horizontal-stack
-            cards:
-              - type: picture
-                image: /local/images/off.png
-                service: script.lvn_lights_off
-              - type: picture
-                image: /local/images/blank.jpg
-                service: script.blank
-              - type: picture-entity
-                entity: binary_sensor.motion_sensor_livingroom
-                image: /local/images/motion.png
-          - type: entities
-            entities:
-              - light.lvn_rgbcoucharea
-              - light.lvn_rgbkitchenarea
+          
       - id: 9a1717a95f97460083cd11aa447fe763  # Automatically created id
         type: picture-elements
         image: /local/images/lvn_tv.jpg
@@ -347,6 +377,18 @@ views:
         entities:
           - timer.lvn_nightlight
           - sensor.illumination_livingroom
+      - id: 37c48107f3894d2cb2c600e8ceef7439  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: picture
+            image: /local/images/off.png
+            service: script.lvn_lights_off
+          - type: picture
+            image: /local/images/blank.jpg
+            service: script.blank
+          - type: picture-entity
+            entity: binary_sensor.motion_sensor_livingroom
+            image: /local/images/motion.png
   - id: 3  # Automatically created id
     title: Schlafzimmer
     icon: mdi:seat-individual-suite

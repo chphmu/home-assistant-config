@@ -56,9 +56,9 @@ automation:
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_morninglight
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.lvn_scene_cooking
       - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_music
       - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_tv
@@ -90,9 +90,9 @@ automation:
         entity_id: input_boolean.lvn_scene_morninglight
       - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_cooking
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.lvn_scene_music
       - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_tv
       - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_cosy
@@ -148,7 +148,7 @@ automation:
     trigger:
       - platform: state
         entity_id: input_text.lvn_selectedscene
-        to: 'Morgen'
+        to: 'Entspannen'
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.lvn_scene_morninglight

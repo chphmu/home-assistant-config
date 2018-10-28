@@ -26,7 +26,7 @@ input_select:
       - Film
       - Kochen
       - Nachtlicht
-      - Morgenlicht
+      - Morgen
       - Musik
 input_boolean:
   lvn_light_automatic:
