@@ -8,6 +8,12 @@ group:
       - light.lvn_diningTable
       - light.lvn_couchArea
       - light.stern
+light:
+  - platform: group
+    name: lvn_rgb
+    entities:
+      - light.lvn_rgbcoucharea
+      - light.lvn_rgbkitchenarea
 
 input_select:
   lvn_mode:
@@ -20,7 +26,7 @@ input_select:
       - Film
       - Kochen
       - Nachtlicht
-      - Morgen
+      - Morgenlicht
       - Musik
 input_boolean:
   lvn_light_automatic:
@@ -34,6 +40,19 @@ input_text:
   lvn_detectedscene:
     name: Detected WZ
 
+script:
+  lvn_lights_off:
+    sequence:
+      # This is written using the Script Syntax
+      - service: input_text.set_value
+        entity_id: input_text.lvn_detectedscene
+        data_template:
+          value: 'Aus'
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data_template:
+          value: 'Aus'
+
 automation:
   - id: lvn_setSelectedMode
     alias: lvn_SetSelectedMode
@@ -43,7 +62,7 @@ automation:
     condition:
       condition: state
       entity_id: input_boolean.lvn_light_automatic
-      state: 'on'
+      state: 'off'
     action:
       - service: input_text.set_value
         entity_id: input_text.lvn_selectedscene

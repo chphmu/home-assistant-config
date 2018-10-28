@@ -1,9 +1,9 @@
 - name: GuestMove
   entities:
-    light.schreibtischlampe: on
+    light.gst_desk: on
 - name: GuestOff
   entities:
-    light.schreibtischlampe: off
+    light.gst_desk: off
 - name: bed_preparation
   entities:
     light.lvn_displayCase: off
@@ -43,9 +43,9 @@
     remote.harmony: off
     light.lvn_rgbCouchArea: off
     light.bed: off
-    light.schreibtischlampe: off
-    light.nightstand_adriana: off
-    light.nightstand_christian: off
+    light.gst_desk: off
+    light.bdr_nightstand_adriana: off
+    light.bdr_nightstand_christian: off
 - name: clean
   entities:
     light.lvn_displayCase: on
@@ -57,9 +57,9 @@
       activity: 18715284
     light.lvn_rgbCouchArea: on
     light.bed: on
-    light.schreibtischlampe: on
-    light.nightstand_adriana: on
-    light.nightstand_christian: on
+    light.gst_desk: on
+    light.bdr_nightstand_adriana: on
+    light.bdr_nightstand_christian: on
 - name: cooking
   entities:
     light.lvn_displayCase: on
@@ -71,8 +71,8 @@
       activity: 18715284
     light.lvn_rgbCouchArea: on
     light.bed: off
-    light.schreibtischlampe: off
-    light.nightstand_adriana: off
-    light.nightstand_christian: off
+    light.gst_desk: off
+    light.bdr_nightstand_adriana: off
+    light.bdr_nightstand_christian: off
   
 

@@ -1,0 +1,37 @@
+- id: lvn_bnt_kitchenlight_single
+  alias: lvn_bnt_kitchenlight_single
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.lvn_btn_kitchen
+      click_type: single
+  action:
+    - service: input_text.set_value
+      entity_id: input_text.lvn_selectedscene
+      data:
+        value: 'Kochen'
+- id: lvn_bnt_kitchenlight_double
+  alias: lvn_bnt_kitchenlight_double
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.lvn_btn_kitchen
+      click_type: double
+  action:
+    - service: input_text.set_value
+      entity_id: input_text.lvn_selectedscene
+      data_template:
+        value: '{{states("input_text.lvn_detectedscene")}}'
+- id: lvn_bnt_kitchenlight_long
+  alias: lvn_bnt_kitchenlight_long
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.lvn_btn_kitchen
+      click_type: long_click_press
+  action:
+    - service: script.lvn_lights_off
+    

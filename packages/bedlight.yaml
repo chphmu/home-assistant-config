@@ -81,25 +81,25 @@ automation:
     alias: bdr_stayinbed
     action:
     - service: scene.turn_on
-      entity_id: scene.bed_to_sleep
+      entity_id: scene.bdr_stayinbed
     trigger:
     - platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.switch_nightstand_christian
+        entity_id: binary_sensor.bdr_button_nightstand_christian
         click_type: double
     - platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.switch_nightstand_adriana
+        entity_id: binary_sensor.bdr_button_nightstand_adriana
         click_type: double
 
 
 scene:
   - name: bdr_stayinbed
     entities:
-      light.nightstand_adriana: on
-      light.nightstand_christian: on
+      light.bdr_nightstand_adriana: off
+      light.bdr_nightstand_christian: on
       light.bed:
         state: on
         rgb_color: 

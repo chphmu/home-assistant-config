@@ -1,5 +1,5 @@
 - platform: mqtt
-  name: "Schreibtischlampe"
+  name: "gst_desk"
   command_topic: "switch/it1/set"
   state_topic: "switch/it1/get"
   payload_on: "on"

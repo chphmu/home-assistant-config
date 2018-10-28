@@ -6,7 +6,7 @@ automation:
     alias: lvn_nightlight_on
     action:
     - service: input_text.set_value
-      entity_id: input_text.lvn_selectedscene
+      entity_id: input_text.lvn_detectedscene
       data:
         value: 'Nachtlicht'
     - service: timer.start
@@ -22,15 +22,12 @@ automation:
       condition: and
       conditions:
       - condition: state
-        entity_id: input_select.lvn_mode
-        state: 'Automatik' 
-      - condition: state
         entity_id: input_text.lvn_selectedscene
         state: 'Aus'
       - condition: template
         value_template: '{{ states.sensor.illumination_xiaomi_gateway.state | float < 600 }}'
       - condition: time
-        after: '18:00:00'
+        after: '22:30:00'
         before: '07:00:00'
   - id: lvn_nightlight_off
     alias: lvn_nightlight_off
@@ -43,7 +40,7 @@ automation:
       entity_id: binary_sensor.motion_sensor_livingroom
       state: 'off'
     - service: input_text.set_value
-      entity_id: input_text.lvn_selectedscene
+      entity_id: input_text.lvn_detectedscene
       data:
         value: 'Aus'
     - service: timer.cancel
@@ -56,9 +53,6 @@ automation:
     condition:
       condition: and
       conditions:
-      - condition: state
-        entity_id: input_select.lvn_mode
-        state: 'Automatik' 
       - condition: state
         entity_id: input_text.lvn_selectedscene
         state: 'Nachtlicht'

@@ -1,0 +1,316 @@
+input_boolean:
+  lvn_scene_morninglight:
+    name: Szene Morgen
+  lvn_scene_cooking:
+    name: Szene Kochen
+  lvn_scene_music:
+    name: Szene Musik
+  lvn_scene_tv:
+    name: Szene TV
+  lvn_scene_cosy:
+    name: Szene Entspannen
+  lvn_scene_nightlight:
+    name: Szene Nachtlicht
+  lvn_scene_eat:
+    name: Szene Essen
+
+automation:
+  - id: lvn_scene_button_status_morninglight
+    alias: lvn_scene_button_status_morninglight
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Morgen'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_morninglight
+    alias: lvn_scene_button_on_morninglight
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_morninglight
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Morgen'
+  - id: lvn_scene_button_status_cooking
+    alias: lvn_scene_button_status_cooking
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Kochen'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_cooking
+    alias: lvn_scene_button_on_cooking
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_cooking
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Kochen'
+  - id: lvn_scene_button_status_music
+    alias: lvn_scene_button_status_music
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Musik'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_music
+    alias: lvn_scene_button_on_music
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_music
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Musik'
+  - id: lvn_scene_button_status_tv
+    alias: lvn_scene_button_status_tv
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Fernsehen'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_tv
+    alias: lvn_scene_button_on_tv
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_tv
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Fernsehen'
+  - id: lvn_scene_button_status_cosy
+    alias: lvn_scene_button_status_cosy
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Morgen'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_cosy
+    alias: lvn_scene_button_on_cosy
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_cosy
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Entspannen'
+  - id: lvn_scene_button_status_nightlight
+    alias: lvn_scene_button_status_nightlight
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Nachtlicht'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_nightlight
+    alias: lvn_scene_button_on_nightlight
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_nightlight
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Nachtlicht'
+  - id: lvn_scene_button_status_eat
+    alias: lvn_scene_button_status_eat
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Essen'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.lvn_scene_eat
+  - id: lvn_scene_button_on_eat
+    alias: lvn_scene_button_on_eat
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_eat
+        to: 'on'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Essen'
+  - id: lvn_scene_button_status_off
+    alias: lvn_scene_button_status_off
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Aus'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_morninglight
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cooking
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_music
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_tv
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_cosy
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.lvn_scene_nightlight
+  - id: lvn_scene_button_off
+    alias: lvn_scene_button_on_morninglight
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lvn_scene_morninglight
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.lvn_scene_cooking
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.lvn_scene_music
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.lvn_scene_tv
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.lvn_scene_cosy
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.lvn_scene_nightlight
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.lvn_scene_eat
+        to: 'off'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.lvn_scene_morninglight
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.lvn_scene_cooking
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.lvn_scene_music
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.lvn_scene_tv
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.lvn_scene_cosy
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.lvn_scene_nightlight
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.lvn_scene_eat
+          state: 'off'
+    action:
+      - service: input_text.set_value
+        entity_id: input_text.lvn_selectedscene
+        data:
+          value: 'Aus'
+        
+
+    

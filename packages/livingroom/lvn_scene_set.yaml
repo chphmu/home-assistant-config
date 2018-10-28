@@ -35,15 +35,6 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.lvn_morninglight
-  - id: lvn_set_scene_daylight
-    alias: lvn_set_scene_daylight
-    trigger:
-      - platform: state
-        entity_id: input_text.lvn_selectedscene
-        to: 'Tageslicht'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.lvn_off
   - id: lvn_set_scene_relax
     alias: lvn_set_scene_relax
     trigger:
@@ -53,8 +44,8 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.lvn_cosy
-  - id: lvn_set_scene_relax
-    alias: lvn_set_scene_relax
+  - id: lvn_set_scene_music
+    alias: lvn_set_scene_music
     trigger:
       - platform: state
         entity_id: input_text.lvn_selectedscene
@@ -62,3 +53,21 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.lvn_music
+  - id: lvn_set_scene_cooking
+    alias: lvn_set_scene_cooking
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Kochen'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_cooking
+  - id: lvn_set_scene_eat
+    alias: lvn_set_scene_eat
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+        to: 'Essen'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.lvn_eat

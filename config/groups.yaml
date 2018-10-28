@@ -40,7 +40,7 @@ guest_view:
   name: Gästezimmer
   icon: mdi:printer
   entities:
-    - light.schreibtischlampe
+    - light.gst_desk
     - group.raspberry
 temperature_view:
   view: yes
@@ -85,8 +85,8 @@ lvn_couchArea_sensor:
 bedroom_light:
   name: Schlafzimmer Licht
   entities:
-    - light.nightstand_adriana
-    - light.nightstand_christian
+    - light.bdr_nightstand_adriana
+    - light.bdr_nightstand_christian
 vacuum:
   name: Staubsauger
   entities:
