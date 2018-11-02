@@ -7,23 +7,23 @@ scene:
         state: on
         rgb_color:
           - 255
-          - 139
-          - 12
+          - 80
+          - 2
         brightness: 190
       light.lvn_rgbkitchenarea:
         state: on
         rgb_color:
           - 255
-          - 139
-          - 12
+          - 80
+          - 2
         brightness: 190
         white_value: 0
       light.lvn_diningtable:
         state: on
-        brightness: 90
+        brightness: 50
       light.lvn_coucharea:
         state: on
-        brightness: 90
+        brightness: 50
   - name: lvn_music
     entities:
       light.lvn_displaycase: on

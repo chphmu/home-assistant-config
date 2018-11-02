@@ -82,5 +82,10 @@
     "82": "light.keybox_rgb_2",
     "83": "light.lvn_rgbkitchenarea",
     "84": "light.lvn_rgb",
+    "85": "script.hlw_light_to_bth_on",
+    "86": "script.hlw_light_to_lvn_on",
+    "87": "light.hlw_bth",
+    "88": "light.hlw_lvn",
+    "89": "light.hlw_middle",
     "9": "switch.lvn_displayCase"
 }

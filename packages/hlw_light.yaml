@@ -1,0 +1,114 @@
+script:
+  hlw_light_to_bth_on:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.hlw_lvn
+        data:
+          entity_id: light.hlw_lvn
+          brightness_pct: 70
+          transition: 2
+      - delay:
+          milliseconds: 50
+      - service: light.turn_on
+        entity_id: light.hlw_middle
+        data:
+          entity_id: light.hlw_middle
+          brightness_pct: 70
+          transition: 2
+      - delay:
+          milliseconds: 50
+      - service: light.turn_on
+        entity_id: light.hlw_bth
+        data:
+          entity_id: light.hlw_bth
+          brightness_pct: 70
+          transition: 2
+  hlw_light_to_lvn_on:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.hlw_bth
+        data:
+          entity_id: light.hlw_bth
+          brightness_pct: 70
+          transition: 2
+      - delay:
+          milliseconds: 50
+      - service: light.turn_on
+        entity_id: light.hlw_middle
+        data:
+          entity_id: light.hlw_middle
+          brightness_pct: 70
+          transition: 2
+      - delay:
+          milliseconds: 50
+      - service: light.turn_on
+        entity_id: light.hlw_lvn
+        data:
+          entity_id: light.hlw_lvn
+          brightness_pct: 70
+          transition: 2
+  hlw_light_dim:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.hlw_bth
+        data:
+          entity_id: light.hlw_bth
+          brightness_pct: 5
+          transition: 5
+      - service: light.turn_on
+        entity_id: light.hlw_middle
+        data:
+          entity_id: light.hlw_middle
+          brightness_pct: 5
+          transition: 5
+      - service: light.turn_on
+        entity_id: light.hlw_lvn
+        data:
+          entity_id: light.hlw_lvn
+          brightness_pct: 5
+          transition: 5
+  hlw_light_off:
+    sequence:
+      - service: light.turn_off
+        entity_id: light.hlw_bth
+        data:
+          transition: 5
+      - service: light.turn_off
+        entity_id: light.hlw_middle
+        data:
+          transition: 5
+      - service: light.turn_off
+        entity_id: light.hlw_lvn
+        data:
+          transition: 5
+automation:
+  - id: hlw_auto_light_on
+    alias: hlw_auto_light_on
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_guest
+        to: 'on'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.illumination_livingroom
+        below: '200'
+    action:
+      - service: script.hlw_light_to_lvn_on
+  - id: hlw_auto_light_dim
+    alias: hlw_auto_light_dim
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_guest
+        to: 'off'
+    action:
+      - service: script.hlw_light_dim
+  - id: hlw_auto_light_off
+    alias: hlw_auto_light_off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_guest
+        to: 'off'
+        for:
+          minutes: 7
+    action:
+      - service: script.hlw_light_off

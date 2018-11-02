@@ -17,3 +17,4 @@ Living room | lvn
 Bedroom | bdr
 Guest room | gst 
 Bathroom | bth
+Hallway | hlw

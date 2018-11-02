@@ -154,7 +154,9 @@ tv_light:
         command: Dunkler
 all_off:
   sequence:
-    - service: light.turn_off
-      entity_id: group.all_lights
+    - service: script.lvn_lights_off
     - service: remote.turn_off
       entity_id: remote.harmony
+    - delay: 00:00:03
+    - service: light.turn_off
+      entity_id: group.all_lights
