@@ -42,9 +42,7 @@
     "46": "group.raspberry",
     "47": "group.temperaturen",
     "48": "group.feuchtigkeit",
-    "49": "light.adri_nachtlicht",
     "5": "light.lvn_rgbCouchArea",
-    "50": "light.christian_nachtlicht",
     "51": "input_boolean.alarm_adri_weekend",
     "52": "input_boolean.alarm_adri_on",
     "53": "group.adri_alarm",
@@ -87,5 +85,13 @@
     "87": "light.hlw_bth",
     "88": "light.hlw_lvn",
     "89": "light.hlw_middle",
-    "9": "switch.lvn_displayCase"
+    "9": "switch.lvn_displayCase",
+    "90": "script.hlw_light_dim",
+    "91": "script.hlw_light_off",
+    "92": "light.hlw_all",
+    "93": "script.hlw_light_on",
+    "94": "light.christmas_star",
+    "95": "light.shelly_test",
+    "96": "light.vitrinen",
+    "97": "cover.kitchen"
 }

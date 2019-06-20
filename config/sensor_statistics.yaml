@@ -24,3 +24,9 @@
 - platform: statistics
   entity_id: sensor.temperature_bedroom
   name: temperature_bedroom
+- platform: statistics
+  entity_id: sensor.evoila_house
+  name: evoila_house_stat
+- platform: statistics
+  entity_id: sensor.house_evoila
+  name: house_evoila_stat

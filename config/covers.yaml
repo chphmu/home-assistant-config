@@ -1,0 +1,14 @@
+- platform: mqtt
+  name: "kitchen"
+  state_topic: "shellies/shellyswitch25-E62ED7/roller/0"
+  command_topic: "shellies/shellyswitch25-E62ED7/roller/0/command" 
+  position_topic: "shellies/shellyswitch25-E62ED7/roller/0/pos"
+  set_position_topic: "shellies/shellyswitch25-E62ED7/roller/0/command/pos" 
+  payload_open: "open"
+  payload_close: "close"
+  payload_stop: "stop"
+  state_open: "open"
+  state_closed: "close"
+  retain: false
+  optimistic: false
+  qos: 2

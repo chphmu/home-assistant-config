@@ -1,3 +1,10 @@
+light:
+  - platform: group
+    name: hlw_all
+    entities:
+      - light.hlw_lvn
+      - light.hlw_middle
+      - light.hlw_bth
 script:
   hlw_light_to_bth_on:
     sequence:
@@ -47,6 +54,14 @@ script:
           entity_id: light.hlw_lvn
           brightness_pct: 70
           transition: 2
+  hlw_light_on:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.hlw_all
+        data:
+          entity_id: light.hlw_all
+          brightness_pct: 70
+          transition: 2
   hlw_light_dim:
     sequence:
       - service: light.turn_on
@@ -93,13 +108,17 @@ automation:
         entity_id: sensor.illumination_livingroom
         below: '200'
     action:
-      - service: script.hlw_light_to_lvn_on
+      - service: script.hlw_light_on
   - id: hlw_auto_light_dim
     alias: hlw_auto_light_dim
     trigger:
       - platform: state
         entity_id: binary_sensor.motion_sensor_guest
         to: 'off'
+    condition:
+      - condition: state
+        entity_id: light.hlw_lvn
+        state: 'on'
     action:
       - service: script.hlw_light_dim
   - id: hlw_auto_light_off

@@ -23,6 +23,8 @@ sensor.darksky_griesheim_humidity:
 #mqtt - discover -- keybox nodemcu
 light.keybox_rgb:
   friendly_name: Schlüsselkasten RGB
+light.christmas_star:
+  friendly_name: Stern
   
 sensor.humidity_bedroom_mean:
   friendly_name: Schnitt Schlafzimmer Luftfeuchtigkeit

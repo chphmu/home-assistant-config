@@ -1,3 +1,7 @@
+resources:
+  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+    type: module
+
 title: Home
 views:
   - id: 0  # Automatically created id
@@ -149,38 +153,195 @@ views:
                   --paper-item-icon-active-color: red
                   --iron-icon-height: 40px
                   --iron-icon-width: 40px
+      - id: 7981195497fe4351b33be18c507067a3  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ## Szenen 
+          - type: picture-elements
+            image: /local/images/blank_big.jpg
+            elements:
+              - type: image
+                image: /local/images/off.png
+                entity: input_boolean.lvn_scene_off
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Aus"
+                style:
+                  top: 26%
+                  left: 13%
+                  width: 23%
+                  height: 45%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/tv.jpg
+                entity: input_boolean.lvn_scene_tv
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Fernsehen"
+                style:
+                  top: 74%
+                  left: 13%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/cosy.jpg
+                entity: input_boolean.lvn_scene_cosy
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Entspannen"
+                style:
+                  top: 26%
+                  left: 37.5%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/dinner.jpg
+                entity: input_boolean.lvn_scene_eat
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Essen"
+                style:
+                  top: 74%
+                  left: 37.5%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/morning.jpg
+                entity: input_boolean.lvn_scene_morninglight
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Morgen"
+                style:
+                  top: 26%
+                  left: 62%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/nightlight.jpg
+                entity: input_boolean.lvn_scene_nightlight
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Nachtlicht"
+                style:
+                  top: 74%
+                  left: 62%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/cooking.jpg
+                entity: input_boolean.lvn_scene_cooking
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Kochen"
+                style:
+                  top: 26%
+                  left: 86.5%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+              - type: image
+                image: /local/images/scenes/music.jpg
+                entity: input_boolean.lvn_scene_music
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Musik"
+                style:
+                  top: 74%
+                  left: 86.5%
+                  width: 23%
+                  height: 46%
+                state_filter:
+                  on: grayscale(0%)
+                  off: grayscale(100%)
+      - type: light
+        entity: light.hlw_all
+        name: Flur
       - id: af90d9366b2f474994d6109054f0854d  # Automatically created id
         type: horizontal-stack
         cards:
           - type: picture
             image: /local/images/mute.png
-            service: remote.send_command
-            service_data:
-              device: 32376201
-              command: Mute
-
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                device: 32376201
+                command: Mute
           - type: picture
             image: /local/images/off.png
-            service: script.all_off
+            tap_action:
+              action: call-service
+              service: script.all_off
           - type: picture
-            image: /local/images/weekend.jpg
-            service: script.weekend
+            image: /local/images/blank.jpg #weekend.jpg
+            tap_action:
+              action: call-service
+              service: script.weekend
       - id: fc0e2f3da0d04d70a48d30496063cfaf  # Automatically created id
         type: horizontal-stack
         cards:
           - type: picture-entity
             entity: input_boolean.guest_mode
             image: /local/images/guests.jpg
-            tap_action: toggle
+            tap_action: 
+              action: toggle
             name: Gast
           - type: picture-entity
             name: Wartet
             image: /local/images/vacuum_waiting.jpg
             entity: input_boolean.staubi_waiting
-            tap_action: toggle
+            tap_action: 
+              action: toggle
           - type: picture
             image: /local/images/blank.jpg
-            service: script.blank
+            tap_action:
+              action: call_service
+              service: script.blank
   - id: 1  # Automatically created id
     title: People
     icon: mdi:account
@@ -217,11 +378,12 @@ views:
               - type: image
                 image: /local/images/off.png
                 entity: input_boolean.lvn_scene_off
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Aus
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Aus"
                 style:
                   top: 26%
                   left: 13%
@@ -233,11 +395,12 @@ views:
               - type: image
                 image: /local/images/scenes/tv.jpg
                 entity: input_boolean.lvn_scene_tv
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Fernsehen
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Fernsehen"
                 style:
                   top: 74%
                   left: 13%
@@ -249,11 +412,12 @@ views:
               - type: image
                 image: /local/images/scenes/cosy.jpg
                 entity: input_boolean.lvn_scene_cosy
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Entspannen
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Entspannen"
                 style:
                   top: 26%
                   left: 37.5%
@@ -265,11 +429,12 @@ views:
               - type: image
                 image: /local/images/scenes/dinner.jpg
                 entity: input_boolean.lvn_scene_eat
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Essen
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Essen"
                 style:
                   top: 74%
                   left: 37.5%
@@ -281,11 +446,12 @@ views:
               - type: image
                 image: /local/images/scenes/morning.jpg
                 entity: input_boolean.lvn_scene_morninglight
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Morgen
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Morgen"
                 style:
                   top: 26%
                   left: 62%
@@ -297,11 +463,12 @@ views:
               - type: image
                 image: /local/images/scenes/nightlight.jpg
                 entity: input_boolean.lvn_scene_nightlight
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Nachtlicht
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Nachtlicht"
                 style:
                   top: 74%
                   left: 62%
@@ -313,11 +480,12 @@ views:
               - type: image
                 image: /local/images/scenes/cooking.jpg
                 entity: input_boolean.lvn_scene_cooking
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Kochen
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Kochen"
                 style:
                   top: 26%
                   left: 86.5%
@@ -329,11 +497,12 @@ views:
               - type: image
                 image: /local/images/scenes/music.jpg
                 entity: input_boolean.lvn_scene_music
-                tap_action: call-service
-                service: input_text.set_value
-                service_data:
-                  entity_id: input_text.lvn_selectedscene
-                  value: Musik
+                tap_action: 
+                  action: call-service
+                  service: input_text.set_value
+                  service_data:
+                    entity_id: input_text.lvn_selectedscene
+                    value: "Musik"
                 style:
                   top: 74%
                   left: 86.5%
@@ -349,17 +518,20 @@ views:
             cards:
               - type: picture-entity
                 entity: light.lvn_coucharea
-                tap_action: more-info
+                tap_action: 
+                  action: more-info
                 image: /local/images/lvn_couchArea.jpg
                 show_state: false
               - type: picture-entity
                 entity: light.lvn_displaycase
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
                 image: /local/images/lvn_displayCase.jpg
                 name: Vitrinen
                 show_state: false
               - type: picture-entity
-                tap_action: more-info
+                tap_action: 
+                  action: more-info
                 entity: light.lvn_rgbcoucharea
                 name: Sitzgruppe
                 show_state: false
@@ -368,17 +540,20 @@ views:
             cards:
               - type: picture-entity
                 entity: light.lvn_sideboard
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
                 image: /local/images/lvn_sideboard.jpg
                 name: Sideboard
                 show_state: false
               - type: picture-entity
-                tap_action: more-info
+                tap_action: 
+                  action: more-info
                 entity: light.lvn_diningtable
                 image: /local/images/lvn_diningTable.jpg
                 show_state: false
               - type: picture-entity
-                tap_action: more-info
+                tap_action: 
+                  action: more-info
                 entity: light.lvn_rgbkitchenarea
                 name: Küche
                 image: /local/images/rgb.jpg
@@ -390,22 +565,24 @@ views:
         elements:
           - type: image
             image: /local/images/spotify_logo.png
-            tap_action: call-service
-            service: remote.turn_on
-            service_data:
-              entity_id: remote.harmony
-              activity: 18672404
+            tap_action: 
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                entity_id: remote.harmony
+                activity: 18672404
             style:
               top: 33%
               left: 30%
               width: 25%
           - type: image
             image: /local/images/amazon_logo.png
-            tap_action: call-service
-            service: remote.turn_on
-            service_data:
-              entity_id: remote.harmony
-              activity: 17652505
+            tap_action: 
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                entity_id: remote.harmony
+                activity: 17652505
             style:
               top: 33%
               left: 65%
@@ -423,10 +600,11 @@ views:
               padding-bottom: 2%
           - type: icon
             icon: mdi:power
-            tap_action: call-service
-            service: remote.turn_off
-            service_data:
-              entity_id: remote.harmony
+            tap_action: 
+              action: call-service
+              service: remote.turn_off
+              service_data:
+                entity_id: remote.harmony
             style:
               left: 48%
               top: 88%
@@ -439,7 +617,7 @@ views:
         type: conditional
         conditions:
           - entity: input_boolean.lvn_light_automatic
-            state: off
+            state: "off"
         card:
           type: entities
           entities:
@@ -448,10 +626,11 @@ views:
         type: conditional
         conditions:
           - entity: input_boolean.lvn_light_automatic
-            state: on
+            state: "on"
         card:
           type: entities
           entities:
+            - light.christmas_star
             - input_text.lvn_selectedscene
             - input_text.lvn_detectedscene
       - id: 90f0fb2696eb4a3caf27e50f34b86d26  # Automatically created id
@@ -482,7 +661,8 @@ views:
           ## Nightstands Bedroom
           - type: state-icon
             entity: light.bdr_nightstand_adriana
-            tap_action: toggle
+            tap_action: 
+              action: toggle
             style:
               top: 9%
               left: 12.5%
@@ -491,7 +671,8 @@ views:
               --paper-item-icon-active-color: yellow
           - type: state-icon
             entity: light.bdr_nightstand_christian
-            tap_action: toggle
+            tap_action: 
+              action: toggle
             style:
               top: 9%
               left: 80%
@@ -509,10 +690,11 @@ views:
           ## Bedlight Bedroom
           - type: icon
             icon: mdi:lightbulb-outline
-            tap_action: call-service
-            service: light.turn_off
-            service_data:
-              entity_id: light.bed
+            tap_action: 
+              action: call-service
+              service: light.turn_off
+              service_data:
+                entity_id: light.bed
             style:
               top: 45%
               left: 40%
@@ -520,11 +702,12 @@ views:
               --iron-icon-width: 40px
           - type: icon
             icon: mdi:lightbulb
-            tap_action: call-service
-            service: light.turn_on
-            service_data:
-              entity_id: light.bed
-              color_name: red
+            tap_action: 
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: light.bed
+                color_name: red
             style:
               top: 45%
               left: 60%
@@ -533,11 +716,12 @@ views:
               color: red
           - type: icon
             icon: mdi:lightbulb
-            tap_action: call-service
-            service: light.turn_on
-            service_data:
-              entity_id: light.bed
-              color_name: green
+            tap_action: 
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: light.bed
+                color_name: green
             style:
               top: 45%
               left: 72%
@@ -596,26 +780,26 @@ views:
         type: picture-elements
         image: /local/images/fans.jpg
         elements:
-          - type: service-button
-            title: ON
-            service: switch.turn_on
-            service_data:
-              entity_id: switch.fan
-            style:
-              top: 70%
-              left: 33%
-              font-size: x-large
-              background-color: rgba(20,240,20,0.7)
-          - type: service-button
-            title: OFF
-            service: switch.turn_off
-            service_data:
-              entity_id: switch.fan
-            style:
-              top: 70%
-              left: 66%
-              font-size: x-large
-              background-color: rgba(240,20,20,0.7)
+          #- type: service-button
+           # title: ON
+            #service: switch.turn_on
+          #  service_data:
+          #    entity_id: switch.fan
+          #  style:
+          #    top: 70%
+          #    left: 33%
+          #    font-size: x-large
+          #    background-color: rgba(20,240,20,0.7)
+          #- type: service-button
+          #  title: OFF
+          #  service: switch.turn_off
+          #  service_data:
+          #    entity_id: switch.fan
+          #  style:
+          #    top: 70%
+          #    left: 66%
+          #    font-size: x-large
+          #    background-color: rgba(240,20,20,0.7)
           - type: state-label
             entity: timer.fan
             style:
@@ -623,10 +807,11 @@ views:
               top: 90%
           - type: icon
             icon: mdi:numeric-1-box
-            tap_action: call-service
-            service: automation.trigger
-            service_data:
-              entity_id: automation.fan_10
+            tap_action: 
+              action: call-service
+              service: automation.trigger
+              service_data:
+                entity_id: automation.fan_10
             style:
               top: 30%
               left: 15%
@@ -635,10 +820,11 @@ views:
               color: yellow
           - type: icon
             icon: mdi:numeric-3-box
-            tap_action: call-service
-            service: automation.trigger
-            service_data:
-              entity_id: automation.fan_30
+            tap_action: 
+              action: call-service
+              service: automation.trigger
+              service_data:
+                entity_id: automation.fan_30
             style:
               top: 30%
               left: 50%
@@ -647,10 +833,11 @@ views:
               color: yellow
           - type: icon
             icon: mdi:numeric-6-box
-            tap_action: call-service
-            service: automation.trigger
-            service_data:
-              entity_id: automation.fan_60
+            tap_action: 
+              action: call-service
+              service: automation.trigger
+              service_data:
+                entity_id: automation.fan_60
             style:
               top: 30%
               left: 85%
@@ -699,17 +886,17 @@ views:
           - sensor.humidity_bath
           - sensor.humidity_cubby
           - sensor.humidity_guest
-      - id: 11ba6ad419184580b63d8c16bb4b3712  # Automatically created id
-        type: gauge
-        title: Flur
-        entity: sensor.temperature_corridor
-        unit_of_measurement: °C
-        min: 15
-        max: 40
-        severity:
-          red: 28
-          green: 0
-          yellow: 25
+      #- id: 11ba6ad419184580b63d8c16bb4b3712  # Automatically created id
+      #  type: gauge
+      #  title: Flur
+      #  entity: sensor.temperature_corridor
+      #  unit_of_measurement: °C
+      #  min: 15
+      #  max: 40
+      #  severity:
+      #    red: 28
+      #    green: 0
+      #    yellow: 25
       - id: 65aa30c5d6444543a84c49c3248efb83  # Automatically created id
         type: horizontal-stack
         cards:
@@ -762,13 +949,13 @@ views:
               padding-left: 10%
               padding-top: 2%
               padding-bottom: 2%
-          - type: service-button
-            title: Palme
-            style:
-              top: 85%
-              left: 80%
-              --primary-color: white
-            service: homeassistant.turn_on
+         # - type: service-button
+         #   title: Palme
+         #   style:
+         #     top: 85%
+         #     left: 80%
+         #     --primary-color: white
+         #   service: homeassistant.turn_on
   - id: 6  # Automatically created id
     title: Music
     icon: mdi:music
@@ -788,82 +975,108 @@ views:
             cards:
               - type: picture
                 image: /local/images/volume-off.png
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony
-                  command: Mute
-                  device: 32376201
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony
+                    command: Mute
+                    device: 32376201
               - type: picture
                 image: /local/images/volume-medium.png
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony
-                  command:
-                    - VolumeDown
-                    - VolumeDown
-                    - VolumeDown
-                  device: 32376201
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony
+                    command:
+                      - VolumeDown
+                      - VolumeDown
+                      - VolumeDown
+                    device: 32376201
               - type: picture
                 image: /local/images/volume-high.png
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony
-                  command:
-                    - VolumeUp
-                    - VolumeUp
-                    - VolumeUp
-                  device: 32376201
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony
+                    command:
+                      - VolumeUp
+                      - VolumeUp
+                      - VolumeUp
+                    device: 32376201
           - type: horizontal-stack
             cards:
               - type: picture
                 image: /local/images/album_cover/kraftklub.jpg
-                service: media_player.play_media
-                entity_id: media_player.spotify
-                service_data:
-                  media_content_type: playlist
-                  media_content_id: spotify:artist:0MZ55DwuMQ1B2TXq9lcrE4
+                tap_action:
+                  action: call-service
+                  service: media_player.play_media
+                  entity_id: media_player.spotify
+                  service_data:
+                    media_content_type: playlist
+                    media_content_id: spotify:artist:0MZ55DwuMQ1B2TXq9lcrE4
               - type: picture
                 image: /local/images/album_cover/nie.jpg
-                service: media_player.play_media
-                entity_id: media_player.spotify
-                service_data:
-                  media_content_type: playlist
-                  media_content_id: spotify:album:72Tg8IM0FR3KOIxGTRElvU
+                tap_action:
+                  action: call-service
+                  service: media_player.play_media
+                  entity_id: media_player.spotify
+                  service_data:
+                    media_content_type: playlist
+                    media_content_id: spotify:album:72Tg8IM0FR3KOIxGTRElvU
               - type: picture
                 image: /local/images/album_cover/sonderschule.jpg
-                service: media_player.play_media
-                entity_id: media_player.spotify
-                service_data:
-                  media_content_type: playlist
-                  media_content_id: spotify:user:chphmu:playlist:0RS7lOy3RKLhQc3aAEdHQY
+                tap_action:
+                  action: call-service
+                  service: media_player.play_media
+                  entity_id: media_player.spotify
+                  service_data:
+                    media_content_type: playlist
+                    media_content_id: spotify:user:chphmu:playlist:0RS7lOy3RKLhQc3aAEdHQY
           - type: horizontal-stack
             cards:
               - type: picture
                 image: /local/images/album_cover/deichkind.jpeg
-                service: media_player.play_media
-                entity_id: media_player.spotify
-                service_data:
-                  media_content_type: playlist
-                  media_content_id: spotify:artist:49eo9xE4yGzJLWkOndiODs
+                tap_action:
+                  action: call-service
+                  service: media_player.play_media
+                  entity_id: media_player.spotify
+                  service_data:
+                    media_content_type: playlist
+                    media_content_id: spotify:artist:49eo9xE4yGzJLWkOndiODs
               - type: picture
                 image: /local/images/album_cover/kaffeehausmusik.png
-                service: media_player.play_media
-                entity_id: media_player.spotify
-                service_data:
-                  media_content_type: playlist
-                  media_content_id: spotify:user:spotify:playlist:37i9dQZF1DX6KItbiYYmAv
+                tap_action:
+                  action: call-service
+                  service: media_player.play_media
+                  entity_id: media_player.spotify
+                  service_data:
+                    media_content_type: playlist
+                    media_content_id: spotify:user:spotify:playlist:37i9dQZF1DX6KItbiYYmAv
               - type: picture
                 image: /local/images/album_cover/wildeherzen.png
-                service: media_player.play_media
-                entity_id: media_player.spotify
-                service_data:
-                  media_content_type: playlist
-                  media_content_id: spotify:user:spotify:playlist:37i9dQZF1DWSFDWzEZlALC
+                tap_action:
+                  action: call-service
+                  service: media_player.play_media
+                  entity_id: media_player.spotify
+                  service_data:
+                    media_content_type: playlist
+                    media_content_id: spotify:user:spotify:playlist:37i9dQZF1DWSFDWzEZlALC
   - id: 7  # Automatically created id
     title: This and that
     icon: mdi:candycane
     panel: false
     cards:
+      - type: entities
+        title: Internet
+        entities:
+          - binary_sensor.internet
+          - sensor.fast_com_download
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+          - sensor.speedtest_ping
       - id: cbbccb5b67ab4682bfbcba89135f7a7d  # Automatically created id
         type: entities
         title: Schlüsselkasten
@@ -898,6 +1111,9 @@ views:
           - automation.hlw_auto_light_on
           - automation.hlw_auto_light_dim
           - automation.hlw_auto_light_off
+      - type: light
+        entity: light.hlw_all
+        name: Flur
       - id: a04edc4d14a54035b1fd8acc3bc4f010  # Automatically created id
         type: entities
         title: Kinderzimmer
@@ -908,14 +1124,44 @@ views:
         title: Automation
         entities:
           - group.all_automations
+      - type: custom:tracker-card
   - id: 8  # Automatically created id
-    title: Test
+    title: Test2
     icon: mdi:car
-    panel: true
     cards:
-      - id: c6644a1ea9144ed0988f4dd63bfb7095  # Automatically created id
-        type: vertical-stack
-        cards:
-          - type: glance
-            entities:
-              - sun.sun
+      - type: entities
+        title: Fahrzeiten
+        entities:
+          - sensor.house_evoila
+          - sensor.evoila_house
+          - sensor.home_evoila
+          - sensor.evoila_home
+      - type: history-graph
+        title: Fahrzeiten Chart
+        hours_to_show: 72
+        entities:
+          - sensor.house_evoila
+          - sensor.evoila_house
+          - sensor.home_evoila
+          - sensor.evoila_home
+      - type: entities
+        title: Trockner
+        entities:
+          - sensor.dryer_engergy
+          - sensor.dryer_monthly
+          - sensor.dryer_power
+          - sensor.dryer_weekly
+          - input_boolean.dryer_running
+      - type: entities
+        title: Waschmaschine
+        entities:
+          - sensor.washing_machine_engergy
+          - sensor.washing_machine_monthly
+          - sensor.washing_machine_power
+          - sensor.washing_machine_weekly
+          - input_boolean.washing_machine_running
+      - type: entities
+        title: Rollläden
+        entities:
+          - cover.kitchen
+      

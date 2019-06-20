@@ -11,7 +11,7 @@ Input Text | ```<room>_<purpose>``` | Purpose must be only small letters
 ### Rooms ###
 Room name | Room short
 ------ | ------
-Global | gbl
+Global | glb
 System | sys
 Living room | lvn
 Bedroom | bdr

@@ -1,9 +1,7 @@
 - platform: time_date
-  name: time
   display_options:
     - 'time'
 - platform: time_date
-  name: date
   display_options:
     - 'date'
 - platform: yr
@@ -17,10 +15,20 @@
   destination: !secret address_home
   name: 'evoila - home'
   region: 'EU'
+- platform: waze_travel_time
+  origin: !secret address_house
+  destination: !secret address_work_christian
+  name: 'house - evoila'
+  region: 'EU'
+- platform: waze_travel_time
+  origin: !secret address_work_christian
+  destination: !secret address_house
+  name: 'evoila - house'
+  region: 'EU'
 - platform: darksky
   name: darksky_griesheim
   api_key: !secret darksky_key
-  update_interval: '00:15:00'
+  scan_interval: '00:15:00'
   language: de
   monitored_conditions:
     - summary

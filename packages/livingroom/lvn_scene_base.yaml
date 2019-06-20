@@ -15,6 +15,14 @@ light:
       - light.lvn_rgbcoucharea
       - light.lvn_rgbkitchenarea
 
+sensor:
+  - platform: template
+    sensors:
+      harmony_current_activity:
+        value_template: '{{states.remote.harmony.attributes.current_activity}}'
+        friendly_name: 'Harmony current activity'
+
+
 input_select:
   lvn_mode:
     name: Modus Wohnzimmer

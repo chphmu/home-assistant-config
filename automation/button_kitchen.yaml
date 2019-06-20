@@ -2,7 +2,7 @@
   alias: lvn_bnt_kitchenlight_single
   trigger:
   - platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.lvn_btn_kitchen
       click_type: single
@@ -15,7 +15,7 @@
   alias: lvn_bnt_kitchenlight_double
   trigger:
   - platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.lvn_btn_kitchen
       click_type: double
@@ -28,7 +28,7 @@
   alias: lvn_bnt_kitchenlight_long
   trigger:
   - platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.lvn_btn_kitchen
       click_type: long_click_press

@@ -27,7 +27,7 @@ automation:
       entity_id: light.bdr_nightstand_adriana
     trigger:
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.bdr_button_nightstand_adriana
         click_type: single
@@ -38,7 +38,7 @@ automation:
       entity_id: light.bdr_nightstand_christian
     trigger:
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.bdr_button_nightstand_christian
         click_type: single

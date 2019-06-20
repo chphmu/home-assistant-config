@@ -1,0 +1,137 @@
+sensor:
+  - platform: mqtt
+    name: "Dryer Power"
+    state_topic: "shellies/shelly1pm-6093E9/relay/0/power"
+    device_class: power
+  - platform: mqtt
+    name: "Dryer Engergy"
+    state_topic: "shellies/shelly1pm-6093E9/relay/0/energy"
+    device_class: power
+  - platform: mqtt
+    name: "Washing Machine Power"
+    state_topic: "shellies/shelly1pm-6098D0/relay/0/power"
+    device_class: power
+  - platform: mqtt
+    name: "Washing Machine Engergy"
+    state_topic: "shellies/shelly1pm-6098D0/relay/0/energy"
+    device_class: power
+
+input_boolean:
+  dryer_running:
+    name: Dryer is running
+    initial: off
+    icon: mdi:washing-machine
+  washing_machine_running:
+    name: Washing machine is running
+    initial: off
+    icon: mdi:washing-machine
+    
+
+    
+utility_meter:
+  dryer_monthly:
+    source: sensor.dryer_power
+    cycle: monthly
+  dryer_weekly:
+    source: sensor.dryer_power
+    cycle: weekly
+  washing_machine_monthly:
+    source: sensor.washing_machine_power
+    cycle: monthly
+  washing_machine_weekly:
+    source: sensor.washing_machine_power
+    cycle: weekly
+
+automation:
+  - id: dryer_started_detect
+    alias: Dryer started
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.dryer_power
+      above: 10
+      for:
+        minutes: 1
+
+    condition:
+      - condition: state
+        entity_id: 'input_boolean.dryer_running'
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.dryer_running
+  - id: dryer_ready_detect
+    alias: Dryer ready 
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.dryer_power
+      below: 10
+      for:
+        minutes: 3
+    condition:
+      - condition: state
+        entity_id: 'input_boolean.dryer_running'
+        state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.dryer_running
+  - id: dryer_ready_alexa
+    alias: Dryer ready Alexa
+    trigger:
+        - platform: state
+          entity_id: input_boolean.dryer_running
+          from:  'on'
+          to:  'off'
+    action:
+      - service: notify.alexa_media
+        data:
+          target: 
+            - media_player.bad_2
+          data:
+            type: tts
+          message: "Der Trockner ist fertig - bitte räume mich aus!"
+  - id: washing_machine_started_detect
+    alias: Washing machiine started
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.washing_machine_power
+      above: 10
+      for:
+        minutes: 1
+
+    condition:
+      - condition: state
+        entity_id: 'input_boolean.washing_machine_running'
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.washing_machine_running
+  - id: washing_machine_ready_detect
+    alias: Washing Machine ready 
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.washing_machine_power
+      below: 10
+      for:
+        minutes: 3
+    condition:
+      - condition: state
+        entity_id: 'input_boolean.washing_machine_running'
+        state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.washing_machine_running
+  - id: washing_machine_ready_alexa
+    alias: Washing machine ready Alexa
+    trigger:
+        - platform: state
+          entity_id: input_boolean.washing_machine_running
+          from:  'on'
+          to:  'off'
+    action:
+      - service: notify.alexa_media
+        data:
+          target: 
+            - media_player.bad_2
+          data:
+            type: tts
+          message: "Die Waschmaschine ist fertig - ab in den Trockner!"

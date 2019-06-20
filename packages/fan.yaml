@@ -1,53 +1,53 @@
-switch:
-  - platform: mqtt
-    name: "fan"
-    command_topic: "switch/it3/set"
-    state_topic: "switch/it3/get"
-    payload_on: "on"
-    payload_off: "off"
+# switch:
+#   - platform: mqtt
+#     name: "fan"
+#     command_topic: "switch/it3/set"
+#     state_topic: "switch/it3/get"
+#     payload_on: "on"
+#     payload_off: "off"
 
-timer:
-  fan:
-    name: Timer Ventilator
+# timer:
+#   fan:
+#     name: Timer Ventilator
 
-automation:
-  - id: fan10
-    alias: Fan 10
-    trigger:
-    action:
-    - service: switch.turn_on
-      entity_id: switch.fan
-    - service: timer.start
-      data:
-        duration: 00:10:00
-        entity_id: timer.fan
-  - id: fan30
-    alias: Fan 30
-    trigger:
-    action:
-    - service: switch.turn_on
-      entity_id: switch.fan
-    - service: timer.start
-      data:
-        duration: 00:30:00
-        entity_id: timer.fan
-  - id: fan60
-    alias: Fan 60
-    trigger:
-    action:
-    - service: switch.turn_on
-      entity_id: switch.fan
-    - service: timer.start
-      data:
-        duration: 00:60:00
-        entity_id: timer.fan
-  - id: fanOff
-    alias: Fan off
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data: 
-        entity_id: timer.fan
-    action:
-    - service: switch.turn_off
-      entity_id: switch.fan
+# automation:
+#   - id: fan10
+#     alias: Fan 10
+#     trigger:
+#     action:
+#     - service: switch.turn_on
+#       entity_id: switch.fan
+#     - service: timer.start
+#       data:
+#         duration: 00:10:00
+#         entity_id: timer.fan
+#   - id: fan30
+#     alias: Fan 30
+#     trigger:
+#     action:
+#     - service: switch.turn_on
+#       entity_id: switch.fan
+#     - service: timer.start
+#       data:
+#         duration: 00:30:00
+#         entity_id: timer.fan
+#   - id: fan60
+#     alias: Fan 60
+#     trigger:
+#     action:
+#     - service: switch.turn_on
+#       entity_id: switch.fan
+#     - service: timer.start
+#       data:
+#         duration: 00:60:00
+#         entity_id: timer.fan
+#   - id: fanOff
+#     alias: Fan off
+#     trigger:
+#     - platform: event
+#       event_type: timer.finished
+#       event_data: 
+#         entity_id: timer.fan
+#     action:
+#     - service: switch.turn_off
+#       entity_id: switch.fan

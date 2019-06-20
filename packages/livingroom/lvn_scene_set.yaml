@@ -71,3 +71,14 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.lvn_eat
+  - id: lvn_scene_to_mqtt
+    alias: lvn_scene_to_mqtt
+    trigger:
+      - platform: state
+        entity_id: input_text.lvn_selectedscene
+    action:
+      - service: mqtt.publish
+        data_template:
+          payload: '{{states("input_text.lvn_selectedscene")}}'
+          topic: ha/lvn_diy_switch/lvn_state
+          retain: true

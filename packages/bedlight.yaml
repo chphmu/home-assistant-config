@@ -84,12 +84,12 @@ automation:
       entity_id: scene.bdr_stayinbed
     trigger:
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.bdr_button_nightstand_christian
         click_type: double
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.bdr_button_nightstand_adriana
         click_type: double

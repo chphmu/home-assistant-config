@@ -1,0 +1,91 @@
+sensor:
+  - platform: mqtt
+    name: "Plug 1 Power"
+    state_topic: "shellies/shellyplug-s-7AFF00F/relay/0/power"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 1 Engergy"
+    state_topic: "shellies/shellyplug-s-7AFF00F/relay/0/energy"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 1 Temperature"
+    state_topic: "shellies/shellyplug-s-7AFF00F/temperature"
+    device_class: temperature
+  - platform: mqtt
+    name: "Plug 1 Overheated"
+    state_topic: "shellies/shellyplug-s-7AFF00F/overtemperature"
+  - platform: mqtt
+    name: "Plug 2 Power"
+    state_topic: "shellies/shellyplug-s-7AE09C/relay/0/power"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 2 Engergy"
+    state_topic: "shellies/shellyplug-s-7AE09C/relay/0/energy"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 2 Temperature"
+    state_topic: "shellies/shellyplug-s-7AE09C/temperature"
+    device_class: temperature
+  - platform: mqtt
+    name: "Plug 2 Overheated"
+    state_topic: "shellies/shellyplug-s-7AE09C/overtemperature"
+  - platform: mqtt
+    name: "Plug 3 Power"
+    state_topic: "shellies/shellyplug-s-7AEF5B/relay/0/power"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 3 Engergy"
+    state_topic: "shellies/shellyplug-s-7AEF5B/relay/0/energy"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 3 Temperature"
+    state_topic: "shellies/shellyplug-s-7AEF5B/temperature"
+    device_class: temperature
+  - platform: mqtt
+    name: "Plug 3 Overheated"
+    state_topic: "shellies/shellyplug-s-7AEF5B/overtemperature"
+  - platform: mqtt
+    name: "Plug 4 Power"
+    state_topic: "shellies/shellyplug-s-7AE22E/relay/0/power"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 4 Engergy"
+    state_topic: "shellies/shellyplug-s-7AE22E/relay/0/energy"
+    device_class: power
+  - platform: mqtt
+    name: "Plug 4 Temperature"
+    state_topic: "shellies/shellyplug-s-7AE22E/temperature"
+    device_class: temperature
+  - platform: mqtt
+    name: "Plug 4 Overheated"
+    state_topic: "shellies/shellyplug-s-7AE22E/overtemperature"
+
+switch:
+  - platform: mqtt
+    name: "Plug 1"
+    state_topic: "shellies/shellyplug-s-7AFF00F/relay/0"
+    command_topic: "shellies/shellyplug-s-7AFF00F/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+  - platform: mqtt
+    name: "Plug 2"
+    state_topic: "shellies/shellyplug-s-7AE09C/relay/0"
+    command_topic: "shellies/shellyplug-s-7AE09C/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+  - platform: mqtt
+    name: "Plug 3"
+    state_topic: "shellies/shellyplug-s-7AEF5B/relay/0"
+    command_topic: "shellies/shellyplug-s-7AEF5B/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+  - platform: mqtt
+    name: "Plug 4"
+    state_topic: "shellies/shellyplug-s-7AE22E/relay/0"
+    command_topic: "shellies/shellyplug-s-7AE22E/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false

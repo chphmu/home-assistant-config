@@ -15,6 +15,7 @@ automation:
         entity_id: binary_sensor.keybox_button2
   - id: keyboxAllOff
     alias: Keybox All Off
+    initial_state: false
     action:
       - service: mqtt.publish
         data:
@@ -30,6 +31,7 @@ automation:
         entity_id: binary_sensor.keybox_button1
   - id: keyboxChristianHome
     alias: Keybox Christian Home
+    initial_state: false
     action:
       - service: mqtt.publish
         data:
@@ -59,6 +61,7 @@ automation:
         state: "off"
   - id: keyboxChristianKeyPresent
     alias: Keybox Christian key present
+    initial_state: false
     action:
       - service: light.turn_on
         entity_id: light.keybox_rgb

@@ -1,2 +1,4 @@
-- platform: yweather
+- platform: darksky
   name: griesheim
+  api_key: !secret darksky_key
+  mode: daily

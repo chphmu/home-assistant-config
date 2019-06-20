@@ -74,7 +74,7 @@
       source: 'Amazon FireTV Stick'
   trigger:
   - platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_both_1
       click_type: both
@@ -113,12 +113,12 @@
     entity_id: automation.bettlicht_aus
   trigger:
   - platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.bdr_button_nightstand_adriana
       click_type: long_click_press
   - platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.bdr_button_nightstand_christian
       click_type: long_click_press

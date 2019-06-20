@@ -14,10 +14,9 @@ automation:
       data:
         duration: 00:02:30
     trigger:
-    - platform: event
-      event_type: motion
-      event_data:
-        entity_id: binary_sensor.motion_sensor_livingroom
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_livingroom
+      to: 'on'
     condition:
       condition: and
       conditions:

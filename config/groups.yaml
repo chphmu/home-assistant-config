@@ -74,10 +74,6 @@ nerd_view:
     - group.time
     - group.all_devices
     - light.test_mqtt_light
-time:
-  name: Zeit
-  entities:
-    - sensor.date__time
 lvn_couchArea_sensor:
   name: Wohnzimmer Sensoren
   entities:

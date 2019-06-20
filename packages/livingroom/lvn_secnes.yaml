@@ -20,10 +20,10 @@ scene:
         white_value: 0
       light.lvn_diningtable:
         state: on
-        brightness: 50
+        brightness_pct: 40
       light.lvn_coucharea:
         state: on
-        brightness: 50
+        brightness_pct: 40
   - name: lvn_music
     entities:
       light.lvn_displaycase: on
@@ -32,17 +32,17 @@ scene:
         state: on
         rgb_color:
           - 225
-          - 170
-          - 30
+          - 50
+          - 0
         brightness: 150
         white_value: 0
       light.lvn_rgbkitchenarea:
         state: on
         rgb_color:
           - 225
-          - 170
-          - 30
-        brightness: 150
+          - 50
+          - 0
+        #brightness: 150
         white_value: 0
       light.lvn_diningtable:
         state: on
@@ -58,23 +58,24 @@ scene:
         state: on
         rgb_color:
           - 255
-          - 139
-          - 12
+          - 100
+          - 2
         brightness: 190
         white_value: 0
       light.lvn_rgbkitchenarea:
         state: on
         rgb_color:
           - 255
-          - 139
-          - 12
-        brightness: 190
+          - 100
+          - 2
+        #brightness: 190
         white_value: 0
       light.lvn_diningtable:
         state: on
-        brightness: 90
+        brightness_pct: 25
       light.lvn_coucharea:
-        state: off
+        state: on
+        brightness_pct: 25
   - name: lvn_morninglight
     entities:
       light.lvn_displaycase: on
@@ -92,8 +93,8 @@ scene:
         rgb_color:
           - 215
           - 126
-          - 200
-        brightness: 220
+          - 20
+        #brightness: 220
         white_value: 10
       light.lvn_diningTable:
         state: on
@@ -119,7 +120,7 @@ scene:
           - 220
           - 20
           - 20
-        brightness: 220
+        #brightness: 220
         white_value: 10
       light.lvn_diningTable:
         state: on
@@ -143,7 +144,7 @@ scene:
           - 255
           - 255
           - 255
-        brightness: 255
+        #brightness: 255
         white_value: 255
       light.lvn_diningTable:
         state: on
@@ -158,18 +159,18 @@ scene:
       light.lvn_rgbcoucharea:
         state: on
         rgb_color:
-          - 190
-          - 190
+          - 250
+          - 90
           - 00
-        brightness: 150
+        brightness: 240
         white_value: 0
       light.lvn_rgbkitchenarea:
         state: on
         rgb_color:
-          - 190
-          - 190
+          - 250
+          - 90
           - 0
-        brightness: 150
+        brightness: 240
         white_value: 0
       light.lvn_diningTable:
         state: on
@@ -185,3 +186,4 @@ scene:
       light.lvn_rgbkitchenarea: off
       light.lvn_diningTable: off
       light.lvn_couchArea: off
+      light.christmas_star: off

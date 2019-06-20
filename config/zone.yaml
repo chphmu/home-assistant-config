@@ -1,0 +1,26 @@
+- name: Urberach
+  latitude: 49.9753264
+  longitude: 8.7940625
+  radius: 250
+  icon: mdi:house-variant
+
+- name: Floersheim
+  latitude: 49.684957 
+  longitude: 8.159849
+  radius: 250
+  icon: mdi:house-variant-outline
+
+- name: Sauna Hartung
+  latitude: 49.987840 
+  longitude: 8.803686
+  radius: 250
+  icon: mdi:heater
+
+- name: evoila
+  latitude: 49.975698 
+  longitude: 8.285572
+  radius: 250
+  icon: mdi:briefcase
+
+
+

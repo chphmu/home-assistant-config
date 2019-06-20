@@ -57,7 +57,7 @@ automation:
   - id: alarmclock_week_adri
     alias: "Wake me up with bedroom light transition for weekdays"
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/1'
         seconds: 0
     condition:
@@ -123,7 +123,7 @@ automation:
   - id: alarmclock_weekend_adri
     alias: "Wake me up with bedroom light weekend days"
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/1'
         seconds: 0
     condition:

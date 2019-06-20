@@ -1,21 +1,43 @@
 expose_by_default: true
 exposed_domains:
-  - script
-  - light
-entities:
-  script.good_night_script:
-    name: "Schlafen gehen"
-  script.weekend:
-    name: "Wochenende"
-  script.aquarium_switch:
-    name: "Aquarium schalten"
-  script.aquarium_bright:
-    name: "Aquarium hell"
-  script.tv_light:
-    name: "Fernsehlicht"
-  light.lamp_livingroom:
-    hidden: true
-  light.lamp_lvn_diningTable:
-    hidden: true
-  script.weeding:
-    name: "Hochzeitstanz"
+  #- script
+  #- light
+  - cover
+# entities:
+#   script.good_night_script:
+#     name: "Schlafen gehen"
+#   script.weekend:
+#     name: "Wochenende"
+#   script.aquarium_switch:
+#     name: "Aquarium schalten"
+#   script.aquarium_bright:
+#     name: "Aquarium hell"
+#   script.tv_light:
+#     name: "Fernsehlicht"
+#   script.weeding:
+#     name: "Hochzeitstanz"
+#   light.lvn_diningtable:
+#     hidden: true
+#   light.lvn_coucharea:
+#     hidden: true
+#   light.hlw_bth:
+#     hidden: true
+#   light.hlw_middle:
+#     hidden: true
+#   light.hlw_lvn:
+#     hidden: true
+#   light.lvn_rgbkitchenarea:
+#     hidden: true
+#   light.lvn_displayCase:
+#     hidden: true
+#   light.hlw_all:
+#     name: "Flur"
+#   light.lvn_sideboard:
+#     name: "Sideboard"
+#   light.gst_desk:
+#     name: "Schreibtischlampe"
+
+  
+  
+  
+  

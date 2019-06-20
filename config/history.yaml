@@ -3,4 +3,5 @@ exclude:
     - sun
     - automation
   entities:
-    - sensor.date__time
+    - sensor.date
+    - sensor.time

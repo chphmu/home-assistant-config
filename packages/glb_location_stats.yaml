@@ -1,0 +1,8 @@
+sensor:
+  - platform: history_stats
+    name: multimedia_on_this_month
+    entity_id: remote.harmony
+    state: 'on'
+    type: time
+    start: '{{ now().replace(day=1).replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
