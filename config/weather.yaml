@@ -1,4 +1,4 @@
 - platform: darksky
-  name: griesheim
+  name: dreieich
   api_key: !secret darksky_key
   mode: daily

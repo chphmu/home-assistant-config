@@ -6,16 +6,6 @@
     - 'date'
 - platform: yr
 - platform: waze_travel_time
-  origin: !secret address_home
-  destination: !secret address_work_christian
-  name: 'home - evoila'
-  region: 'EU'
-- platform: waze_travel_time
-  origin: !secret address_work_christian
-  destination: !secret address_home
-  name: 'evoila - home'
-  region: 'EU'
-- platform: waze_travel_time
   origin: !secret address_house
   destination: !secret address_work_christian
   name: 'house - evoila'
@@ -26,7 +16,7 @@
   name: 'evoila - house'
   region: 'EU'
 - platform: darksky
-  name: darksky_griesheim
+  name: darksky_dreieich
   api_key: !secret darksky_key
   scan_interval: '00:15:00'
   language: de

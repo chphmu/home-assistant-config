@@ -12,12 +12,12 @@ group.all_scripts:
   hidden: false
 group.all_lights:
   hidden: false
-weather.griesheim:
-  friendly_name: Wetter Griesheim
+weather.dreieich:
+  friendly_name: Wetter Dreieich
 
-sensor.darksky_griesheim_apparent_temperature:
+sensor.darksky_dreieich_apparent_temperature:
   friendly_name: Temp.
-sensor.darksky_griesheim_humidity:
+sensor.darksky_dreieich_humidity:
   friendly_name: Feuchtigk.
 
 #mqtt - discover -- keybox nodemcu

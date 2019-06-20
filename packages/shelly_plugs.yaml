@@ -1,19 +1,19 @@
 sensor:
   - platform: mqtt
     name: "Plug 1 Power"
-    state_topic: "shellies/shellyplug-s-7AFF00F/relay/0/power"
+    state_topic: "shellies/shellyplug-s-7AF00F/relay/0/power"
     device_class: power
   - platform: mqtt
     name: "Plug 1 Engergy"
-    state_topic: "shellies/shellyplug-s-7AFF00F/relay/0/energy"
+    state_topic: "shellies/shellyplug-s-7AF00F/relay/0/energy"
     device_class: power
   - platform: mqtt
     name: "Plug 1 Temperature"
-    state_topic: "shellies/shellyplug-s-7AFF00F/temperature"
+    state_topic: "shellies/shellyplug-s-7AF00F/temperature"
     device_class: temperature
   - platform: mqtt
     name: "Plug 1 Overheated"
-    state_topic: "shellies/shellyplug-s-7AFF00F/overtemperature"
+    state_topic: "shellies/shellyplug-s-7AF00F/overtemperature"
   - platform: mqtt
     name: "Plug 2 Power"
     state_topic: "shellies/shellyplug-s-7AE09C/relay/0/power"
@@ -63,8 +63,8 @@ sensor:
 switch:
   - platform: mqtt
     name: "Plug 1"
-    state_topic: "shellies/shellyplug-s-7AFF00F/relay/0"
-    command_topic: "shellies/shellyplug-s-7AFF00F/relay/0/command"
+    state_topic: "shellies/shellyplug-s-7AF00F/relay/0"
+    command_topic: "shellies/shellyplug-s-7AF00F/relay/0/command"
     payload_on: "on"
     payload_off: "off"
     retain: false

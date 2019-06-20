@@ -27,7 +27,7 @@ influxdb: !include config/influxdb.yaml
 logbook: !include config/logbook.yaml
 sun:
 speedtestdotnet:
-    server_id: 10010
+    server_id: 18488
 fastdotcom:
 ios:
 history_graph: !include config/histroy_graph.yaml
