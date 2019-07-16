@@ -4,7 +4,7 @@
 
 Home Assistant Type | Pattern | Hint
 ------ | ------ | ------
-Default | ```<room>_<type>_<name>``` |
+Default | ```<room>_<type>_<attr>_<name>``` |
 Scene | ```<room>_<purpose>``` |
 Input Text | ```<room>_<purpose>``` | Purpose must be only small letters
 
@@ -20,9 +20,15 @@ Bathroom | bth
 Hallway | hlw
 
 ### Type ###
-Room name | Room short
+Type name | Type short
 ------ | ------
 Button | btn
+Switch | swt
 Window Door Sensor | wds
 Temperature Humidity Sensor | ths
 Motion Sensor | mos
+
+### attribute ###
+Attribute name| Attribute short
+Batterly level | bal
+
