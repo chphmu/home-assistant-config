@@ -1,44 +1,44 @@
-light:
-  - platform: mqtt
-    name: "bdr_nightstand_christian"
-    command_topic: "switch/it5/set"
-    state_topic: "switch/it5/get"
-    payload_on: "on"
-    payload_off: "off"
-  - platform: mqtt
-    name: "bdr_nightstand_adriana"
-    command_topic: "switch/it2/set"
-    state_topic: "switch/it2/get"
-    payload_on: "on"
-    payload_off: "off"
+# light:
+#   - platform: mqtt
+#     name: "bdr_nightstand_christian"
+#     command_topic: "switch/it5/set"
+#     state_topic: "switch/it5/get"
+#     payload_on: "on"
+#     payload_off: "off"
+#   - platform: mqtt
+#     name: "bdr_nightstand_adriana"
+#     command_topic: "switch/it2/set"
+#     state_topic: "switch/it2/get"
+#     payload_on: "on"
+#     payload_off: "off"
 
-homeassistant:
-  customize:
-    light.bdr_nightstand_christian:
-      friendly_name: Nachttisch Christian
-    light.bdr_nightstand_adriana:
-      friendly_name: Nachttisch Adriana
+# homeassistant:
+#   customize:
+#     light.bdr_nightstand_christian:
+#       friendly_name: Nachttisch Christian
+#     light.bdr_nightstand_adriana:
+#       friendly_name: Nachttisch Adriana
 
-automation:
-  - id: nightstand_lamp_adriana
-    alias: Nachttisch Lampe Adriana
-    action:
-    - service: light.toggle
-      entity_id: light.bdr_nightstand_adriana
-    trigger:
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.bdr_button_nightstand_adriana
-        click_type: single
-  - id: nightstand_lamp_christian
-    alias: Nachttisch Lampe Christian
-    action:
-    - service: light.toggle
-      entity_id: light.bdr_nightstand_christian
-    trigger:
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.bdr_button_nightstand_christian
-        click_type: single
+# automation:
+#   - id: nightstand_lamp_adriana
+#     alias: Nachttisch Lampe Adriana
+#     action:
+#     - service: light.toggle
+#       entity_id: light.bdr_nightstand_adriana
+#     trigger:
+#     - platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.bdr_button_nightstand_adriana
+#         click_type: single
+#   - id: nightstand_lamp_christian
+#     alias: Nachttisch Lampe Christian
+#     action:
+#     - service: light.toggle
+#       entity_id: light.bdr_nightstand_christian
+#     trigger:
+#     - platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.bdr_button_nightstand_christian
+#         click_type: single

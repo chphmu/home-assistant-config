@@ -4,4 +4,4 @@ exclude:
     - automation
   entities:
     - sensor.time
-    - weather.griesheim
+    - weather.dreieich

@@ -1,0 +1,25 @@
+smart_home:
+  filter:
+    include_entities:
+      - switch.plug_1
+      - switch.plug_3
+      - switch.plug_4
+    exclude_domains:
+      - scene
+      - switch
+      - automation
+      - binary_sensor
+      - group
+      - input_boolean
+      - media_player
+    #exclude_entities:
+    #  - switch
+  entity_config:
+    switch.plug_1:
+      name: Sideboard
+      description: Licht im Sideboard
+      display_categories: LIGHT
+    switch.plug_3:
+      name: Nachttischlampe
+      description: Nachtlich Schlafzimmer
+      display_categories: LIGHT

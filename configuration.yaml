@@ -61,6 +61,7 @@ mqtt_statestream: !include config/mqtt_statestream.yaml
 system_health:
 alexa_media: !include config/alexa_media.yaml
 cover: !include config/covers.yaml
+alexa: !include config/alexa.yaml
 custom_updater:
   component_urls:
     - https://raw.githubusercontent.com/keatontaylor/alexa_media_player/master/custom_components.json

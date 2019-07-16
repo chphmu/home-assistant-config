@@ -4,12 +4,12 @@ icon: mdi:home-variant
 cards:
   - id: b69e4ca1fe6848d793c70ccceec67ce2  # Automatically created id
     type: picture-elements
-    image: /local/images/griesheim_small.jpg
+    image: /local/images/dreieich_small.jpg
     elements:
       - type: state-label
         entity: sensor.time
         style:
-          top: 30px
+          top: 20px
           left: 80px
           font-size: 45px
           font-color: blue
@@ -17,7 +17,7 @@ cards:
       - type: state-label
         entity: sensor.date
         style:
-          top: 80px
+          top: 120px
           left: 100px
           font-size: 30px
           font-color: blue
@@ -25,14 +25,14 @@ cards:
       - type: state-badge
         entity: sensor.darksky_dreieich_apparent_temperature
         style:
-          top: 30%
+          top: 70%
           left: 70%
           color: white
           --ha-label-badge-font-size: 1em
       - type: state-badge
         entity: sensor.darksky_dreieich_humidity
         style:
-          top: 30%
+          top: 70%
           left: 87%
           color: white
           --ha-label-badge-font-size: 1em
@@ -63,12 +63,19 @@ cards:
           --paper-card-background-color: blue
           --secondary-background-color: blue
   - type: entities
+    title: Lichter
+    show_header_toggle: true
     entities:
-      - switch.plug_1
       - entity: switch.plug_1
         name: Sideboard
       - entity: light.vitrinen
         name: Vitrinen
+      - entity: light.lvn_diningtable
+        name: Fensterbank Wohnzimmer
+      - entity: switch.plug_4
+        name: Indirekt Lampe Sideboard
+      - entity: switch.plug_3
+        name: Nachttischlampe
 
   - id: 7981195497fe4351b33be18c507067a3  # Automatically created id
     type: vertical-stack

@@ -1,0 +1,39 @@
+id: 8  # Automatically created id
+title: Test2
+icon: mdi:car
+cards:
+  - type: entities
+    title: Fahrzeiten
+    entities:
+      - sensor.house_evoila
+      - sensor.evoila_house
+      - sensor.home_evoila
+      - sensor.evoila_home
+  - type: history-graph
+    title: Fahrzeiten Chart
+    hours_to_show: 72
+    entities:
+      - sensor.house_evoila
+      - sensor.evoila_house
+      - sensor.home_evoila
+      - sensor.evoila_home
+  - type: entities
+    title: Trockner
+    entities:
+      - sensor.dryer_engergy
+      - sensor.dryer_monthly
+      - sensor.dryer_power
+      - sensor.dryer_weekly
+      - input_boolean.dryer_running
+  - type: entities
+    title: Waschmaschine
+    entities:
+      - sensor.washing_machine_engergy
+      - sensor.washing_machine_monthly
+      - sensor.washing_machine_power
+      - sensor.washing_machine_weekly
+      - input_boolean.washing_machine_running
+  - type: entities
+    title: Rollläden
+    entities:
+      - cover.kitchen

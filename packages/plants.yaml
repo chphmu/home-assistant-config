@@ -1,14 +1,14 @@
-plant:
-  palm:
-    sensors:
-      moisture: sensor.flower_care_2_moisture
-      battery: sensor.flower_care_2_batteryLevel
-      temperature: sensor.flower_care_2_temperature
-      conductivity: sensor.flower_care_2_fertility
-      brightness: sensor.flower_care_2_lux
-    min_moisture: 25
+# plant:
+#   palm:
+#     sensors:
+#       moisture: sensor.flower_care_2_moisture
+#       battery: sensor.flower_care_2_batteryLevel
+#       temperature: sensor.flower_care_2_temperature
+#       conductivity: sensor.flower_care_2_fertility
+#       brightness: sensor.flower_care_2_lux
+#     min_moisture: 25
 
-sensor:
+# sensor:
   ## Flower Sensor 1
   #- platform: mqtt
   #  name: "flower_care_1_temperature"
@@ -40,31 +40,31 @@ sensor:
   #  unit_of_measurement: "lux"
 
   ## Flower Sensor 2
-  - platform: mqtt
-    name: "flower_care_2_temperature"
-    state_topic: "flower_care_2/temperature"
-    unit_of_measurement: "°C"
-  - platform: mqtt
-    name: "flower_care_2_moisture"
-    state_topic: "flower_care_2/moisture"
-    unit_of_measurement: "%"
-  - platform: mqtt
-    name: "flower_care_2_fertility"
-    state_topic: "flower_care_2/fertility"
-    unit_of_measurement: ""
-  - platform: mqtt
-    name: "flower_care_2_battery"
-    state_topic: "flower_care_2/battery"
-    unit_of_measurement: ""
-  - platform: mqtt
-    name: "flower_care_2_batteryLevel"
-    state_topic: "flower_care_2/batteryLevel"
-    unit_of_measurement: "%"
-  - platform: mqtt
-    name: "flower_care_2_state"
-    state_topic: "flower_care_2/state"
-    unit_of_measurement: ""
-  - platform: mqtt
-    name: "flower_care_2_lux"
-    state_topic: "flower_care_2/lux"
-    unit_of_measurement: "lux"
+  # - platform: mqtt
+  #   name: "flower_care_2_temperature"
+  #   state_topic: "flower_care_2/temperature"
+  #   unit_of_measurement: "°C"
+  # - platform: mqtt
+  #   name: "flower_care_2_moisture"
+  #   state_topic: "flower_care_2/moisture"
+  #   unit_of_measurement: "%"
+  # - platform: mqtt
+  #   name: "flower_care_2_fertility"
+  #   state_topic: "flower_care_2/fertility"
+  #   unit_of_measurement: ""
+  # - platform: mqtt
+  #   name: "flower_care_2_battery"
+  #   state_topic: "flower_care_2/battery"
+  #   unit_of_measurement: ""
+  # - platform: mqtt
+  #   name: "flower_care_2_batteryLevel"
+  #   state_topic: "flower_care_2/batteryLevel"
+  #   unit_of_measurement: "%"
+  # - platform: mqtt
+  #   name: "flower_care_2_state"
+  #   state_topic: "flower_care_2/state"
+  #   unit_of_measurement: ""
+  # - platform: mqtt
+  #   name: "flower_care_2_lux"
+  #   state_topic: "flower_care_2/lux"
+  #   unit_of_measurement: "lux"
