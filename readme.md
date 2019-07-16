@@ -18,3 +18,11 @@ Bedroom | bdr
 Guest room | gst 
 Bathroom | bth
 Hallway | hlw
+
+### Type ###
+Room name | Room short
+------ | ------
+Button | btn
+Window Door Sensor | wds
+Temperature Humidity Sensor | ths
+Motion Sensor | mos
