@@ -1,0 +1,48 @@
+id: 4  # Automatically created id
+title: Temperaturen
+icon: mdi:thermometer
+cards:
+  - id: da4864ddcad54c32980ace7d128ef28f  # Automatically created id
+    type: history-graph
+    title: Temperaturchart
+    hours_to_show: 72
+    entities:
+      - sensor.bt1_tmp
+  - id: 411616ab52b84103bc2564bf4538825a  # Automatically created id
+    type: history-graph
+    title: Feuchtigkeitschart
+    hours_to_show: 72
+    entities:
+      - sensor.bt1_hum
+  - id: 98e7bb09e1ce4dcbb46c497b032e0457  # Automatically created id
+    type: entities
+    title: Temperaturen
+    entities:
+      - sensor.bt1_tmp
+  - id: 7f2ec4b6e12248b49b17257470e2b3f6  # Automatically created id
+    type: entities
+    title: Feuchtigkeit
+    entities:
+      - sensor.bt1_hum
+  #- id: 11ba6ad419184580b63d8c16bb4b3712  # Automatically created id
+  #  type: gauge
+  #  title: Flur
+  #  entity: sensor.temperature_corridor
+  #  unit_of_measurement: °C
+  #  min: 15
+  #  max: 40
+  #  severity:
+  #    red: 28
+  #    green: 0
+  #    yellow: 25
+  - id: 65aa30c5d6444543a84c49c3248efb83  # Automatically created id
+    type: horizontal-stack
+    cards:
+      - type: sensor
+        entity: sensor.bt1_hum
+        name: Bad Feucht
+        height: 50
+      - type: sensor
+        entity: sensor.bt1_tmp
+        name: Bad Temp
+        height: 50

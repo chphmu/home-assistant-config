@@ -68,10 +68,8 @@ cards:
     entities:
       - entity: switch.plug_1
         name: Sideboard
-      - entity: light.vitrinen
+      - entity: light.lvn_showcase
         name: Vitrinen
-      - entity: light.lvn_diningtable
-        name: Fensterbank Wohnzimmer
       - entity: switch.plug_4
         name: Indirekt Lampe Sideboard
       - entity: switch.plug_3

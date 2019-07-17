@@ -1,0 +1,38 @@
+automation:
+  - alias: 'Turn on living room'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttonkitchen
+        event: 1002
+    action:
+      - service: light.turn_on
+        entity_id: light.lvn_showcase
+      - service: switch.turn_on
+        entity_id: switch.plug_1
+  - alias: 'Turn off living room'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttonkitchen
+        event: 1003
+    action:
+      - service: light.turn_off
+        entity_id: light.lvn_showcase
+      - service: switch.turn_off
+        entity_id: switch.plug_1
+  - alias: 'Switch button Christian'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttonchristian
+        event: 1002
+    action:
+      - service: switch.toggle
+        entity_id: switch.plug_3
