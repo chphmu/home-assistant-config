@@ -15,6 +15,7 @@ Room name | Room short
 Global | glb
 System | sys
 Living room | lvn
+Kitchen | kth
 Master Bedroom | bdr
 Dressing Room | drr
 Child Room Left | crl
