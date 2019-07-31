@@ -21,6 +21,7 @@ Dressing Room | drr
 Child Room Left | crl
 Child Room Right | crr
 Guest room | gst 
+Office | ofc
 Bathroom Main Floor | bt1
 Bathroom First Floor | bt2
 Bathroom Second Floor | bt3
