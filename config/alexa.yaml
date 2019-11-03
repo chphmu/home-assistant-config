@@ -2,8 +2,12 @@ smart_home:
   filter:
     include_entities:
       - switch.plug_1
+      - switch.plug_2
       - switch.plug_3
       - switch.plug_4
+      - light.desk
+      - light.lvn_showcase
+      - sensor.kth_tmp
     exclude_domains:
       - scene
       - switch
@@ -12,14 +16,42 @@ smart_home:
       - group
       - input_boolean
       - media_player
-    #exclude_entities:
-    #  - switch
+      - sensor
+      - light
+      - climate
   entity_config:
     switch.plug_1:
       name: Sideboard
       description: Licht im Sideboard
       display_categories: LIGHT
+    switch.plug_2:
+      name: Ventilator
+      description: Kühle Luft
+      display_categories: SWITCH
     switch.plug_3:
       name: Nachttischlampe
-      description: Nachtlich Schlafzimmer
+      description: Nachtlicht Schlafzimmer
       display_categories: LIGHT
+    switch.plug_4:
+      name: Fensterbrett
+      description: Indirektes Licht auf Fensterbrett
+      display_categories: LIGHT
+    light.ofc_desk:
+      name: Schreibtisch
+      description: Schreibtischlampe
+      display_categories: LIGHT
+    cover.kth_terrace:
+      name: Küchenrollo
+      description: Küchen Rolladen Terasse
+      display_categories: COVER
+    cover.bdr_balcony:
+      name: Balkonrollo
+      description: Schlafzimmer Rolladen Balkon
+      display_categories: COVER
+    light.lvn_showcase:
+      name: Vitrinen
+      description: Vitrinen Lichter
+      display_categories: LIGHT
+    sensor.kth_tmp:
+      name: Wohnzimmertemperatur
+      display_categories: TEMPERATURE_SENSOR

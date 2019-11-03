@@ -1,0 +1,27 @@
+automation:
+  - id: openCoverSun
+    alias: Open Covers sun
+    trigger:
+      - platform: state
+        entity_id: sun.sun
+        to: "above_horizon"
+        for:
+          minutes: 1
+    action:
+      - service: cover.open_cover
+        entity_id: cover.kth_terrace
+  - id: closeCoverSun
+    alias: Close Covers sun
+    trigger:
+      - platform: state
+        entity_id: sun.sun
+        to: "below_horizon"
+        for:
+          minutes: 20
+    condition:
+      - condition: state
+        entity_id:  binary_sensor.kth_wds_door
+        state: "off"
+    action:
+      - service: cover.close_cover
+        entity_id: cover.kth_terrace

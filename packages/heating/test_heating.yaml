@@ -1,0 +1,41 @@
+switch:
+  - platform: mqtt
+    name: "lvn_heating_1"
+    state_topic: "shellies/shelly1-9415C4/relay/0"
+    command_topic: "shellies/shelly1-9415C4/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+
+climate:
+  - platform: generic_thermostat
+    name: "lvn_heating_1"
+    heater: switch.lvn_heating_1
+    target_sensor: sensor.bt1_tmp
+    min_temp: 15
+    max_temp: 24
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.1
+    hot_tolerance: 0.1
+    min_cycle_duration:
+      minutes: 7
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 18.5
+    precision: 0.1
+
+input_datetime:
+  lvn_heating_starttime:
+    name: living room heating start time
+    has_date: false
+    has_time: true
+  lvn_heating_endtime:
+    name: living room heating end time
+    has_date: false
+    has_time: true
+
+input_boolean:
+  lvn_heating_show_advanced:
+    name: Living Room Advanced Heating

@@ -3,18 +3,38 @@ sensor:
     name: "Dryer Power"
     state_topic: "shellies/shelly1pm-6093E9/relay/0/power"
     device_class: power
+    unit_of_measurement: Watt
   - platform: mqtt
     name: "Dryer Engergy"
     state_topic: "shellies/shelly1pm-6093E9/relay/0/energy"
     device_class: power
+    unit_of_measurement: Watt/h
   - platform: mqtt
     name: "Washing Machine Power"
     state_topic: "shellies/shelly1pm-6098D0/relay/0/power"
     device_class: power
+    unit_of_measurement: Watt
   - platform: mqtt
     name: "Washing Machine Engergy"
     state_topic: "shellies/shelly1pm-6098D0/relay/0/energy"
     device_class: power
+    unit_of_measurement: Watt/h
+
+switch:    
+  - platform: mqtt
+    name: "Washing Machine"
+    state_topic: "shellies/shelly1pm-6098D0/relay/0"
+    command_topic: "shellies/shelly1pm-6098D0/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+  - platform: mqtt
+    name: "Dryer"
+    state_topic: "shellies/shelly1pm-6093E9/relay/0"
+    command_topic: "shellies/shelly1pm-6093E9/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
 
 input_boolean:
   dryer_running:
@@ -23,6 +43,14 @@ input_boolean:
     icon: mdi:washing-machine
   washing_machine_running:
     name: Washing machine is running
+    initial: off
+    icon: mdi:washing-machine
+  dryer_ready:
+    name: Dryer ready
+    initial: off
+    icon: mdi:washing-machine
+  washing_machine_ready:
+    name: Washing machine ready
     initial: off
     icon: mdi:washing-machine
     
@@ -85,18 +113,26 @@ automation:
       - service: notify.alexa_media
         data:
           target: 
-            - media_player.bad_2
+            - media_player.wohnzimmer
           data:
             type: tts
           message: "Der Trockner ist fertig - bitte räume mich aus!"
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.dryer_ready
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Trockner fertig"
+          message: "Trocker bitte ausräumen."
+          inline_keyboard:
+          - 'Ausgeräumt:/dryerCleared'
   - id: washing_machine_started_detect
     alias: Washing machiine started
     trigger:
       platform: numeric_state
       entity_id: sensor.washing_machine_power
-      above: 10
+      above: 50
       for:
-        minutes: 1
+        minutes: 5
 
     condition:
       - condition: state
@@ -110,9 +146,9 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.washing_machine_power
-      below: 10
+      below: 30
       for:
-        minutes: 3
+        minutes: 5
     condition:
       - condition: state
         entity_id: 'input_boolean.washing_machine_running'
@@ -131,7 +167,76 @@ automation:
       - service: notify.alexa_media
         data:
           target: 
-            - media_player.bad_2
+            - media_player.wohnzimmer
           data:
             type: tts
           message: "Die Waschmaschine ist fertig - ab in den Trockner!"
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.washing_machine_ready
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Waschmaschine fertig"
+          message: "Waschmaschine bitte ausräumen."
+          inline_keyboard:
+          - 'Ausgeräumt:/washingMachineCleared'
+  - id: washingMachineClearedTelegram
+    alias: 'washing Machine Cleared Telegram'
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          command: '/washingMachineCleared'
+      - platform: event
+        event_type: telegram_command
+        event_data:
+          command: '/washingMachineCleared'
+      - platform: state
+        entity_id: binary_sensor.cll_motion
+        to: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.washing_machine_ready
+  - id: dryerClearedTelegram
+    alias: 'Dryer Cleared Telegram'
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          command: '/dryerCleared'
+      - platform: event
+        event_type: telegram_command
+        event_data:
+          command: '/dryerCleared'
+      - platform: state
+        entity_id: binary_sensor.cll_motion
+        to: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.dryer_ready
+  - id: washingmachineWating
+    alias: washing Machine Watiing
+    trigger:
+      - platform: state
+        entity_id: input_boolean.washing_machine_ready
+        to: 'on'
+        for:
+          minutes: 5
+    action: 
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Waschmaschine wartet"
+          message: "Waschmaschine bitte ausräumen - warte schon"
+  - id: dryerWating
+    alias: Dryer Waiting
+    trigger:
+      - platform: state
+        entity_id: input_boolean.dryer_ready
+        to: 'on'
+        for:
+          minutes: 5
+    action: 
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Trockner wartet"
+          message: "Trockner bitte ausräumen - warte schon"
+        

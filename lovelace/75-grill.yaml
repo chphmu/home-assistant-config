@@ -1,0 +1,30 @@
+id: 75  # Automatically created id
+title: Grill
+icon: mdi:grill
+panel: false
+cards:
+  - type: thermostat
+    entity: climate.grill1
+  - type: thermostat
+    entity: climate.grill2
+  - type: sensor
+    entity: sensor.grill1
+    detail: 2
+    graph: line
+  - type: entities
+    entities:
+    - input_number.grill1_max
+    - input_number.grill1_min
+    - input_boolean.grill1_max_above
+    - input_boolean.grill1_min_below
+  - type: sensor
+    entity: sensor.grill2
+    detail: 2
+    graph: line
+    unit: "°C"
+  - type: entities
+    entities: 
+    - input_number.grill2_max
+    - input_number.grill2_min
+    - input_boolean.grill2_max_above
+    - input_boolean.grill2_min_below

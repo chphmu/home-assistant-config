@@ -7,7 +7,6 @@ default_view1:
     - device_tracker.mobile_adriana
     - device_tracker.mobile_christian
     - group.windows
-    - group.bedlight
     - group.lvn_lights
     - group.vacuum
     - group.temperatures
@@ -30,7 +29,6 @@ bedroom_view:
   name: Schlafzimmer
   icon: mdi:seat-individual-suite
   entities:
-    - group.bedlight
     - group.bedroom_windows
     - binary_sensor.motion_sensor_bedroom
     - group.alarm_adriana

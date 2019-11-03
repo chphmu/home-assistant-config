@@ -1,0 +1,288 @@
+id: 2  # Automatically created id
+title: Wohnzimmer
+icon: mdi:sofa
+cards:
+  - id: 7981195497fe4351b33be18c507067a3  # Automatically created id
+    type: vertical-stack
+    cards:
+      - type: markdown
+        content: >
+          ## Szenen 
+      - type: picture-elements
+        image: /local/images/blank_big.jpg
+        elements:
+          - type: image
+            image: /local/images/off.png
+            entity: input_boolean.lvn_scene_off
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Aus"
+            style:
+              top: 26%
+              left: 13%
+              width: 23%
+              height: 45%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/tv.jpg
+            entity: input_boolean.lvn_scene_tv
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Fernsehen"
+            style:
+              top: 74%
+              left: 13%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/cosy.jpg
+            entity: input_boolean.lvn_scene_cosy
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Entspannen"
+            style:
+              top: 26%
+              left: 37.5%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/dinner.jpg
+            entity: input_boolean.lvn_scene_eat
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Essen"
+            style:
+              top: 74%
+              left: 37.5%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/morning.jpg
+            entity: input_boolean.lvn_scene_morninglight
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Morgen"
+            style:
+              top: 26%
+              left: 62%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/nightlight.jpg
+            entity: input_boolean.lvn_scene_nightlight
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Nachtlicht"
+            style:
+              top: 74%
+              left: 62%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/cooking.jpg
+            entity: input_boolean.lvn_scene_cooking
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Kochen"
+            style:
+              top: 26%
+              left: 86.5%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+          - type: image
+            image: /local/images/scenes/music.jpg
+            entity: input_boolean.lvn_scene_music
+            tap_action: 
+              action: call-service
+              service: input_text.set_value
+              service_data:
+                entity_id: input_text.lvn_selectedscene
+                value: "Musik"
+            style:
+              top: 74%
+              left: 86.5%
+              width: 23%
+              height: 46%
+            state_filter:
+              on: grayscale(0%)
+              off: grayscale(100%)
+      - type: markdown
+        content: >
+          ## Lampen 
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: light.lvn_coucharea
+            tap_action: 
+              action: more-info
+            image: /local/images/lvn_couchArea.jpg
+            show_state: false
+          - type: picture-entity
+            entity: light.vitrinen
+            tap_action: 
+              action: toggle
+            image: /local/images/lvn_displayCase.jpg
+            name: Vitrinen
+            show_state: false
+          #- type: picture-entity
+          #  tap_action: 
+          #    action: more-info
+          #  entity: light.lvn_rgbcoucharea
+          #  name: Sitzgruppe
+          #  show_state: false
+          #  image: /local/images/rgb.jpg
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: switch.plug_1
+            tap_action: 
+              action: toggle
+            image: /local/images/lvn_sideboard.jpg
+            name: Sideboard
+            show_state: false
+          - type: picture-entity
+            tap_action: 
+              action: more-info
+            entity: light.lvn_diningtable
+            image: /local/images/lvn_diningTable.jpg
+            show_state: false
+          - type: picture-entity
+            tap_action: 
+              action: more-info
+            entity: light.lvn_rgbkitchenarea
+            name: Küche
+            image: /local/images/rgb.jpg
+            show_state: false
+
+  - id: 9a1717a95f97460083cd11aa447fe763  # Automatically created id
+    type: picture-elements
+    image: /local/images/lvn_tv.jpg
+    elements:
+      - type: image
+        image: /local/images/spotify_logo.png
+        tap_action: 
+          action: call-service
+          service: remote.turn_on
+          service_data:
+            entity_id: remote.harmony
+            activity: 18672404
+        style:
+          top: 33%
+          left: 30%
+          width: 25%
+      - type: image
+        image: /local/images/amazon_logo.png
+        tap_action: 
+          action: call-service
+          service: remote.turn_on
+          service_data:
+            entity_id: remote.harmony
+            activity: 17652505
+        style:
+          top: 33%
+          left: 65%
+          width: 30%
+      - type: state-label
+        entity: remote.harmony
+        style:
+          top: 90%
+          height: 20%
+          width: 100%
+          left: 50%
+          background: rgba(20,20,20,0.8)
+          padding-left: 10%
+          padding-top: 5%
+          padding-bottom: 2%
+      - type: icon
+        icon: mdi:power
+        tap_action: 
+          action: call-service
+          service: remote.turn_off
+          service_data:
+            entity_id: remote.harmony
+        style:
+          left: 48%
+          top: 88%
+  - id: 841d7693b11e4efd9d9ddcb51276833c  # Automatically created id
+    type: entities
+    entities:
+      - input_boolean.lvn_light_automatic
+      - input_boolean.lvn_light_daylight
+  - id: d0a9a4331ac54ea9a3258475478b8021  # Automatically created id
+    type: conditional
+    conditions:
+      - entity: input_boolean.lvn_light_automatic
+        state: "off"
+    card:
+      type: entities
+      entities:
+        - input_select.lvn_mode
+  - id: ecfe3953707d42f487327123418bff18  # Automatically created id
+    type: conditional
+    conditions:
+      - entity: input_boolean.lvn_light_automatic
+        state: "on"
+    card:
+      type: entities
+      entities:
+        - light.christmas_star
+        - input_text.lvn_selectedscene
+        - input_text.lvn_detectedscene
+  - id: 90f0fb2696eb4a3caf27e50f34b86d26  # Automatically created id
+    type: entities
+    entities:
+      - timer.lvn_nightlight
+      - sensor.illumination_livingroom
+  - id: 37c48107f3894d2cb2c600e8ceef7439  # Automatically created id
+    type: horizontal-stack
+    cards:
+      - type: picture
+        image: /local/images/off.png
+        service: script.lvn_lights_off
+      - type: picture
+        image: /local/images/blank.jpg
+        service: script.blank
+      - type: picture-entity
+        entity: binary_sensor.motion_sensor_livingroom
+        image: /local/images/motion.png

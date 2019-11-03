@@ -12,6 +12,8 @@ automation:
         entity_id: light.lvn_showcase
       - service: switch.turn_on
         entity_id: switch.plug_1
+      - service: switch.turn_on
+        entity_id: switch.plug_4
   - alias: 'Turn off living room'
     initial_state: 'on'
     trigger:
@@ -25,6 +27,8 @@ automation:
         entity_id: light.lvn_showcase
       - service: switch.turn_off
         entity_id: switch.plug_1
+      - service: switch.turn_off
+        entity_id: switch.plug_4
   - alias: 'Switch button Christian'
     initial_state: 'on'
     trigger:
@@ -36,3 +40,48 @@ automation:
     action:
       - service: switch.toggle
         entity_id: switch.plug_3
+  - alias: 'Switch button Adriana Nightstand'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttonadriana
+        event: 1002
+    action:
+      - service: switch.toggle
+        entity_id: switch.plug_3
+  - alias: 'Switch button Adriana Nightstand all off'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttonadriana
+        event: 1003
+    action:
+      - service: light.turn_off
+        entity_id: light.lvn_showcase
+      - service: switch.turn_off
+        entity_id: switch.plug_1
+      - service: switch.turn_off
+        entity_id: switch.plug_3
+      - service: switch.turn_off
+        entity_id: switch.plug_4
+  - alias: 'Switch button Christian Nightstand all off'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttonchristian
+        event: 1003
+    action:
+      - service: light.turn_off
+        entity_id: light.lvn_showcase
+      - service: switch.turn_off
+        entity_id: switch.plug_1
+      - service: switch.turn_off
+        entity_id: switch.plug_3
+      - service: switch.turn_off
+        entity_id: switch.plug_4

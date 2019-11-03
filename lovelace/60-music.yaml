@@ -1,0 +1,108 @@
+id: 60  # Automatically created id
+title: Music
+icon: mdi:music
+panel: false
+cards:
+  - id: eedc0c8c4d5d4309a284a17ecdae0d48  # Automatically created id
+    type: media-control
+    entity: media_player.spotify
+  - id: 053a84fc1fc9406aba2ebc12f5351adf  # Automatically created id
+    type: markdown
+    content: >
+      ## Music  
+  - id: bbb7e372fb06497ca1696eb6ab39ae16  # Automatically created id
+    type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: picture
+            image: /local/images/volume-off.png
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony
+                command: Mute
+                device: 32376201
+          - type: picture
+            image: /local/images/volume-medium.png
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony
+                command:
+                  - VolumeDown
+                  - VolumeDown
+                  - VolumeDown
+                device: 32376201
+          - type: picture
+            image: /local/images/volume-high.png
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony
+                command:
+                  - VolumeUp
+                  - VolumeUp
+                  - VolumeUp
+                device: 32376201
+      - type: horizontal-stack
+        cards:
+          - type: picture
+            image: /local/images/album_cover/kraftklub.jpg
+            tap_action:
+              action: call-service
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: spotify:artist:0MZ55DwuMQ1B2TXq9lcrE4
+          - type: picture
+            image: /local/images/album_cover/nie.jpg
+            tap_action:
+              action: call-service
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: spotify:album:72Tg8IM0FR3KOIxGTRElvU
+          - type: picture
+            image: /local/images/album_cover/sonderschule.jpg
+            tap_action:
+              action: call-service
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: spotify:user:chphmu:playlist:0RS7lOy3RKLhQc3aAEdHQY
+      - type: horizontal-stack
+        cards:
+          - type: picture
+            image: /local/images/album_cover/deichkind.jpeg
+            tap_action:
+              action: call-service
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: spotify:artist:49eo9xE4yGzJLWkOndiODs
+          - type: picture
+            image: /local/images/album_cover/kaffeehausmusik.png
+            tap_action:
+              action: call-service
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: spotify:user:spotify:playlist:37i9dQZF1DX6KItbiYYmAv
+          - type: picture
+            image: /local/images/album_cover/wildeherzen.png
+            tap_action:
+              action: call-service
+              service: media_player.play_media
+              entity_id: media_player.spotify
+              service_data:
+                media_content_type: playlist
+                media_content_id: spotify:user:spotify:playlist:37i9dQZF1DWSFDWzEZlALC

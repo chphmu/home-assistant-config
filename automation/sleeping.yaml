@@ -1,124 +1,124 @@
-- id: goodNightStart
-  alias: Schlaf Start
-  action:
-  - service: xiaomi_aqara.play_ringtone
-    data:
-      ringtone_vol: 10
-      ringtone_id: 10003
-      gw_mac: !secret xiaomi_aqara_mac
-  - service: light.turn_on
-    entity_id: light.bett
-    data:
-      brightness: 190
-      rgb_color:
-      - 190
-      - 105
-      - 0
-  - service: light.turn_on
-    entity_id: light.lvn_rgbCouchArea
-    data:
-      brightness: 190
-      rgb_color:
-      - 190
-      - 105
-      - 0
-  - service: media_player.play_media
-    entity_id: media_player.spotify
-    data:
-      media_content_type: playlist
-      media_content_id: 'spotify:user:spotify:playlist:37i9dQZF1DX0jgyAiPl8Af'
-  - service: media_player.shuffle_set
-    entity_id: media_player.spotify
-    data:
-      shuffle: true
-  - service: media_player.media_next_track
-    entity_id: media_player.spotify
-  - service: media_player.select_source
-    entity_id: media_player.spotify
-    data:
-      source: 'Bad'
-  - service: light.turn_on
-    entity_id: light.lvn_displayCase
-  - delay: 00:00:01
-  - service: light.turn_on
-    entity_id: light.lvn_sideboard
-  - delay: 00:00:01
-  - service: light.turn_on
-    entity_id: light.stern
-  - delay: 00:00:01
-  - service: light.turn_on
-    entity_id: light.christian_nachtlicht
-  - delay: 00:00:01
-  - service: light.turn_on
-    entity_id: light.adri_nachtlicht
-  - service: automation.turn_off
-    entity_id: automation.bettlicht_an
-  - service: automation.turn_off
-    entity_id: automation.bettlicht_aus
-  - condition: and
-    conditions:
-      - condition: state
-        entity_id: remote.harmony
-        state: 'on'
-  - service: remote.turn_on
-    entity_id: remote.harmony
-    data:
-      #Radio: 18715284
-      # FireTV
-      activity: 17652505
-      #Chromecast
-      #24447593
-  - service: media_player.select_source
-    entity_id: media_player.spotify
-    data:
-      source: 'Amazon FireTV Stick'
-  trigger:
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      entity_id: binary_sensor.wall_switch_both_1
-      click_type: both
-- id: nightbear
-  alias: Gute Nacht Teddy
-  action:
-  - service: xiaomi_aqara.play_ringtone
-    data:
-      ringtone_vol: 8
-      ringtone_id: 10002
-      gw_mac: !secret xiaomi_aqara_mac
-  - service: script.lvn_lights_off
-  - delay: 00:00:03
-  - service: light.turn_off
-    entity_id: light.bdr_nightstand_christian
-  - delay: 00:00:01
-  - service: light.turn_off
-    entity_id: light.bdr_nightstand_adriana
-  - service: light.turn_off
-    entity_id: light.gst_desk
-  - service: remote.turn_off
-    entity_id: remote.harmony
-  - service: media_player.media_pause
-    entity_id: media_player.spotify
-  - service: media_player.media_stop
-    entity_id: media_player.spotify
-  - service: script.hlw_light_off
-  - delay: 00:01:00
-  - service: light.turn_off
-    entity_id: light.bett
-    data:
-      transition: 60
-  - service: automation.turn_on
-    entity_id: automation.bettlicht_an
-  - service: automation.turn_on
-    entity_id: automation.bettlicht_aus
-  trigger:
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      entity_id: binary_sensor.bdr_button_nightstand_adriana
-      click_type: long_click_press
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      entity_id: binary_sensor.bdr_button_nightstand_christian
-      click_type: long_click_press
+# - id: goodNightStart
+#   alias: Schlaf Start
+#   action:
+#   - service: xiaomi_aqara.play_ringtone
+#     data:
+#       ringtone_vol: 10
+#       ringtone_id: 10003
+#       gw_mac: !secret xiaomi_aqara_mac
+#   - service: light.turn_on
+#     entity_id: light.bett
+#     data:
+#       brightness: 190
+#       rgb_color:
+#       - 190
+#       - 105
+#       - 0
+#   - service: light.turn_on
+#     entity_id: light.lvn_rgbCouchArea
+#     data:
+#       brightness: 190
+#       rgb_color:
+#       - 190
+#       - 105
+#       - 0
+#   - service: media_player.play_media
+#     entity_id: media_player.spotify
+#     data:
+#       media_content_type: playlist
+#       media_content_id: 'spotify:user:spotify:playlist:37i9dQZF1DX0jgyAiPl8Af'
+#   - service: media_player.shuffle_set
+#     entity_id: media_player.spotify
+#     data:
+#       shuffle: true
+#   - service: media_player.media_next_track
+#     entity_id: media_player.spotify
+#   - service: media_player.select_source
+#     entity_id: media_player.spotify
+#     data:
+#       source: 'Bad'
+#   - service: light.turn_on
+#     entity_id: light.lvn_displayCase
+#   - delay: 00:00:01
+#   - service: light.turn_on
+#     entity_id: light.lvn_sideboard
+#   - delay: 00:00:01
+#   - service: light.turn_on
+#     entity_id: light.stern
+#   - delay: 00:00:01
+#   - service: light.turn_on
+#     entity_id: light.christian_nachtlicht
+#   - delay: 00:00:01
+#   - service: light.turn_on
+#     entity_id: light.adri_nachtlicht
+#   - service: automation.turn_off
+#     entity_id: automation.bettlicht_an
+#   - service: automation.turn_off
+#     entity_id: automation.bettlicht_aus
+#   - condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: remote.harmony
+#         state: 'on'
+#   - service: remote.turn_on
+#     entity_id: remote.harmony
+#     data:
+#       #Radio: 18715284
+#       # FireTV
+#       activity: 17652505
+#       #Chromecast
+#       #24447593
+#   - service: media_player.select_source
+#     entity_id: media_player.spotify
+#     data:
+#       source: 'Amazon FireTV Stick'
+#   trigger:
+#   - platform: event
+#     event_type: xiaomi_aqara.click
+#     event_data:
+#       entity_id: binary_sensor.wall_switch_both_1
+#       click_type: both
+# - id: nightbear
+#   alias: Gute Nacht Teddy
+#   action:
+#   - service: xiaomi_aqara.play_ringtone
+#     data:
+#       ringtone_vol: 8
+#       ringtone_id: 10002
+#       gw_mac: !secret xiaomi_aqara_mac
+#   - service: script.lvn_lights_off
+#   - delay: 00:00:03
+#   - service: light.turn_off
+#     entity_id: light.bdr_nightstand_christian
+#   - delay: 00:00:01
+#   - service: light.turn_off
+#     entity_id: light.bdr_nightstand_adriana
+#   - service: light.turn_off
+#     entity_id: light.gst_desk
+#   - service: remote.turn_off
+#     entity_id: remote.harmony
+#   - service: media_player.media_pause
+#     entity_id: media_player.spotify
+#   - service: media_player.media_stop
+#     entity_id: media_player.spotify
+#   - service: script.hlw_light_off
+#   - delay: 00:01:00
+#   - service: light.turn_off
+#     entity_id: light.bett
+#     data:
+#       transition: 60
+#   - service: automation.turn_on
+#     entity_id: automation.bettlicht_an
+#   - service: automation.turn_on
+#     entity_id: automation.bettlicht_aus
+#   trigger:
+#   - platform: event
+#     event_type: xiaomi_aqara.click
+#     event_data:
+#       entity_id: binary_sensor.bdr_button_nightstand_adriana
+#       click_type: long_click_press
+#   - platform: event
+#     event_type: xiaomi_aqara.click
+#     event_data:
+#       entity_id: binary_sensor.bdr_button_nightstand_christian
+#       click_type: long_click_press

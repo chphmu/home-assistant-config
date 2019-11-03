@@ -1,0 +1,258 @@
+climate:
+  - platform: mqtt
+    name: Grill1
+    modes:
+      - "heat"
+    current_temperature_topic: "WLanThermo/Grill-NANO/status/data"
+    current_temperature_template: "{{ value_json.channel[0].temp }}"
+    #temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    #temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_high_state_template: "{{ value_json.channel[0].max }}"
+  - platform: mqtt
+    name: Grill2
+    modes:
+      - "heat"
+    current_temperature_topic: "WLanThermo/Grill-NANO/status/data"
+    current_temperature_template: "{{ value_json.channel[1].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+  - platform: mqtt
+    name: Grill3
+    modes:
+      - "heat"
+    current_temperature_topic: "WLanThermo/Grill-NANO/status/data"
+    current_temperature_template: "{{ value_json.channel[2].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+  - platform: mqtt
+    name: Grill4
+    modes:
+      - "heat"
+    current_temperature_topic: "WLanThermo/Grill-NANO/status/data"
+    current_temperature_template: "{{ value_json.channel[3].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+  - platform: mqtt
+    name: Grill5
+    modes:
+      - "heat"
+    current_temperature_topic: "WLanThermo/Grill-NANO/status/data"
+    current_temperature_template: "{{ value_json.channel[4].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+  - platform: mqtt
+    name: Grill6
+    modes:
+      - "heat"
+    current_temperature_topic: "WLanThermo/Grill-NANO/status/data"
+    current_temperature_template: "{{ value_json.channel[5].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+sensor:
+  - platform: mqtt
+    name: Grill1
+    unit_of_measurement: "°C"
+    json_attributes_topic: "WLanThermo/Grill-NANO/status/data"
+    state_topic: "WLanThermo/Grill-NANO/status/data"
+    value_template: "{{ value_json.channel[0].temp }}"
+    ##current_temperature_template: "{{ value_json.channel[0].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+  - platform: mqtt
+    name: Grill2
+    unit_of_measurement: "°C"
+    json_attributes_topic: "WLanThermo/Grill-NANO/status/data"
+    state_topic: "WLanThermo/Grill-NANO/status/data"
+    value_template: "{{ value_json.channel[1].temp }}"
+    ##current_temperature_template: "{{ value_json.channel[0].temp }}"
+    ##temperature_low_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##temperature_low_state_template: "{{ value_json.channel[0].min }}"
+    ##temperature_high_state_topic: "WLanThermo/Grill-NANO/status/data"
+    ##stemperature_high_state_template: "{{ value_json.channel[0].max }}"
+input_number:
+  grill1_max:
+    name: Grill1 Max
+    min: 0
+    max: 300
+    step: 1
+  grill1_min:
+    name: Grill1 Min
+    min: 0
+    max: 300
+    step: 1
+  grill2_max:
+    name: Grill2 Max
+    min: 0
+    max: 300
+    step: 1
+  grill2_min:
+    name: Grill2 Min
+    min: 0
+    max: 300
+    step: 1
+
+input_boolean: 
+  grill1_max_above:
+    name: Grill 1 Max Above
+  grill1_min_below:
+    name: Grill 1 Min Below
+  grill2_max_above:
+    name: Grill 2 Max Above
+  grill2_min_below:
+    name: Grill 2 Min Below
+
+automation:
+  ## Grill 1 Max
+  - alias: grill1_max_message
+    trigger:
+      platform: state
+      entity_id: sensor.grill1  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill1') |float >= states('input_number.grill1_max') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill1_max_above
+          state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.grill1_max_above
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Grill Sensor 1 "
+          message: "Temperatur erreicht - {{states('sensor.grill1') |float}} °C"
+  - alias: grill1_max_below
+    trigger:
+      platform: state
+      entity_id: sensor.grill1  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill1') |float < states('input_number.grill1_max') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill1_max_above
+          state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.grill1_max_above
+  ## Grill 1 Min
+  - alias: grill1_min_message
+    trigger:
+      platform: state
+      entity_id: sensor.grill1  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill1') |float <= states('input_number.grill1_min') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill1_min_below
+          state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.grill1_min_below
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Grill Sensor 1 "
+          message: "Temperatur unterschritten - {{states('sensor.grill1') |float}} °C"
+  - alias: grill1_min_above
+    trigger:
+      platform: state
+      entity_id: sensor.grill1  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill1') |float > states('input_number.grill1_min') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill1_min_below
+          state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.grill1_min_below
+  
+  ## Grill 2 Max
+  - alias: grill2_max_message
+    trigger:
+      platform: state
+      entity_id: sensor.grill2 
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill2') |float >= states('input_number.grill2_max') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill2_max_above
+          state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.grill2_max_above
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Grill Sensor 2 "
+          message: "Temperatur erreicht - {{states('sensor.grill2') |float}} °C"
+  - alias: grill1_max_below
+    trigger:
+      platform: state
+      entity_id: sensor.grill2  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill2') |float < states('input_number.grill2_max') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill2_max_above
+          state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.grill2_max_above
+  ## Grill 2 Min
+  - alias: grill1_min_message
+    trigger:
+      platform: state
+      entity_id: sensor.grill2  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill2') |float <= states('input_number.grill2_min') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill2_min_below
+          state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.grill2_min_below
+      - service: telegram_bot.send_message
+        data_template:
+          title: "Grill Sensor 2 "
+          message: "Temperatur unterschritten - {{states('sensor.grill2') |float}} °C"
+  - alias: grill1_min_above
+    trigger:
+      platform: state
+      entity_id: sensor.grill2  
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.grill2') |float > states('input_number.grill2_min') | float }}"
+        - condition: state
+          entity_id: input_boolean.grill2_min_below
+          state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.grill2_min_below

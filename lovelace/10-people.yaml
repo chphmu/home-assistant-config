@@ -1,0 +1,31 @@
+id: 10  # Automatically created id
+title: People
+icon: mdi:account
+cards:
+  - id: e42a08f7ec61405190a5c78d57848922  # Automatically created id
+    type: horizontal-stack
+    cards:
+      - type: picture-entity
+        title: Adriana
+        image: /local/images/adriana.jpg
+        state_image:
+          home: /local/images/adriana.jpg
+          not_home: /local/images/adriana_away.jpg
+        entity: device_tracker.mobile_adriana
+      - type: picture-entity
+        state_image:
+          home: /local/images/christian.jpg
+          not_home: /local/images/christian_away.jpg
+        title: Christian
+        entity: device_tracker.mobile_christian
+  - type: picture-elements
+    image: /local/images/adriana.jpg
+    #title: Adriana
+    elements:
+      - type: state-label
+        entity: device_tracker.mobile_adriana
+        title: Adriana
+        style: 
+          top: 80%
+          left: 10%
+          background-color: grey

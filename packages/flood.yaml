@@ -1,0 +1,46 @@
+sensor:
+  - platform: mqtt
+    name: "Flood Rain Temp"
+    state_topic: "shellies/shellyflood-69469F/sensor/temperature"
+    unit_of_measurement: '°C'
+    #availability_topic: "shellies/shellyflood-69469F/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    expire_after: 172800
+  - platform: mqtt
+    name: "Flood Rain Flood"
+    state_topic: "shellies/shellyflood-69469F/sensor/flood"
+    #availability_topic: "shellies/shellyflood-69469F/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    expire_after: 172800
+  - platform: mqtt
+    name: "Flood Rain Battery"
+    state_topic: "shellies/shellyflood-69469F/sensor/battery"
+    unit_of_measurement: '%'
+    payload_available: "true"
+    payload_not_available: "false"
+    expire_after: 172800
+  - platform: mqtt
+    name: "Flood Cellar Temp"
+    state_topic: "shellies/shellyflood-69489C/sensor/temperature"
+    unit_of_measurement: '°C'
+    #availability_topic: "shellies/shellyflood-69489C/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    expire_after: 172800
+  - platform: mqtt
+    name: "Flood Cellar Flood"
+    state_topic: "shellies/shellyflood-69489C/sensor/flood"
+    #availability_topic: "shellies/shellyflood-69489C/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    expire_after: 172800
+  - platform: mqtt
+    name: "Flood Cellar Battery"
+    state_topic: "shellies/shellyflood-69489C/sensor/battery"
+    unit_of_measurement: '%'
+    #availability_topic: "shellies/shellyflood-69489C/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    expire_after: 172800

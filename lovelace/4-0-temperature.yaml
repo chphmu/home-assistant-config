@@ -1,0 +1,77 @@
+id: 4  # Automatically created id
+title: Temperaturen
+icon: mdi:thermometer
+cards:
+  - id: da4864ddcad54c32980ace7d128ef28f  # Automatically created id
+    type: history-graph
+    title: Temperaturchart
+    hours_to_show: 72
+    entities:
+      - sensor.bt1_tmp
+      - sensor.cls_tmp
+      - sensor.kth_tmp
+  - id: 411616ab52b84103bc2564bf4538825a  # Automatically created id
+    type: history-graph
+    title: Feuchtigkeitschart
+    hours_to_show: 72
+    entities:
+      - sensor.bt1_hum
+      - sensor.cls_hum
+      - sensor.kth_hum
+  - id: 98e7bb09e1ce4dcbb46c497b032e0457  # Automatically created id
+    type: entities
+    title: Temperaturen
+    show_header_toggle: false
+    entities:
+      - sensor.bt1_tmp
+      - sensor.cls_tmp
+      - sensor.kth_tmp
+  - id: 7f2ec4b6e12248b49b17257470e2b3f6  # Automatically created id
+    type: entities
+    title: Feuchtigkeit
+    show_header_toggle: false
+    entities:
+      - sensor.bt1_hum
+      - sensor.cls_hum
+      - sensor.kth_hum
+  #- id: 11ba6ad419184580b63d8c16bb4b3712  # Automatically created id
+  #  type: gauge
+  #  title: Flur
+  #  entity: sensor.temperature_corridor
+  #  unit_of_measurement: °C
+  #  min: 15
+  #  max: 40
+  #  severity:
+  #    red: 28
+  #    green: 0
+  #    yellow: 25
+  - type: entities
+    title: Flood Rain
+    entities:
+      - sensor.flood_rain_temp
+      - sensor.flood_rain_battery
+      - sensor.flood_rain_flood
+  - type: entities
+    title: Flood Cellar
+    entities:
+      - sensor.flood_cellar_temp
+      - sensor.flood_cellar_battery
+      - sensor.flood_cellar_flood
+
+  - type: vertical-stack
+    cards:
+      - type: thermostat
+        entity: climate.lvn_heating_1
+      - type: entities
+        entities:
+          - input_boolean.lvn_heating_show_advanced
+      - type: conditional
+        conditions:
+          - entity: input_boolean.lvn_heating_show_advanced
+            state: "on"
+        card:
+          type: entities
+          entities:
+            - input_datetime.lvn_heating_starttime
+            - input_datetime.lvn_heating_endtime
+

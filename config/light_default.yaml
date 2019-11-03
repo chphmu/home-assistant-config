@@ -1,9 +1,9 @@
-- platform: flux_led
-  #automatic_add: True
-  devices:
-    192.168.85.30:
-      name: lvn_rgbcoucharea
-      mode: "rgbw"
-    192.168.85.51:
-      name: lvn_rgbkitchenarea
-      mode: "rgbw"
+#- platform: flux_led
+#  #automatic_add: True
+#  devices:
+#    192.168.85.30:
+#      name: lvn_rgbcoucharea
+#      mode: "rgbw"
+#    192.168.85.51:
+#      name: lvn_rgbkitchenarea
+#      mode: "rgbw"

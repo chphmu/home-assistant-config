@@ -1,9 +1,37 @@
 - platform: mqtt
-  name: "kitchen"
+  name: "kth_terrace"
   state_topic: "shellies/shellyswitch25-E62ED7/roller/0"
   command_topic: "shellies/shellyswitch25-E62ED7/roller/0/command" 
   position_topic: "shellies/shellyswitch25-E62ED7/roller/0/pos"
   set_position_topic: "shellies/shellyswitch25-E62ED7/roller/0/command/pos" 
+  payload_open: "open"
+  payload_close: "close"
+  payload_stop: "stop"
+  state_open: "open"
+  state_closed: "close"
+  retain: false
+  optimistic: false
+  qos: 2
+- platform: mqtt
+  name: "bdr_balcony"
+  state_topic: "shellies/shellyswitch25-00B47C/roller/0"
+  command_topic: "shellies/shellyswitch25-00B47C/roller/0/command" 
+  position_topic: "shellies/shellyswitch25-00B47C/roller/0/pos"
+  set_position_topic: "shellies/shellyswitch25-00B47C/roller/0/command/pos" 
+  payload_open: "open"
+  payload_close: "close"
+  payload_stop: "stop"
+  state_open: "open"
+  state_closed: "close"
+  retain: false
+  optimistic: false
+  qos: 2
+- platform: mqtt
+  name: "drr_garden"
+  state_topic: "shellies/shellyswitch25-E627B9/roller/0"
+  command_topic: "shellies/shellyswitch25-E627B9/roller/0/command" 
+  position_topic: "shellies/shellyswitch25-E627B9/roller/0/pos"
+  set_position_topic: "shellies/shellyswitch25-E627B9/roller/0/command/pos" 
   payload_open: "open"
   payload_close: "close"
   payload_stop: "stop"

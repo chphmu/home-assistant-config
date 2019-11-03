@@ -7,33 +7,35 @@ cards:
     entities:
       - sensor.house_evoila
       - sensor.evoila_house
-      - sensor.home_evoila
-      - sensor.evoila_home
   - type: history-graph
     title: Fahrzeiten Chart
     hours_to_show: 72
     entities:
       - sensor.house_evoila
       - sensor.evoila_house
-      - sensor.home_evoila
-      - sensor.evoila_home
   - type: entities
     title: Trockner
     entities:
+      - switch.dryer
       - sensor.dryer_engergy
       - sensor.dryer_monthly
       - sensor.dryer_power
       - sensor.dryer_weekly
       - input_boolean.dryer_running
+      - input_boolean.dryer_ready
   - type: entities
     title: Waschmaschine
     entities:
+      - switch.washing_machine
       - sensor.washing_machine_engergy
       - sensor.washing_machine_monthly
       - sensor.washing_machine_power
       - sensor.washing_machine_weekly
       - input_boolean.washing_machine_running
-  - type: entities
-    title: Rollläden
+      - input_boolean.washing_machine_ready
+  - type: history-graph
+    title: Last Maschinen
+    hours_to_show: 3
     entities:
-      - cover.kitchen
+      - sensor.washing_machine_power
+      - sensor.dryer_power

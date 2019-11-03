@@ -29,9 +29,9 @@ sun:
 speedtestdotnet:
     server_id: 18488
 fastdotcom:
-ios:
+#ios:
 history_graph: !include config/histroy_graph.yaml
-python_script:
+#python_script:
 sensor default: !include config/sensor_default.yaml
 sensor statistics: !include config/sensor_statistics.yaml
 telegram_bot: !include config/telegram.yaml
@@ -39,31 +39,30 @@ telegram_bot: !include config/telegram.yaml
 binary_sensor: !include config/binary_sensor_default.yaml
 #tts: !include config/tts.yaml
 remote: !include config/remote.yaml
-emulated_hue: !include config/emulated_hue.yaml
+# emulated_hue: !include config/emulated_hue.yaml
 light mqtt: !include config/light_mqtt.yaml
 light other: !include config/light_default.yaml
-hue: !include config/hue.yaml
+#hue: !include config/hue.yaml
 #ios: !include config/ios.yaml
 mqtt: !include config/mqtt.yaml
 notify: !include config/notify.yaml
 device_tracker: !include config/device_tracker.yaml
 media_player: !include config/media_player.yaml
-xiaomi_aqara: !include config/xiaomi_aqara.yaml
+#xiaomi_aqara: !include config/xiaomi_aqara.yaml
 #camera: !include config/camera.yaml
 group: !include config/groups.yaml
 automation: !include_dir_merge_list automation
-scene: !include config/scene.yaml
+#scene: !include config/scene.yaml
 script: !include script.yaml
 zone: !include config/zone.yaml
 panel_iframe: !include config/panel_iframe.yaml
 map:
+stream:
 mqtt_statestream: !include config/mqtt_statestream.yaml
 system_health:
 alexa_media: !include config/alexa_media.yaml
 cover: !include config/covers.yaml
 alexa: !include config/alexa.yaml
-custom_updater:
-  component_urls:
-    - https://raw.githubusercontent.com/keatontaylor/alexa_media_player/master/custom_components.json
-  card_urls:
-    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+homekit: !include config/homekit.yaml
+hacs:
+  token: !secret git_token

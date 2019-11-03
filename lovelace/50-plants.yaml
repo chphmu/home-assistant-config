@@ -1,0 +1,48 @@
+id: 50  # Automatically created id
+title: Pflanzen
+icon: mdi:leaf
+cards:
+  - id: 8fde834a96a54401a6f4e19e5017538d  # Automatically created id
+    type: picture-elements
+    image: /local/images/leaf_dark.jpg
+    elements:
+      - type: state-badge
+        entity: sensor.flower_care_2_temperature
+        style:
+          top: 30%
+          left: 15%
+          color: white
+          --ha-label-badge-font-size: 1em
+      - type: state-badge
+        entity: sensor.flower_care_2_moisture
+        style:
+          top: 30%
+          left: 35%
+          color: white
+          --ha-label-badge-font-size: 1em
+      - type: state-badge
+        entity: sensor.flower_care_2_lux
+        style:
+          top: 30%
+          left: 55%
+          color: white
+          --ha-label-badge-font-size: 1em
+      - type: icon
+        icon: mdi:leaf
+        title: Palme
+        style:
+          top: 85%
+          height: 20%
+          width: 100%
+          left: 50%
+          background: rgba(20,20,20,0.5)
+          padding-left: 10%
+          padding-top: 2%
+          padding-bottom: 2%
+      # - type: service-button
+      #   title: Palme
+      #   style:
+      #     top: 85%
+      #     left: 80%
+      #     --primary-color: white
+      #   service: homeassistant.turn_on

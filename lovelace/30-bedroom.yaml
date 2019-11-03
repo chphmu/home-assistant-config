@@ -1,0 +1,194 @@
+id: 30  # Automatically created id
+title: Schlafzimmer
+icon: mdi:seat-individual-suite
+cards:
+  - id: af5383bcc362417e91643147340fee0b  # Automatically created id
+    type: picture-elements
+    image: /local/images/bedroom.jpg
+    elements:
+      ## Nightstands Bedroom
+      - type: state-icon
+        entity: light.bdr_nightstand_adriana
+        tap_action: 
+          action: toggle
+        style:
+          top: 9%
+          left: 12.5%
+          --iron-icon-height: 50px
+          --iron-icon-width: 50px
+          --paper-item-icon-active-color: yellow
+      - type: state-icon
+        entity: light.bdr_nightstand_christian
+        tap_action: 
+          action: toggle
+        style:
+          top: 9%
+          left: 80%
+          --iron-icon-height: 50px
+          --iron-icon-width: 50px
+          --paper-item-icon-active-color: yellow
+      - type: state-icon
+        entity: light.bed
+        style:
+          top: 45%
+          left: 20%
+          color: rgba(1,1,1,0)
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+      ## Bedlight Bedroom
+      - type: icon
+        icon: mdi:lightbulb-outline
+        tap_action: 
+          action: call-service
+          service: light.turn_off
+          service_data:
+            entity_id: light.bed
+        style:
+          top: 45%
+          left: 40%
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+      - type: icon
+        icon: mdi:lightbulb
+        tap_action: 
+          action: call-service
+          service: light.turn_on
+          service_data:
+            entity_id: light.bed
+            color_name: red
+        style:
+          top: 45%
+          left: 60%
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+          color: red
+      - type: icon
+        icon: mdi:lightbulb
+        tap_action: 
+          action: call-service
+          service: light.turn_on
+          service_data:
+            entity_id: light.bed
+            color_name: green
+        style:
+          top: 45%
+          left: 72%
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+          color: green
+      ## Windows Bedroom
+      - type: state-icon
+        entity: binary_sensor.window_bed_left
+        style:
+          top: 28%
+          left: 90%
+          color: rgba(1,1,1,0)
+          --paper-item-icon-color: green
+          --paper-item-icon-active-color: red
+          --iron-icon-height: 50px
+          --iron-icon-width: 50px
+      - type: state-icon
+        entity: binary_sensor.window_bed_right
+        style:
+          top: 48%
+          left: 90%
+          color: rgba(1,1,1,0)
+          --paper-item-icon-color: green
+          --paper-item-icon-active-color: red
+          --iron-icon-height: 50px
+          --iron-icon-width: 50px
+
+      # Footer Bedroom
+      - type: state-label
+        entity: sensor.temperature_bedroom
+        style:
+          top: 90%
+          height: 20%
+          width: 100%
+          left: 50%
+          background: rgba(20,20,20,0.5)
+          padding-left: 10%
+          padding-top: 5%
+          padding-bottom: 2%
+      - type: state-label
+        entity: sensor.humidity_bedroom
+        style:
+          top: 90%
+          height: 20%
+          left: 47%
+          padding-left: 10%
+          padding-top: 5%
+          padding-bottom: 2%
+      - type: state-icon
+        entity: binary_sensor.motion_sensor_bedroom
+        style:
+          top: 88%
+          left: 90%
+  - id: fd82b8de2e85460591a12325ea506476  # Automatically created id
+    type: picture-elements
+    image: /local/images/fans.jpg
+    elements:
+      #- type: service-button
+        # title: ON
+        #service: switch.turn_on
+      #  service_data:
+      #    entity_id: switch.fan
+      #  style:
+      #    top: 70%
+      #    left: 33%
+      #    font-size: x-large
+      #    background-color: rgba(20,240,20,0.7)
+      #- type: service-button
+      #  title: OFF
+      #  service: switch.turn_off
+      #  service_data:
+      #    entity_id: switch.fan
+      #  style:
+      #    top: 70%
+      #    left: 66%
+      #    font-size: x-large
+      #    background-color: rgba(240,20,20,0.7)
+      - type: state-label
+        entity: timer.fan
+        style:
+          left: 90%
+          top: 90%
+      - type: icon
+        icon: mdi:numeric-1-box
+        tap_action: 
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.fan_10
+        style:
+          top: 30%
+          left: 15%
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+          color: yellow
+      - type: icon
+        icon: mdi:numeric-3-box
+        tap_action: 
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.fan_30
+        style:
+          top: 30%
+          left: 50%
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+          color: yellow
+      - type: icon
+        icon: mdi:numeric-6-box
+        tap_action: 
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.fan_60
+        style:
+          top: 30%
+          left: 85%
+          --iron-icon-height: 40px
+          --iron-icon-width: 40px
+          color: yellow

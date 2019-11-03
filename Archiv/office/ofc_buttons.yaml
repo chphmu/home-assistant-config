@@ -1,0 +1,12 @@
+automation:
+  - alias: 'Toggle desk light'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: buttondesk
+        event: 1002
+    action:
+      - service: light.toggle
+        entity_id: light.ofc_desk

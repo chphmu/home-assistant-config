@@ -1,0 +1,22 @@
+
+  - type: vertical-stack
+    cards:
+      - type: picture-elements
+        image: /local/images/heating_1.jpg
+        #climate.lvn_heating_1
+        elements:
+          - type: state_badge
+            entity: switch.lvn_heating_1
+      - type: entities
+        entities:
+          - input_boolean.lvn_heating_show_advanced
+      - type: conditional
+        conditions:
+          - entity: input_boolean.lvn_heating_show_advanced
+            state: "on"
+        card:
+          type: entities
+          entities:
+            - input_datetime.lvn_heating_starttime
+            - input_datetime.lvn_heating_endtime
+

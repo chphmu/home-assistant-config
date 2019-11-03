@@ -1,0 +1,19 @@
+automation:
+  - id: hl0_light_on
+    alias: hl0_light_on
+    trigger: 
+      platform: state
+      entity_id: binary_sensor.hl1_wds_cellar_door
+      to: "on"
+    action:
+      service: light.turn_on
+      entity_id: light.hl0_temp
+  - id: hl0_light_off
+    alias: hl0_light_off
+    trigger: 
+      platform: state
+      entity_id: binary_sensor.hl1_wds_cellar_door
+      to: "off"
+    action:
+      service: light.turn_off
+      entity_id: light.hl0_temp

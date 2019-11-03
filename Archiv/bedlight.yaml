@@ -1,0 +1,109 @@
+# binary_sensor:
+#   - platform: mqtt
+#     state_topic: "sz/bewegungsmelder"
+#     name: "motion_bed"
+#     qos: 0
+#     payload_on: "on"
+#     payload_off: "off"
+#     device_class: motion
+# light:
+#   - platform: limitlessled
+#     bridges:
+#       - host: 192.168.85.21
+#         version: 4
+#         port: 8899
+#         groups:
+#         - number: 2
+#           name: bed
+# timer:
+#   bed:
+#     name: Timer Bett
+
+# homeassistant:
+#   customize:
+#     light.bed:
+#       friendly_name: Bettlicht
+#     binary_sensor.motion_bed:
+#       friendly_name: Bewegungsmelder Bett
+
+# group:
+#   bedlight:
+#     name: Bettlicht
+#     entities:
+#       - light.bed
+#       - binary_sensor.motion_bed
+#       - timer.bed
+
+# automation:
+#   - id: bedlightTimerMotionTriggerOn
+#     alias: Bettlicht an
+#     action:
+#     - service: timer.start
+#       entity_id: timer.bed
+#       data:
+#         duration: 00:03:00
+#     - service: light.turn_on
+#       entity_id: light.bed
+#       data:
+#         brightness: 190
+#         rgb_color:
+#         - 190
+#         - 105
+#         - 0
+#         transition: 15
+#     trigger:
+#     - platform: state
+#       entity_id: binary_sensor.motion_sensor_bedroom
+#       to: 'on'
+#   - id: bedlightTimerMotionTriggerOff
+#     alias: Bettlicht aus
+#     action:
+#     - service: timer.start
+#       entity_id: timer.bed
+#       data:
+#         duration: 00:03:00
+#     - condition: state
+#       entity_id: binary_sensor.motion_sensor_bedroom
+#       state: 'off'
+#     - service: light.turn_off
+#       entity_id: light.bed
+#       data:
+#         transition: 15
+#     - service: timer.cancel
+#       entity_id: timer.bed
+#     trigger:
+#     - platform: event
+#       event_type: timer.finished
+#       event_data: 
+#         entity_id: timer.bed
+
+#   - id: bedlight_to_sleep_christian
+#     alias: bdr_stayinbed
+#     action:
+#     - service: scene.turn_on
+#       entity_id: scene.bdr_stayinbed
+#     trigger:
+#     - platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.bdr_button_nightstand_christian
+#         click_type: double
+#     - platform: event
+#       event_type: xiaomi_aqara.click
+#       event_data:
+#         entity_id: binary_sensor.bdr_button_nightstand_adriana
+#         click_type: double
+
+
+# scene:
+#   - name: bdr_stayinbed
+#     entities:
+#       light.bdr_nightstand_adriana: off
+#       light.bdr_nightstand_christian: on
+#       light.bed:
+#         state: on
+#         rgb_color: 
+#           - 255
+#           - 63
+#           - 0
+#         brightness: 200
