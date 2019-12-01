@@ -7,6 +7,7 @@ smart_home:
       - switch.plug_4
       - light.desk
       - light.lvn_showcase
+      - light.balllight
       - sensor.kth_tmp
     exclude_domains:
       - scene
@@ -39,6 +40,10 @@ smart_home:
     light.ofc_desk:
       name: Schreibtisch
       description: Schreibtischlampe
+      display_categories: LIGHT
+    light.balllight:
+      name: Balllampe
+      description: Lampe Raumteiler
       display_categories: LIGHT
     cover.kth_terrace:
       name: Küchenrollo

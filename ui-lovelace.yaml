@@ -18,5 +18,4 @@ views:
   - !include lovelace/70-candy.yaml
   - !include lovelace/75-grill.yaml
   - !include lovelace/8-car.yaml
-  - !include lovelace/9-test.yaml
       

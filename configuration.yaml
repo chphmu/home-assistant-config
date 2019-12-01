@@ -30,7 +30,7 @@ speedtestdotnet:
     server_id: 18488
 fastdotcom:
 #ios:
-history_graph: !include config/histroy_graph.yaml
+#history_graph: !include config/histroy_graph.yaml
 #python_script:
 sensor default: !include config/sensor_default.yaml
 sensor statistics: !include config/sensor_statistics.yaml
@@ -50,7 +50,7 @@ device_tracker: !include config/device_tracker.yaml
 media_player: !include config/media_player.yaml
 #xiaomi_aqara: !include config/xiaomi_aqara.yaml
 #camera: !include config/camera.yaml
-group: !include config/groups.yaml
+#group: !include config/groups.yaml
 automation: !include_dir_merge_list automation
 #scene: !include config/scene.yaml
 script: !include script.yaml

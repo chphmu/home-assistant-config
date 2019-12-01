@@ -18,14 +18,3 @@ cards:
           not_home: /local/images/christian_away.jpg
         title: Christian
         entity: device_tracker.mobile_christian
-  - type: picture-elements
-    image: /local/images/adriana.jpg
-    #title: Adriana
-    elements:
-      - type: state-label
-        entity: device_tracker.mobile_adriana
-        title: Adriana
-        style: 
-          top: 80%
-          left: 10%
-          background-color: grey

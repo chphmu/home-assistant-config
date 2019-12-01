@@ -1,0 +1,97 @@
+sensor:
+  - platform: mqtt
+    name: "tts_input"
+    state_topic: "ha/tts"
+    json_attributes_topic: "ha/tts/attributes"
+script:
+  tts:
+    alias: Text To Speech
+    description: 'Text to speech for my home'
+    fields:
+      message:
+        description: 'Messeage to be send'
+        example: "This is a message from your home"
+      title:
+        example: "New Message"
+        description: "Used for text message title"
+      voice_notification:
+        example: true
+      text_notification:
+        example: true
+      timestamp:
+        example: "00:00:00"
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: "ha/tts"
+          payload_template: "{{ message }}"
+      - service: mqtt.publish
+        data_template:
+          topic: "ha/tts/attributes"
+          payload_template: "
+                              {\"voice_notification\":\"{{ voice_notification }}\", 
+                              \"text_notification\":\"{{ text_notification }}\",
+                              \"title\":\"{{ title }}\",
+                              \"timestamp\":\"{{ now() }}\"}"
+input_text:
+  tts_input1:
+    initial: "not set"
+  tts_input2:
+    initial: "not set"
+  tts_input3:
+    initial: "not set"
+
+automation:
+  - id: executeTTSinputs
+    alias: Execute TTS Inputs
+    trigger:
+      - platform: state
+        entity_id: sensor.tts_input
+    action:
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.tts_input3
+          value: "{{ states('input_text.tts_input2') }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.tts_input2
+          value: "{{ states('input_text.tts_input1') }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.tts_input1
+          value: "{{ states('sensor.tts_input') }}"
+  - id: executeTTStext
+    alias: Execute TTS Text
+    trigger:
+      - platform: state
+        entity_id: sensor.tts_input
+    action:
+      - delay:
+          seconds: 1
+      - condition: template
+        value_template: "{{ state_attr('sensor.tts_input', 'text_notification') }}"
+      - service: telegram_bot.send_message
+        data_template:
+          title: "{{ state_attr('sensor.tts_input', 'title') }}"
+          message:  "{{ states('sensor.tts_input') }}"
+  
+  - id: executeTTSvoice
+    alias: Execute TTS Voice
+    trigger:
+      - platform: state
+        entity_id: sensor.tts_input
+    action:
+      - delay:
+          seconds: 1
+      - condition: template
+        value_template: "{{ state_attr('sensor.tts_input', 'voice_notification') }}"
+      - service: notify.alexa_media
+        data_template:
+          target: 
+            - media_player.wohnzimmer
+          data:
+            type: tts
+          message: "{{ states('sensor.tts_input') }}"
+    
+      
+      

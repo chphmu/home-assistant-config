@@ -2,11 +2,11 @@ automation:
   - id: openCoverSun
     alias: Open Covers sun
     trigger:
-      - platform: state
-        entity_id: sun.sun
-        to: "above_horizon"
-        for:
-          minutes: 1
+      - platform: sun
+        # Possible values: sunset, sunrise
+        event: sunrise
+        # Optional time offset. This example will trigger 45 minutes before sunset.
+        offset: "-00:10:00"
     action:
       - service: cover.open_cover
         entity_id: cover.kth_terrace

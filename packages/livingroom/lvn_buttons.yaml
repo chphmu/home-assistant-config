@@ -14,6 +14,8 @@ automation:
         entity_id: switch.plug_1
       - service: switch.turn_on
         entity_id: switch.plug_4
+      - service: light.turn_on
+        entity_id: light.balllight
   - alias: 'Turn off living room'
     initial_state: 'on'
     trigger:
@@ -29,6 +31,8 @@ automation:
         entity_id: switch.plug_1
       - service: switch.turn_off
         entity_id: switch.plug_4
+      - service: light.turn_off
+        entity_id: light.balllight
   - alias: 'Switch button Christian'
     initial_state: 'on'
     trigger:
@@ -68,6 +72,8 @@ automation:
         entity_id: switch.plug_3
       - service: switch.turn_off
         entity_id: switch.plug_4
+      - service: light.turn_off
+        entity_id: light.balllight
   - alias: 'Switch button Christian Nightstand all off'
     initial_state: 'on'
     trigger:
@@ -85,3 +91,5 @@ automation:
         entity_id: switch.plug_3
       - service: switch.turn_off
         entity_id: switch.plug_4
+      - service: light.turn_off
+        entity_id: light.balllight

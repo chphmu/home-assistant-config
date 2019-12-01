@@ -1,0 +1,78 @@
+group:
+  glb_windows:
+    name: Türen und Fenster
+    entities: 
+      - binary_sensor.lvn_wds_gardendoor
+      - binary_sensor.bt1_wds_left
+      - binary_sensor.bt1_wds_right
+      - binary_sensor.bdr_wds_window
+      - binary_sensor.kth_wds_door
+      - binary_sensor.crl_wds_garden
+      - binary_sensor.crr_wds_street
+
+binary_sensor:
+  - platform: template
+    sensors:
+      glb_windows_open:
+        friendly_name: "Alle Fenster"
+        device_class: window
+        value_template: >-
+          {{ is_state('binary_sensor.lvn_wds_gardendoor', 'on')
+              or is_state('binary_sensor.bt1_wds_left', 'on')
+              or is_state('binary_sensor.bt1_wds_right', 'on')
+              or is_state('binary_sensor.kth_wds_door', 'on')
+              or is_state('binary_sensor.bdr_wds_window', 'on')
+              or is_state('binary_sensor.crl_wds_garden', 'on')
+              or is_state('binary_sensor.crr_wds_street', 'on') }}
+sensor:
+  - platform: template
+    sensors:
+      glb_windows_open_count:
+        friendly_name: 'Offene Fenster'
+        value_template: "{{ states|selectattr('entity_id','in',state_attr('group.glb_windows','entity_id'))|selectattr('state','eq','on')|list|count }}"
+        entity_id:
+          - binary_sensor.lvn_wds_gardendoor
+          - binary_sensor.bt1_wds_left
+          - binary_sensor.bt1_wds_right
+          - binary_sensor.bdr_wds_window
+          - binary_sensor.kth_wds_door
+          - binary_sensor.crl_wds_garden
+          - binary_sensor.crr_wds_street
+
+automation:
+  - id: glbWindowOpenToLong
+    alias: Fenster zu lang offen
+    trigger:
+      - entity_id: binary_sensor.glb_windows_open
+        platform: state
+        to: 'on'
+        for:
+          minutes: 10
+    condition:
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: '{{ states.weather.dreieich.attributes.temperature < 12 }}'
+    action: 
+      - service: script.tts
+        data_template:
+          title: "Fenster lang offen"
+          message:  "
+            {%- if states('sensor.glb_windows_open_count') | float < 2  -%}
+            Das Fenster 
+            {%- else -%}
+            Die Fenster
+            {%- endif %}
+            {% for item in states.group.glb_windows.attributes.entity_id -%}
+            {%- if states(item) == 'on' -%}
+            {{ state_attr(item, 'friendly_name') }},
+            {%- endif -%}
+            {%- endfor %}
+            {%- if states('sensor.glb_windows_open_count') | float < 2 %}
+            ist
+            {% else %}
+            sind 
+            {% endif -%} schon länger offen. "
+          voice_notification: true
+          text_notification: true
+          
