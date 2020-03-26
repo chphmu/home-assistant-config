@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # Home Assistant Config by chphmu #
 
 ## Naming Concept ##
@@ -34,6 +32,9 @@ Hallway Cellar | hl0
 Hallway Main Floor | hl1
 Hallway First Floor | hl2
 Hallway Second Floor | hl3
+Outdoor Street | ous
+Outdoor Cellar | ouc
+Outdoor Garage ] oug
 
 ### Type ###
 Type name | Type short
