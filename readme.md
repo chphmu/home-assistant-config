@@ -16,7 +16,7 @@ Global | glb
 System | sys
 Living room | lvn
 Kitchen | kth
-Master Bedroom | bdr
+Master Bedroom | mbr
 Dressing Room | drr
 Child Room Street | crs
 Child Room Garden | crg 
@@ -33,7 +33,7 @@ Hallway First Floor | hl2
 Hallway Second Floor | hl3
 Outdoor Street | ous
 Outdoor Cellar | ouc
-Outdoor Garage ] oug
+Outdoor Garage | oug
 
 ### Type ###
 Type name | Type short
