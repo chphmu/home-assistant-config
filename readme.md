@@ -18,10 +18,9 @@ Living room | lvn
 Kitchen | kth
 Master Bedroom | bdr
 Dressing Room | drr
-Child Room Left | crl
-Child Room Right | crr
-Guest room | gst 
-Office | ofc
+Child Room Street | crs
+Child Room Garden | crg 
+Office / Guest| ofc
 Bathroom Main Floor | bt1
 Bathroom First Floor | bt2
 Bathroom Second Floor | bt3
