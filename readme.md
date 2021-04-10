@@ -14,6 +14,7 @@ Room name | Room short
 ------ | ------
 Global | glb
 System | sys
+Moving Device | mvd
 Living room | lvn
 Kitchen | kth
 Master Bedroom | mbr
