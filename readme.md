@@ -56,4 +56,15 @@ Pressure | prs
 Attribute name| Attribute short
 Batterly level | bal
 
->>>>>>> c49d4005b7dcb7a890ab833aec7eeeb6dfdd5148
+### scenes number knx ###
+Number | Function
+------ | ------
+10 | off
+11 | bright
+12 | dimmed
+13 | HCL
+20 | Good night story
+21 | Sleeping time
+22 | Good Morning
+Pressure | prs
+
